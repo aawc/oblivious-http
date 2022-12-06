@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-01T00:38:16.548799+00:00",
+  "timestamp": "2022-12-06T00:30:22.914332+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -14889,6 +14889,228 @@
               "updatedAt": "2022-11-30T00:02:26Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 222,
+      "id": "PR_kwDOE6fLGM5ERZm0",
+      "title": "HTTP/1.1 provides no \"didn't process\" signal",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/222",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Sean's question makes this worth noting.",
+      "createdAt": "2022-12-04T22:45:23Z",
+      "updatedAt": "2022-12-05T21:57:59Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "3dfaf44af1cce18cc44c31f4b4f3ac6715822cbd",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "h1-no-processing",
+      "headRefOid": "5e6c3747389a8f6c8e7cbff8dddd904cc3a32072",
+      "closedAt": "2022-12-05T21:57:58Z",
+      "mergedAt": "2022-12-05T21:57:58Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "604b5a384826e00d734b604f8de1162c60430e12"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5H0UWn",
+          "commit": {
+            "abbreviatedOid": "5e6c374"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T16:44:22Z",
+          "updatedAt": "2022-12-05T16:44:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 223,
+      "id": "PR_kwDOE6fLGM5ERiwk",
+      "title": " Mark Nottingham's improved introductory text ",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/223",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-12-04T23:37:03Z",
+      "updatedAt": "2022-12-06T00:04:40Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "3dfaf44af1cce18cc44c31f4b4f3ac6715822cbd",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "mnot-intro",
+      "headRefOid": "e373be9fdd2bdfdd5e7cbaa9578b68caa99a4acd",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5H0Uzg",
+          "commit": {
+            "abbreviatedOid": "d01f5b4"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This new text seems to distinguish encapsulation and encryption, but they are two words for the same thing. Indeed, the section that describes encapsulation via encryption is titled \"HPKE Encapsulation\" and says: \r\n\r\n> This document defines how a binary-encoded HTTP message {{BINARY}} is\r\n encapsulated using HPKE {{HPKE}}\r\n\r\n(note word encapsulated)\r\n\r\nI'm requesting changes to make sure we're on the same page here. My suggestions use the word \"encapsulation\" for the process of protecting messages with encryption.",
+          "createdAt": "2022-12-05T16:45:05Z",
+          "updatedAt": "2022-12-05T17:00:19Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nTo overcome these limitations, this document defines how binary\r\n```\r\nHPKE is the thing that encapsulates the messages, it doesn't take encapsulated messages as input.",
+              "createdAt": "2022-12-05T16:45:05Z",
+              "updatedAt": "2022-12-05T16:48:29Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\nresponses and sending them back to the client. Critically, the encapsulated\r\nmessages are sent through a separate Oblivious Relay Resource to\r\n```",
+              "createdAt": "2022-12-05T16:45:44Z",
+              "updatedAt": "2022-12-05T16:48:29Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\nHTTP messages {{BINARY}} can be encapsulated using Hybrid Public Key Encryption\r\n```",
+              "createdAt": "2022-12-05T16:48:11Z",
+              "updatedAt": "2022-12-05T16:48:29Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nan Oblivious Gateway Resource, which is responsible for forwarding decapsulated\r\n```",
+              "createdAt": "2022-12-05T16:48:20Z",
+              "updatedAt": "2022-12-05T16:48:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5H2EBm",
+          "commit": {
+            "abbreviatedOid": "e373be9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM pending one final nit.",
+          "createdAt": "2022-12-05T21:58:57Z",
+          "updatedAt": "2022-12-05T21:59:17Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nresponses with encryption and sending them back to the client. Critically, the encapsulated\r\n```",
+              "createdAt": "2022-12-05T21:58:57Z",
+              "updatedAt": "2022-12-05T21:59:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5H2SSl",
+          "commit": {
+            "abbreviatedOid": "e373be9"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-05T22:44:20Z",
+          "updatedAt": "2022-12-05T22:44:21Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "That would have it say \"encrypting the corresponding responses with encryption\".  Did you mean to suggest \"encapsulating the corresponding responses [with encryption] and sending them back to the client\" ?  I don't think you need the \"with encryption\" here.",
+              "createdAt": "2022-12-05T22:44:20Z",
+              "updatedAt": "2022-12-05T22:44:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5H2p8q",
+          "commit": {
+            "abbreviatedOid": "e373be9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-06T00:04:40Z",
+          "updatedAt": "2022-12-06T00:04:40Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "Yeah, sorry, I meant it to say \"encapsulating the request with encryption\" (or whatever).",
+              "createdAt": "2022-12-06T00:04:40Z",
+              "updatedAt": "2022-12-06T00:04:40Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 224,
+      "id": "PR_kwDOE6fLGM5ERoht",
+      "title": "Less use of Title Case",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/224",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is a big change, but I think that I like it.  The cost is fairly minimal, but it reads a little better in my view.\r\n\r\nAlso, I fixed a few very minor typos.  If we don't go this way, then I'll have to find those and fix them.\r\n\r\nOn the other hand, there are open pull requests that will need to be fixed in line with this change if we do.",
+      "createdAt": "2022-12-05T00:13:07Z",
+      "updatedAt": "2022-12-05T17:19:34Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "3dfaf44af1cce18cc44c31f4b4f3ac6715822cbd",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "less-caps",
+      "headRefOid": "f1ef0314467cdee2b9ef8acfbd02af78acc995bd",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mnot",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "+1 this reads much more clearly.",
+          "createdAt": "2022-12-05T00:24:46Z",
+          "updatedAt": "2022-12-05T00:24:46Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hm, I don't think this is an improvement \u2014\u00a0it particularly seems odd to force lowercase all of the terms in definitions, even where it seems more correct to have them capitalized.",
+          "createdAt": "2022-12-05T17:19:34Z",
+          "updatedAt": "2022-12-05T17:19:34Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5H0Xd6",
+          "commit": {
+            "abbreviatedOid": "f1ef031"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I don't think we should take this change this late in the process. This document went through WGLC and the consensus at the time was to treat the terms as proper nouns. I don't think it's appropriate to change it now on the basis of a single review. Beyond that, I don't think this meaningfully improves readability, but I don't feel strongly about it.",
+          "createdAt": "2022-12-05T16:52:07Z",
+          "updatedAt": "2022-12-05T16:52:38Z",
+          "comments": []
         }
       ]
     }
