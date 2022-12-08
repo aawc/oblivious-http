@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-06T00:30:22.914332+00:00",
+  "timestamp": "2022-12-08T00:30:47.344514+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -14946,13 +14946,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-12-04T23:37:03Z",
-      "updatedAt": "2022-12-06T00:04:40Z",
+      "updatedAt": "2022-12-06T02:41:27Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "3dfaf44af1cce18cc44c31f4b4f3ac6715822cbd",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "mnot-intro",
-      "headRefOid": "e373be9fdd2bdfdd5e7cbaa9578b68caa99a4acd",
+      "headRefOid": "4bd3387cc53221167f2903f83ae0c5d0896ab4a0",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -15071,7 +15071,7 @@
       "labels": [],
       "body": "This is a big change, but I think that I like it.  The cost is fairly minimal, but it reads a little better in my view.\r\n\r\nAlso, I fixed a few very minor typos.  If we don't go this way, then I'll have to find those and fix them.\r\n\r\nOn the other hand, there are open pull requests that will need to be fixed in line with this change if we do.",
       "createdAt": "2022-12-05T00:13:07Z",
-      "updatedAt": "2022-12-05T17:19:34Z",
+      "updatedAt": "2022-12-06T01:36:11Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "3dfaf44af1cce18cc44c31f4b4f3ac6715822cbd",
@@ -15096,6 +15096,13 @@
           "body": "Hm, I don't think this is an improvement \u2014\u00a0it particularly seems odd to force lowercase all of the terms in definitions, even where it seems more correct to have them capitalized.",
           "createdAt": "2022-12-05T17:19:34Z",
           "updatedAt": "2022-12-05T17:19:34Z"
+        },
+        {
+          "author": "mnot",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I Think It's An Improvement, But Obviously This Is A Matter Of Taste.",
+          "createdAt": "2022-12-06T01:35:36Z",
+          "updatedAt": "2022-12-06T01:36:11Z"
         }
       ],
       "reviews": [
