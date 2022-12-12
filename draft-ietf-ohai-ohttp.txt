@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 8 June 2023                                          Cloudflare
-                                                         5 December 2022
+Expires: 15 June 2023                                         Cloudflare
+                                                        12 December 2022
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 June 2023.
+   This Internet-Draft will expire on 15 June 2023.
 
 Copyright Notice
 
@@ -150,16 +150,21 @@ Table of Contents
    minumum), additional data exchanged, and additional CPU cost of
    cryptographic computations.
 
-   This document defines two kinds of HTTP resources -- Oblivious Relay
-   Resources and Oblivious Gateway Resources -- that process
-   encapsulated binary HTTP messages [BINARY] using Hybrid Public Key
-   Encryption (HPKE; [HPKE]).  They can be composed to protect the
-   content of encapsulated requests and responses, thereby separating
-   the identity of a requester from the request.
+   To overcome these limitations, this document defines how binary HTTP
+   messages [BINARY] can be encapsulated using Hybrid Public Key
+   Encryption (HPKE; [HPKE]) to protect their contents.  Clients
+   exchange these messages with an Oblivious Gateway Resource, which is
+   responsible for forwarding decapsulated requests to the original
+   Target Resource and encapsulating the corresponding responses and
+   sending them back to the client.  Critically, encapsulated messages
+   are sent through a separate Oblivious Relay Resource to avoid
+   exposing the client's IP address or allowing the connection to be
+   used as a correlator between its requests.
 
-   Although this scheme requires support for two new kinds of oblivious
-   resources, it represents a performance improvement over options that
-   perform just one request in each connection.  With limited trust
+   Because it allows connection reuse between the client and Oblivious
+   Relay Resource, as well as between that relay and the Oblivious
+   Gateway Resource, this scheme represents a performance improvement
+   over using just one request in each connection.  With limited trust
    placed in the Oblivious Relay Resource (see Section 6), Clients are
    assured that requests are not uniquely attributed to them or linked
    to other requests.
@@ -1880,29 +1885,29 @@ Index
             6; Appendix A, Paragraph 8; Appendix A, Paragraph 8;
             Appendix A, Paragraph 8; Appendix A, Paragraph 14;
             Appendix A, Paragraph 16; Appendix A, Paragraph 36
-         Clients  Section 1, Paragraph 6; Section 2.2, Paragraph 2.8.1;
-            Section 3, Paragraph 1; Section 3, Paragraph 3; Section 3,
-            Paragraph 3; Section 4.3, Paragraph 1; Section 4.4,
-            Paragraph 5; Section 5, Paragraph 1; Section 5, Paragraph 2;
-            Section 5.1, Paragraph 2; Section 6, Paragraph 9, Item 1;
-            Section 6.1, Paragraph 1; Section 6.1, Paragraph 2;
-            Section 6.1, Paragraph 2; Section 6.1, Paragraph 3;
-            Section 6.1, Paragraph 3; Section 6.1, Paragraph 4;
-            Section 6.1, Paragraph 6; Section 6.2, Paragraph 3;
-            Section 6.2, Paragraph 4; Section 6.2.1, Paragraph 1;
-            Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 2;
+         Clients  Section 1, Paragraph 5; Section 1, Paragraph 6;
+            Section 2.2, Paragraph 2.8.1; Section 3, Paragraph 1;
+            Section 3, Paragraph 3; Section 3, Paragraph 3; Section 4.3,
+            Paragraph 1; Section 4.4, Paragraph 5; Section 5, Paragraph
+            1; Section 5, Paragraph 2; Section 5.1, Paragraph 2;
+            Section 6, Paragraph 9, Item 1; Section 6.1, Paragraph 1;
+            Section 6.1, Paragraph 2; Section 6.1, Paragraph 2;
+            Section 6.1, Paragraph 3; Section 6.1, Paragraph 3;
+            Section 6.1, Paragraph 4; Section 6.1, Paragraph 6;
+            Section 6.2, Paragraph 3; Section 6.2, Paragraph 4;
+            Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 1;
             Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
-            Section 6.2.1, Paragraph 2; Section 6.2.2, Paragraph 2;
-            Section 6.2.3, Paragraph 3; Section 6.2.3, Paragraph 5;
-            Section 6.2.3, Paragraph 5; Section 6.2.3, Paragraph 6;
-            Section 6.5, Paragraph 1; Section 6.5.1, Paragraph 1;
-            Section 6.5.2, Paragraph 7; Section 6.5.2, Paragraph 9;
-            Section 6.8, Paragraph 1; Section 6.8, Paragraph 1;
-            Section 6.8, Paragraph 2; Section 7, Paragraph 1; Section 7,
-            Paragraph 4; Section 7, Paragraph 4; Section 7, Paragraph 4;
-            Section 7, Paragraph 5; Section 8.1, Paragraph 1;
-            Section 8.2, Paragraph 2; Section 8.3, Paragraph 1;
-            Section 8.3, Paragraph 2
+            Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
+            Section 6.2.2, Paragraph 2; Section 6.2.3, Paragraph 3;
+            Section 6.2.3, Paragraph 5; Section 6.2.3, Paragraph 5;
+            Section 6.2.3, Paragraph 6; Section 6.5, Paragraph 1;
+            Section 6.5.1, Paragraph 1; Section 6.5.2, Paragraph 7;
+            Section 6.5.2, Paragraph 9; Section 6.8, Paragraph 1;
+            Section 6.8, Paragraph 1; Section 6.8, Paragraph 2;
+            Section 7, Paragraph 1; Section 7, Paragraph 4; Section 7,
+            Paragraph 4; Section 7, Paragraph 4; Section 7, Paragraph 5;
+            Section 8.1, Paragraph 1; Section 8.2, Paragraph 2;
+            Section 8.3, Paragraph 1; Section 8.3, Paragraph 2
 
       E
 
@@ -1947,11 +1952,12 @@ Index
 
       O
 
-         Oblivious Gateway Resource  Section 2, Paragraph 2, Item 1;
-            Section 2, Paragraph 2, Item 1; Section 2, Paragraph 2, Item
-            2; Section 2, Paragraph 2, Item 3; Section 2, Paragraph 6,
-            Item 5; Section 2, Paragraph 6, Item 6; Section 2, Paragraph
-            6, Item 8; Section 2.2, Paragraph 2.8.1; Section 2.2;
+         Oblivious Gateway Resource  Section 1, Paragraph 5; Section 1,
+            Paragraph 6; Section 2, Paragraph 2, Item 1; Section 2,
+            Paragraph 2, Item 1; Section 2, Paragraph 2, Item 2;
+            Section 2, Paragraph 2, Item 3; Section 2, Paragraph 6, Item
+            5; Section 2, Paragraph 6, Item 6; Section 2, Paragraph 6,
+            Item 8; Section 2.2, Paragraph 2.8.1; Section 2.2;
             Section 3, Paragraph 1; Section 4.6, Paragraph 1; Section 5,
             Paragraph 2; Section 5, Paragraph 2; Section 5, Paragraph 4;
             Section 5, Paragraph 4; Section 5, Paragraph 5; Section 5,
@@ -1979,22 +1985,23 @@ Index
             Paragraph 2; Appendix A, Paragraph 2; Appendix A, Paragraph
             4; Appendix A, Paragraph 8; Appendix A, Paragraph 18;
             Appendix A, Paragraph 20; Appendix A, Paragraph 34
-         Oblivious Gateway Resources  Section 1, Paragraph 5; Section 6,
-            Paragraph 9, Item 1; Section 6, Paragraph 9, Item 1;
-            Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
-            Section 6.5.2, Paragraph 8; Section 8.2, Paragraph 1;
-            Section 8.2, Paragraph 1; Section 8.2, Paragraph 2
-         Oblivious Relay Resource  Section 1, Paragraph 6; Section 2,
-            Paragraph 2, Item 3; Section 2, Paragraph 6, Item 3;
-            Section 2, Paragraph 6, Item 4; Section 2, Paragraph 6, Item
-            8; Section 2, Paragraph 6, Item 9; Section 2.2, Paragraph
-            2.2.1; Section 2.2; Section 5, Paragraph 1; Section 5,
-            Paragraph 1; Section 5, Paragraph 1; Section 5, Paragraph 1;
-            Section 5, Paragraph 1; Section 5, Paragraph 2; Section 5,
-            Paragraph 2; Section 5, Paragraph 4; Section 5, Paragraph 4;
-            Section 5, Paragraph 4; Section 5, Paragraph 5; Section 5,
-            Paragraph 5; Section 5, Paragraph 6; Section 5.2, Paragraph
-            2; Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
+         Oblivious Gateway Resources  Section 6, Paragraph 9, Item 1;
+            Section 6, Paragraph 9, Item 1; Section 6.5.1, Paragraph 4;
+            Section 6.5.1, Paragraph 5; Section 6.5.2, Paragraph 8;
+            Section 8.2, Paragraph 1; Section 8.2, Paragraph 1;
+            Section 8.2, Paragraph 2
+         Oblivious Relay Resource  Section 1, Paragraph 5; Section 1,
+            Paragraph 6; Section 1, Paragraph 6; Section 2, Paragraph 2,
+            Item 3; Section 2, Paragraph 6, Item 3; Section 2, Paragraph
+            6, Item 4; Section 2, Paragraph 6, Item 8; Section 2,
+            Paragraph 6, Item 9; Section 2.2, Paragraph 2.2.1;
+            Section 2.2; Section 5, Paragraph 1; Section 5, Paragraph 1;
+            Section 5, Paragraph 1; Section 5, Paragraph 1; Section 5,
+            Paragraph 1; Section 5, Paragraph 2; Section 5, Paragraph 2;
+            Section 5, Paragraph 4; Section 5, Paragraph 4; Section 5,
+            Paragraph 4; Section 5, Paragraph 5; Section 5, Paragraph 5;
+            Section 5, Paragraph 6; Section 5.2, Paragraph 2;
+            Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
             Section 5.3, Paragraph 4; Section 6, Paragraph 3; Section 6,
             Paragraph 5, Item 2; Section 6, Paragraph 7; Section 6,
             Paragraph 9, Item 1; Section 6.1, Paragraph 2; Section 6.1,
@@ -2010,23 +2017,23 @@ Index
             Section 8.2, Paragraph 1; Appendix A, Paragraph 1;
             Appendix A, Paragraph 16; Appendix A, Paragraph 18;
             Appendix A, Paragraph 36
-         Oblivious Relay Resources  Section 1, Paragraph 5;
-            Section 6.2.2, Paragraph 1; Section 8.2, Paragraph 2;
-            Section 8.2, Paragraph 2
+         Oblivious Relay Resources  Section 6.2.2, Paragraph 1;
+            Section 8.2, Paragraph 2; Section 8.2, Paragraph 2
 
       T
 
-         Target Resource  Section 2, Paragraph 3; Section 2, Paragraph
-            5; Section 2, Paragraph 6, Item 1; Section 2, Paragraph 6,
-            Item 7; Section 2.2, Paragraph 2.2.1; Section 2.2, Paragraph
-            2.10.1; Section 2.2; Section 5, Paragraph 2; Section 5,
-            Paragraph 2; Section 5, Paragraph 2; Section 5, Paragraph 7;
-            Section 5, Paragraph 8; Section 5.2, Paragraph 3;
-            Section 5.2, Paragraph 3; Section 6, Paragraph 1; Section 6,
-            Paragraph 5, Item 3; Section 6, Paragraph 7; Section 6.1,
-            Paragraph 2; Section 6.3, Paragraph 1; Section 6.3,
-            Paragraph 1; Section 6.3, Paragraph 4; Appendix A, Paragraph
-            1; Appendix A, Paragraph 20; Appendix A, Paragraph 20
+         Target Resource  Section 1, Paragraph 5; Section 2, Paragraph
+            3; Section 2, Paragraph 5; Section 2, Paragraph 6, Item 1;
+            Section 2, Paragraph 6, Item 7; Section 2.2, Paragraph
+            2.2.1; Section 2.2, Paragraph 2.10.1; Section 2.2;
+            Section 5, Paragraph 2; Section 5, Paragraph 2; Section 5,
+            Paragraph 2; Section 5, Paragraph 7; Section 5, Paragraph 8;
+            Section 5.2, Paragraph 3; Section 5.2, Paragraph 3;
+            Section 6, Paragraph 1; Section 6, Paragraph 5, Item 3;
+            Section 6, Paragraph 7; Section 6.1, Paragraph 2;
+            Section 6.3, Paragraph 1; Section 6.3, Paragraph 1;
+            Section 6.3, Paragraph 4; Appendix A, Paragraph 1;
+            Appendix A, Paragraph 20; Appendix A, Paragraph 20
 
 Authors' Addresses
 
