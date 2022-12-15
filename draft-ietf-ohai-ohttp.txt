@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 15 June 2023                                         Cloudflare
-                                                        12 December 2022
+Expires: 18 June 2023                                         Cloudflare
+                                                        15 December 2022
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2023.
+   This Internet-Draft will expire on 18 June 2023.
 
 Copyright Notice
 
@@ -446,10 +446,9 @@ Table of Contents
 
    This plaintext Request is encapsulated into a message in "message/
    ohttp-req" form by generating an Encapsulated Request.  An
-   Encapsulated Request is comprised of a key identifier; HPKE
-   parameters for the chosen KEM, KDF, and AEAD; the encapsulated KEM
-   shared secret (or enc); and the HPKE-protected binary HTTP request
-   message.
+   Encapsulated Request comprises a key identifier; HPKE parameters for
+   the chosen KEM, KDF, and AEAD; the encapsulated KEM shared secret (or
+   enc); and the HPKE-protected binary HTTP request message.
 
    An Encapsulated Request is shown in Figure 4.  Section 4.3 describes
    the process for constructing and processing an Encapsulated Request.
@@ -484,8 +483,8 @@ Table of Contents
 
    This plaintext Response is encapsulated into a message in "message/
    ohttp-res" form by generating an Encapsulated Response.  An
-   Encapsulated Response is comprised of a nonce and the AEAD-protected
-   binary HTTP response message.
+   Encapsulated Response comprises a nonce and the AEAD-protected binary
+   HTTP response message.
 
    An Encapsulated Response is shown in Figure 6.  Section 4.4 describes
    the process for constructing and processing an Encapsulated Response.
