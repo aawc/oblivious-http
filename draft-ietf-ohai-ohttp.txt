@@ -1464,7 +1464,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.2.  message/ohttp-req Media Type
 
@@ -1492,7 +1492,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.3.  message/ohttp-res Media Type
 
@@ -1520,7 +1520,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.4.  Registration of "date" Problem Type
 
