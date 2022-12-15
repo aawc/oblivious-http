@@ -2061,8 +2061,8 @@ Relay Resource</a><span id="iref-oblivious-relay-resource-127" class="iref"></sp
 <p id="section-5-7">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-128" class="iref"></span> acts as a gateway for requests to the <a href="#dfn-target" class="internal xref">Target
 Resource</a><span id="iref-target-resource-129" class="iref"></span> (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.6" class="relref">Section 7.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>).  The one exception is that any
 information it might forward in a response <span class="bcp14">MUST</span> be encapsulated, unless it is
-responding to errors it detects before removing encapsulation of the request;
-see <a href="#errors" class="auto internal xref">Section 5.2</a>.<a href="#section-5-7" class="pilcrow">¶</a></p>
+responding to errors that do not relate to processing the contents of the
+encapsulated request; see <a href="#errors" class="auto internal xref">Section 5.2</a>.<a href="#section-5-7" class="pilcrow">¶</a></p>
 <p id="section-5-8">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-130" class="iref"></span>, if it receives any response from the <a href="#dfn-target" class="internal xref">Target
 Resource</a><span id="iref-target-resource-131" class="iref"></span>, sends a single 200 response containing the encapsulated response.
 Like the request from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-132" class="iref"></span>, this response <span class="bcp14">MUST</span> only contain those fields
