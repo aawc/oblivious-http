@@ -1448,7 +1448,7 @@ Table of Contents
    Subtype name:  ohttp-keys
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
@@ -1475,12 +1475,13 @@ Table of Contents
    Subtype name:  ohttp-req
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
    Applications that use this media type:  Oblivious HTTP and
-      applications that use Oblivious HTTP
+      applications that use Oblivious HTTP use this media type to
+      identify encapsulated binary HTTP requests.
    Fragment identifier considerations:  N/A
    Additional information:  Magic number(s):  N/A
                             Deprecated alias names for this type:  N/A
@@ -1502,12 +1503,13 @@ Table of Contents
    Subtype name:  ohttp-res
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
    Applications that use this media type:  Oblivious HTTP and
-      applications that use Oblivious HTTP
+      applications that use Oblivious HTTP use this media type to
+      identify encapsulated binary HTTP responses.
    Fragment identifier considerations:  N/A
    Additional information:  Magic number(s):  N/A
                             Deprecated alias names for this type:  N/A
