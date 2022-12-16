@@ -481,7 +481,7 @@ Table of Contents
    ohttp-req" form by generating an Encapsulated Request.  An
    Encapsulated Request comprises a key identifier; HPKE parameters for
    the chosen KEM, KDF, and AEAD; the encapsulated KEM shared secret (or
-   enc); and the HPKE-protected binary HTTP request message.
+   enc); and an HPKE-protected binary HTTP request message.
 
    An Encapsulated Request is shown in Figure 4.  Section 4.3 describes
    the process for constructing and processing an Encapsulated Request.
@@ -499,8 +499,8 @@ Table of Contents
 
    That is, an Encapsulated Request comprises a Key Identifier, HPKE KEM
    ID, HPKE KDF ID, HPKE AEAD ID, Encapsulated KEM Shared Secret, and
-   the HPKE-Protected Request.  The Key Identifier, HPKE KEM ID, HPKE
-   KDF ID, and HPKE AEAD ID fields are defined in Section 3.1.  The
+   HPKE-Protected Request.  The Key Identifier, HPKE KEM ID, HPKE KDF
+   ID, and HPKE AEAD ID fields are defined in Section 3.1.  The
    Encapsulated KEM Shared Secret is the output of the Encap() function
    for the KEM, which is Nenc bytes in length, as defined in Section 4
    of [HPKE].
