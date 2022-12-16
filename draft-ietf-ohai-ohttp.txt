@@ -873,7 +873,7 @@ Table of Contents
    *  A server operates both the Oblivious Gateway Resource and the
       Target Resource
 
-   Connections between the Client, Oblvious Relay Resource, and
+   Connections between the Client, Oblivious Relay Resource, and
    Oblivious Gateway Resource MUST use HTTPS in order to provide
    unlinkability in the presence of a network observer.  The scheme of
    the Encapsulated Request determines what is used between the
@@ -892,10 +892,10 @@ Table of Contents
    1.  Requests and responses are known only to Clients and Target
        Resources, plus Oblivious Gateway Resources that possess the
        corresponding response encapsulation key and HPKE keying
-       material.  In particular, the Oblivious Relay knows the origin
-       and destination of an Encapsulated Request and Response, yet does
-       not know the decrypted contents.  Likewise, Oblivious Gateway
-       Resources learns only the Oblivious Relay Resource and the
+       material.  In particular, the Oblivious Relay Resource knows the
+       origin and destination of an Encapsulated Request and Response,
+       yet does not know the decrypted contents.  Likewise, Oblivious
+       Gateway Resources learn only the Oblivious Relay Resource and the
        decrypted request.  No entity other than the Client can see the
        plaintext request and response and can attribute them to the
        Client.
@@ -1708,10 +1708,10 @@ Appendix A.  Complete Example of a Request and Response
    cryptographic operations.  In this example, the Client is configured
    with the Oblivious Relay Resource URI of
    https://proxy.example.org/request.example.net/proxy, and the proxy is
-   configured to map requests to this URI to the Oblivious Gateway URI
-   https://example.com/oblivious/request.  The Target Resource URI,
-   i.e., the resource the Client ultimately wishes to query, is
-   https://example.com.
+   configured to map requests to this URI to the Oblivious Gateway
+   Resource URI https://example.com/oblivious/request.  The Target
+   Resource URI, i.e., the resource the Client ultimately wishes to
+   query, is https://example.com.
 
    To begin the process, the Oblivious Gateway Resource generates a key
    pair.  In this example the server chooses DHKEM(X25519, HKDF-SHA256)
@@ -1999,9 +1999,10 @@ Index
             1; Section 7, Paragraph 2; Section 7, Paragraph 2;
             Section 7, Paragraph 2; Section 8.2, Paragraph 1;
             Section 8.2, Paragraph 1; Section 8.2, Paragraph 2;
-            Appendix A, Paragraph 2; Appendix A, Paragraph 4;
-            Appendix A, Paragraph 8; Appendix A, Paragraph 18;
-            Appendix A, Paragraph 20; Appendix A, Paragraph 34
+            Appendix A, Paragraph 1; Appendix A, Paragraph 2;
+            Appendix A, Paragraph 4; Appendix A, Paragraph 8;
+            Appendix A, Paragraph 18; Appendix A, Paragraph 20;
+            Appendix A, Paragraph 34
          Oblivious Gateway Resources  Section 4.4, Paragraph 1;
             Section 6, Paragraph 9, Item 1; Section 6, Paragraph 9, Item
             1; Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
@@ -2022,7 +2023,8 @@ Index
             Section 5, Paragraph 6; Section 5.2, Paragraph 2;
             Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
             Section 5.3, Paragraph 4; Section 6, Paragraph 3; Section 6,
-            Paragraph 5, Item 2; Section 6, Paragraph 7; Section 6,
+            Paragraph 5, Item 2; Section 6, Paragraph 6; Section 6,
+            Paragraph 7; Section 6, Paragraph 9, Item 1; Section 6,
             Paragraph 9, Item 1; Section 6.1, Paragraph 2; Section 6.1,
             Paragraph 5; Section 6.1, Paragraph 5; Section 6.1,
             Paragraph 5; Section 6.1, Paragraph 6; Section 6.2,
