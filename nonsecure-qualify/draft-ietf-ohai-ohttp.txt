@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 12 June 2023                                         Cloudflare
-                                                         9 December 2022
+Expires: 19 June 2023                                         Cloudflare
+                                                        16 December 2022
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2023.
+   This Internet-Draft will expire on 19 June 2023.
 
 Copyright Notice
 
@@ -1096,10 +1096,8 @@ Table of Contents
    and Target Resources are not on the same origin.  If messages are
    forwarded between these resources without the protections afforded by
    HTTPS, they could be inspected or modified by a network attacker.
-   Insisting that the two resources share an origin does not guarantee
-   that requests are not forwarded without protection, so clients might
-   need to use other means of ensuring that unsecured requests are not
-   exposed to attack.
+   Note that two resources that share an origin do not guarantee that
+   requests are not forwarded without protection.
 
 6.4.  Key Management
 
