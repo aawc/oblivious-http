@@ -1718,7 +1718,8 @@ the HPKE Symmetric Algorithms field that follows.<a href="#section-3.1-5.8.1" cl
           <dd class="break"></dd>
 <dt id="section-3.1-5.9">HPKE Symmetric Algorithms:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-5.10">
-            <p id="section-3.1-5.10.1">One or more pairs of identifiers for the different HPKE KDF and AEAD:<a href="#section-3.1-5.10.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-5.10.1">One or more pairs of identifiers for the different combinations of HPKE KDF
+and AEAD that the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-72" class="iref"></span> supports:<a href="#section-3.1-5.10.1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3.1-5.10.2">
               <dt id="section-3.1-5.10.2.1">HPKE KDF ID:</dt>
               <dd style="margin-left: 1.5em" id="section-3.1-5.10.2.2">
@@ -1746,10 +1747,10 @@ registry</a>.<a href="#section-3.1-5.10.2.4.1" class="pilcrow">¶</a></p>
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-key-configuration-media-typ" class="section-name selfRef">Key Configuration Media Type</a>
         </h3>
 <p id="section-3.2-1">The "application/ohttp-keys" format is a media type that identifies a serialized
-collection of <a href="#key-configuration" class="internal xref">key configurations</a><span id="iref-key-configurations-72" class="iref"></span>. The content of this media type comprises one
-or more <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-73" class="iref"></span> encodings (see <a href="#key-config" class="auto internal xref">Section 3.1</a>) that are concatenated;
+collection of <a href="#key-configuration" class="internal xref">key configurations</a><span id="iref-key-configurations-73" class="iref"></span>. The content of this media type comprises one
+or more <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-74" class="iref"></span> encodings (see <a href="#key-config" class="auto internal xref">Section 3.1</a>) that are concatenated;
 see <a href="#iana-keys" class="auto internal xref">Section 9.1</a> for a definition of the media type.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Evolution of the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-74" class="iref"></span> format is supported through the definition of
+<p id="section-3.2-2">Evolution of the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-75" class="iref"></span> format is supported through the definition of
 new formats that are identified by new media types.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1764,10 +1765,10 @@ new formats that are identified by new media types.<a href="#section-3.2-2" clas
 encapsulated using HPKE <span>[<a href="#HPKE" class="cite xref">HPKE</a>]</span>.  Separate media types are defined to
 distinguish request and response messages:<a href="#section-4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4-2.1">An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-75" class="iref"></span> format defined in <a href="#req-format" class="auto internal xref">Section 4.1</a> is identified by the
+<li class="normal" id="section-4-2.1">An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-76" class="iref"></span> format defined in <a href="#req-format" class="auto internal xref">Section 4.1</a> is identified by the
 <span><a href="#iana-req" class="internal xref">"<code>message/ohttp-req</code>" media type</a> (<a href="#iana-req" class="internal xref">message/ohttp-req Media Type</a>)</span>.<a href="#section-4-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-4-2.2">An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-76" class="iref"></span> format defined in <a href="#res-format" class="auto internal xref">Section 4.2</a> is identified by the
+        <li class="normal" id="section-4-2.2">An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-77" class="iref"></span> format defined in <a href="#res-format" class="auto internal xref">Section 4.2</a> is identified by the
 <span><a href="#iana-res" class="internal xref">"<code>message/ohttp-res</code>" media type</a> (<a href="#iana-res" class="internal xref">Section 9.3</a>)</span>.<a href="#section-4-2.2" class="pilcrow">¶</a>
 </li>
       </ul>
@@ -1794,12 +1795,12 @@ Request {
           </figcaption></figure>
 </div>
 <p id="section-4.1-3">This plaintext Request is encapsulated into a message in "<code>message/ohttp-req</code>"
-form by generating an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-77" class="iref"></span>.  An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-78" class="iref"></span> comprises a
+form by generating an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-78" class="iref"></span>.  An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-79" class="iref"></span> comprises a
 key identifier; HPKE parameters for the chosen KEM, KDF, and AEAD; the
 encapsulated KEM shared secret (or <code>enc</code>); and an HPKE-protected binary HTTP
 request message.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-79" class="iref"></span> is shown in <a href="#fig-enc-request" class="auto internal xref">Figure 4</a>. <a href="#request" class="auto internal xref">Section 4.3</a> describes
-the process for constructing and processing an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-80" class="iref"></span>.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">An <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-80" class="iref"></span> is shown in <a href="#fig-enc-request" class="auto internal xref">Figure 4</a>. <a href="#request" class="auto internal xref">Section 4.3</a> describes
+the process for constructing and processing an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-81" class="iref"></span>.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <span id="name-encapsulated-request"></span><div id="fig-enc-request">
 <figure id="figure-4">
           <div class="alignLeft art-text artwork" id="section-4.1-5.1">
@@ -1818,7 +1819,7 @@ Encapsulated Request {
 <a href="#name-encapsulated-request" class="selfRef">Encapsulated Request</a>
           </figcaption></figure>
 </div>
-<p id="section-4.1-6">That is, an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-81" class="iref"></span> comprises a Key Identifier, HPKE KEM ID, HPKE
+<p id="section-4.1-6">That is, an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-82" class="iref"></span> comprises a Key Identifier, HPKE KEM ID, HPKE
 KDF ID, HPKE AEAD ID, Encapsulated KEM Shared Secret, and HPKE-Protected
 Request.  The Key Identifier, HPKE KEM ID, HPKE KDF ID, and HPKE AEAD ID fields
 are defined in <a href="#key-config" class="auto internal xref">Section 3.1</a>.  The Encapsulated KEM Shared Secret is the output
@@ -1847,10 +1848,10 @@ Response {
           </figcaption></figure>
 </div>
 <p id="section-4.2-3">This plaintext Response is encapsulated into a message in "<code>message/ohttp-res</code>"
-form by generating an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-82" class="iref"></span>.  An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-83" class="iref"></span> comprises
+form by generating an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-83" class="iref"></span>.  An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-84" class="iref"></span> comprises
 a nonce and the AEAD-protected binary HTTP response message.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-84" class="iref"></span> is shown in <a href="#fig-enc-response" class="auto internal xref">Figure 6</a>. <a href="#response" class="auto internal xref">Section 4.4</a> describes
-the process for constructing and processing an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-85" class="iref"></span>.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">An <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-85" class="iref"></span> is shown in <a href="#fig-enc-response" class="auto internal xref">Figure 6</a>. <a href="#response" class="auto internal xref">Section 4.4</a> describes
+the process for constructing and processing an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-86" class="iref"></span>.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <span id="name-encapsulated-response"></span><div id="fig-enc-response">
 <figure id="figure-6">
           <div class="alignLeft art-text artwork" id="section-4.2-5.1">
@@ -1865,7 +1866,7 @@ Encapsulated Response {
 <a href="#name-encapsulated-response" class="selfRef">Encapsulated Response</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-6">That is, an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-86" class="iref"></span> contains a Nonce and an AEAD-Protected
+<p id="section-4.2-6">That is, an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-87" class="iref"></span> contains a Nonce and an AEAD-Protected
 Response.  The Nonce field is either <code>Nn</code> or <code>Nk</code> bytes long, whichever is
 larger.  The <code>Nn</code> and <code>Nk</code> values correspond to parameters of the AEAD used in
 HPKE, which is defined in <span><a href="https://rfc-editor.org/rfc/rfc9180#section-7.3" class="relref">Section 7.3</a> of [<a href="#HPKE" class="cite xref">HPKE</a>]</span> or <a href="https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-ids">the HPKE AEAD IANA
@@ -1878,7 +1879,7 @@ and <code>Nk</code> refer to the size of the AEAD nonce and key respectively, in
         <h3 id="name-encapsulation-of-requests">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-encapsulation-of-requests" class="section-name selfRef">Encapsulation of Requests</a>
         </h3>
-<p id="section-4.3-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-87" class="iref"></span> encapsulate a request, <code>request</code>, using values from a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-88" class="iref"></span>:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-88" class="iref"></span> encapsulate a request, <code>request</code>, using values from a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-89" class="iref"></span>:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.3-2.1">the key identifier from the configuration, <code>key_id</code>, with the corresponding KEM
 identified by <code>kem_id</code>,<a href="#section-4.3-2.1" class="pilcrow">¶</a>
@@ -1889,7 +1890,7 @@ identified by <code>kem_id</code>,<a href="#section-4.3-2.1" class="pilcrow">¶<
 <code>aead_id</code>.<a href="#section-4.3-2.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-4.3-3">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-89" class="iref"></span> then constructs an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-90" class="iref"></span>, <code>enc_request</code>, from a binary
+<p id="section-4.3-3">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-90" class="iref"></span> then constructs an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-91" class="iref"></span>, <code>enc_request</code>, from a binary
 encoded HTTP request, <code>request</code>, as follows:<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.3-4">
 <li id="section-4.3-4.1">Construct a message header, <code>hdr</code>, by concatenating the values of <code>key_id</code>,
@@ -1926,21 +1927,21 @@ ct = sctxt.Seal("", request)
 enc_request = concat(hdr, enc, ct)
 </pre><a href="#section-4.3-7" class="pilcrow">¶</a>
 </div>
-<p id="section-4.3-8">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-9" class="iref"></span> decrypts an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-92" class="iref"></span> by reversing this
-process. To decapsulate an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-93" class="iref"></span>, <code>enc_request</code>:<a href="#section-4.3-8" class="pilcrow">¶</a></p>
+<p id="section-4.3-8">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-9" class="iref"></span> decrypts an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-93" class="iref"></span> by reversing this
+process. To decapsulate an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-94" class="iref"></span>, <code>enc_request</code>:<a href="#section-4.3-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.3-9">
 <li id="section-4.3-9.1">
             <p id="section-4.3-9.1.1">Parses <code>enc_request</code> into <code>key_id</code>, <code>kem_id</code>, <code>kdf_id</code>, <code>aead_id</code>, <code>enc</code>, and
 <code>ct</code> (indicated using the function <code>parse()</code> in pseudocode). The <a href="#dfn-gateway" class="internal xref">Oblivious
-Gateway Resource</a><span id="iref-oblivious-gateway-resource-94" class="iref"></span> is then able to find the HPKE private key, <code>skR</code>,
+Gateway Resource</a><span id="iref-oblivious-gateway-resource-95" class="iref"></span> is then able to find the HPKE private key, <code>skR</code>,
 corresponding to <code>key_id</code>.<a href="#section-4.3-9.1.1" class="pilcrow">¶</a></p>
 <p id="section-4.3-9.1.2">
 a. If <code>key_id</code> does not identify a key matching the type of <code>kem_id</code>, the
-   <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-95" class="iref"></span> returns an error.<a href="#section-4.3-9.1.2" class="pilcrow">¶</a></p>
+   <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-96" class="iref"></span> returns an error.<a href="#section-4.3-9.1.2" class="pilcrow">¶</a></p>
 <p id="section-4.3-9.1.3">
 b. If <code>kdf_id</code> and <code>aead_id</code> identify a combination of KDF and AEAD that the
-   <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-96" class="iref"></span> is unwilling to use with <code>skR</code>, the <a href="#dfn-gateway" class="internal xref">Oblivious
-   Gateway Resource</a><span id="iref-oblivious-gateway-resource-97" class="iref"></span> returns an error.<a href="#section-4.3-9.1.3" class="pilcrow">¶</a></p>
+   <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-97" class="iref"></span> is unwilling to use with <code>skR</code>, the <a href="#dfn-gateway" class="internal xref">Oblivious
+   Gateway Resource</a><span id="iref-oblivious-gateway-resource-98" class="iref"></span> returns an error.<a href="#section-4.3-9.1.3" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-9.2">Build <code>info</code> by concatenating the ASCII-encoded string "message/bhttp
 request", a zero byte, <code>key_id</code> as an 8-bit integer, plus <code>kem_id</code>, <code>kdf_id</code>,
@@ -1949,7 +1950,7 @@ and <code>aead_id</code> as three 16-bit integers.<a href="#section-4.3-9.2" cla
           <li id="section-4.3-9.3">Create a receiving HPKE context by invoking <code>SetupBaseR()</code> (<span><a href="https://rfc-editor.org/rfc/rfc9180#section-5.1.1" class="relref">Section 5.1.1</a> of [<a href="#HPKE" class="cite xref">HPKE</a>]</span>) with <code>skR</code>, <code>enc</code>, and <code>info</code>.  This produces a context <code>rctxt</code>.<a href="#section-4.3-9.3" class="pilcrow">¶</a>
 </li>
           <li id="section-4.3-9.4">Decrypt <code>ct</code> by invoking the <code>Open()</code> method on <code>rctxt</code> (<span><a href="https://rfc-editor.org/rfc/rfc9180#section-5.2" class="relref">Section 5.2</a> of [<a href="#HPKE" class="cite xref">HPKE</a>]</span>), with an empty associated data <code>aad</code>, yielding <code>request</code> or an error
-on failure. If decryption fails, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-98" class="iref"></span> returns an
+on failure. If decryption fails, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-99" class="iref"></span> returns an
 error.<a href="#section-4.3-9.4" class="pilcrow">¶</a>
 </li>
         </ol>
@@ -1975,7 +1976,7 @@ request, error = rctxt.Open("", ct)
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-encapsulation-of-responses" class="section-name selfRef">Encapsulation of Responses</a>
         </h3>
 <p id="section-4.4-1">Given an HPKE context, <code>context</code>; a request message, <code>request</code>; and a response,
-<code>response</code>, <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources" class="iref"></span> generate an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-100" class="iref"></span>,
+<code>response</code>, <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources" class="iref"></span> generate an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-101" class="iref"></span>,
 <code>enc_response</code>, as follows:<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.4-2">
 <li id="section-4.4-2.1">Export a secret, <code>secret</code>, from <code>context</code>, using the string "message/bhttp
@@ -2004,7 +2005,7 @@ label of "nonce".<a href="#section-4.4-2.5" class="pilcrow">¶</a>
           <li id="section-4.4-2.6">Encrypt <code>response</code>, passing the AEAD function Seal the values of <code>aead_key</code>,
 <code>aead_nonce</code>, an empty <code>aad</code>, and a <code>pt</code> input of <code>response</code>, which yields <code>ct</code>.<a href="#section-4.4-2.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-4.4-2.7">Concatenate <code>response_nonce</code> and <code>ct</code>, yielding an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-101" class="iref"></span>
+          <li id="section-4.4-2.7">Concatenate <code>response_nonce</code> and <code>ct</code>, yielding an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-102" class="iref"></span>
             <code>enc_response</code>. Note that <code>response_nonce</code> is of fixed-length, so there is no
 ambiguity in parsing either <code>response_nonce</code> or <code>ct</code>.<a href="#section-4.4-2.7" class="pilcrow">¶</a>
 </li>
@@ -2022,10 +2023,10 @@ ct = Seal(aead_key, aead_nonce, "", response)
 enc_response = concat(response_nonce, ct)
 </pre><a href="#section-4.4-4" class="pilcrow">¶</a>
 </div>
-<p id="section-4.4-5"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-102" class="iref"></span> decrypt an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-103" class="iref"></span> by reversing this process. That is,
+<p id="section-4.4-5"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-103" class="iref"></span> decrypt an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-104" class="iref"></span> by reversing this process. That is,
 they first parse <code>enc_response</code> into <code>response_nonce</code> and <code>ct</code>. They then
 follow the same process to derive values for <code>aead_key</code> and <code>aead_nonce</code>.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
-<p id="section-4.4-6">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-104" class="iref"></span> uses these values to decrypt <code>ct</code> using the Open function provided by
+<p id="section-4.4-6">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-105" class="iref"></span> uses these values to decrypt <code>ct</code> using the Open function provided by
 the AEAD. Decrypting might produce an error, as follows:<a href="#section-4.4-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.4-7">
 <pre>
@@ -2055,7 +2056,7 @@ defined.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
 <a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-repurposing-the-encapsulati" class="section-name selfRef">Repurposing the Encapsulation Format</a>
         </h3>
 <p id="section-4.6-1">The encrypted payload of an Oblivious HTTP request and response is a binary HTTP message
-<span>[<a href="#BINARY" class="cite xref">BINARY</a>]</span>.  The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-105" class="iref"></span> and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-10" class="iref"></span> agree on this encrypted
+<span>[<a href="#BINARY" class="cite xref">BINARY</a>]</span>.  The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-106" class="iref"></span> and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-10" class="iref"></span> agree on this encrypted
 payload type by specifying the media type "message/bhttp" in the HPKE info
 string and HPKE export context string for request and response encryption,
 respectively.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
@@ -2078,59 +2079,59 @@ for response encryption.<a href="#section-4.6-3" class="pilcrow">¶</a></p>
       <h2 id="name-http-usage">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-http-usage" class="section-name selfRef">HTTP Usage</a>
       </h2>
-<p id="section-5-1">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-107" class="iref"></span> interacts with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-10" class="iref"></span> by constructing an
-<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-109" class="iref"></span>.  This <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-110" class="iref"></span> is included as the content of a
+<p id="section-5-1">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-108" class="iref"></span> interacts with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-10" class="iref"></span> by constructing an
+<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-110" class="iref"></span>.  This <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-111" class="iref"></span> is included as the content of a
 POST request to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-11" class="iref"></span>.  This request only needs those
-fields necessary to carry the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-112" class="iref"></span>: a method of POST, a target
-URI of the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-113" class="iref"></span>, a header field containing the content type
-(see (<a href="#iana-req" class="auto internal xref">Section 9.2</a>), and the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-114" class="iref"></span> as the request content. In the
-request to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-115" class="iref"></span>, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-116" class="iref"></span> <span class="bcp14">MAY</span> include additional
+fields necessary to carry the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-113" class="iref"></span>: a method of POST, a target
+URI of the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-114" class="iref"></span>, a header field containing the content type
+(see (<a href="#iana-req" class="auto internal xref">Section 9.2</a>), and the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-115" class="iref"></span> as the request content. In the
+request to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-116" class="iref"></span>, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-117" class="iref"></span> <span class="bcp14">MAY</span> include additional
 fields. However, additional fields <span class="bcp14">MUST</span> be independent of the <a href="#dfn-enc-req" class="internal xref">Encapsulated
-Request</a><span id="iref-encapsulated-request-117" class="iref"></span> and <span class="bcp14">MUST</span> be fields that the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-118" class="iref"></span> will remove before
-forwarding the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-119" class="iref"></span> towards the target, such as the Connection
+Request</a><span id="iref-encapsulated-request-118" class="iref"></span> and <span class="bcp14">MUST</span> be fields that the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-119" class="iref"></span> will remove before
+forwarding the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-120" class="iref"></span> towards the target, such as the Connection
 or Proxy-Authorization header fields <span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-120" class="iref"></span> role in this protocol acts as an HTTP client both with respect to the
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-12" class="iref"></span> and the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-122" class="iref"></span>.  For the request, the <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-123" class="iref"></span>
-makes to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-124" class="iref"></span>, this diverges from typical HTTP assumptions about
+<p id="section-5-2">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-121" class="iref"></span> role in this protocol acts as an HTTP client both with respect to the
+<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-12" class="iref"></span> and the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-123" class="iref"></span>.  For the request, the <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-124" class="iref"></span>
+makes to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-125" class="iref"></span>, this diverges from typical HTTP assumptions about
 the use of a connection (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-3.3" class="relref">Section 3.3</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>) in that the request and
 response are encrypted rather than sent over a connection.  The <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resource</a><span id="iref-oblivious-relay-resource-125" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-126" class="iref"></span> also act as HTTP clients toward the
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-127" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-128" class="iref"></span> respectively.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">In order to achieve the privacy and security goals of the protocol a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-129" class="iref"></span> also
+Resource</a><span id="iref-oblivious-relay-resource-126" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-127" class="iref"></span> also act as HTTP clients toward the
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-128" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-129" class="iref"></span> respectively.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">In order to achieve the privacy and security goals of the protocol a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-130" class="iref"></span> also
 needs to observe the guidance in <a href="#client-responsibilities" class="auto internal xref">Section 6.1</a>.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-13" class="iref"></span> interacts with the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-131" class="iref"></span> as an
-HTTP client by constructing a request using the same restrictions as the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-132" class="iref"></span>
-request, except that the target URI is the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-133" class="iref"></span>.  The
-content of this request is copied from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-134" class="iref"></span>.  An <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-135" class="iref"></span> <span class="bcp14">MAY</span> reject
+<p id="section-5-4">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-13" class="iref"></span> interacts with the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-132" class="iref"></span> as an
+HTTP client by constructing a request using the same restrictions as the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-133" class="iref"></span>
+request, except that the target URI is the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-134" class="iref"></span>.  The
+content of this request is copied from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-135" class="iref"></span>.  An <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-136" class="iref"></span> <span class="bcp14">MAY</span> reject
 requests that are obviously invalid, such as a request with no content. The <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resource</a><span id="iref-oblivious-relay-resource-136" class="iref"></span> <span class="bcp14">MUST NOT</span> add information to the request without the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-137" class="iref"></span> being aware of
+Resource</a><span id="iref-oblivious-relay-resource-137" class="iref"></span> <span class="bcp14">MUST NOT</span> add information to the request without the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-138" class="iref"></span> being aware of
 the type of information that might be added; see <a href="#relay-responsibilities" class="auto internal xref">Section 6.2</a> for
 more information on relay responsibilities.<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">When a response is received from the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-138" class="iref"></span>, the <a href="#dfn-relay" class="internal xref">Oblivious
-Relay Resource</a><span id="iref-oblivious-relay-resource-139" class="iref"></span> forwards the response according to the rules of an HTTP proxy;
+<p id="section-5-5">When a response is received from the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-139" class="iref"></span>, the <a href="#dfn-relay" class="internal xref">Oblivious
+Relay Resource</a><span id="iref-oblivious-relay-resource-140" class="iref"></span> forwards the response according to the rules of an HTTP proxy;
 see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.6" class="relref">Section 7.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>.  In case of timeout or error, the <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resource</a><span id="iref-oblivious-relay-resource-140" class="iref"></span> can generate a response with an appropriate status code.<a href="#section-5-5" class="pilcrow">¶</a></p>
+Resource</a><span id="iref-oblivious-relay-resource-141" class="iref"></span> can generate a response with an appropriate status code.<a href="#section-5-5" class="pilcrow">¶</a></p>
 <p id="section-5-6">In order to achieve the privacy and security goals of the protocol an <a href="#dfn-relay" class="internal xref">Oblivious
-Relay Resource</a><span id="iref-oblivious-relay-resource-141" class="iref"></span> also needs to observe the guidance in
+Relay Resource</a><span id="iref-oblivious-relay-resource-142" class="iref"></span> also needs to observe the guidance in
 <a href="#relay-responsibilities" class="auto internal xref">Section 6.2</a>.<a href="#section-5-6" class="pilcrow">¶</a></p>
 <p id="section-5-7">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-14" class="iref"></span> acts as a gateway for requests to the <a href="#dfn-target" class="internal xref">Target
-Resource</a><span id="iref-target-resource-143" class="iref"></span> (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.6" class="relref">Section 7.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>).  The one exception is that any
+Resource</a><span id="iref-target-resource-144" class="iref"></span> (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.6" class="relref">Section 7.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>).  The one exception is that any
 information it might forward in a response <span class="bcp14">MUST</span> be encapsulated, unless it is
 responding to errors that do not relate to processing the contents of the
 encapsulated request; see <a href="#errors" class="auto internal xref">Section 5.2</a>.<a href="#section-5-7" class="pilcrow">¶</a></p>
-<p id="section-5-8">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-144" class="iref"></span>, if it receives any response from the <a href="#dfn-target" class="internal xref">Target
-Resource</a><span id="iref-target-resource-145" class="iref"></span>, sends a single 200 response containing the encapsulated response.
-Like the request from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-146" class="iref"></span>, this response <span class="bcp14">MUST</span> only contain those fields
+<p id="section-5-8">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-145" class="iref"></span>, if it receives any response from the <a href="#dfn-target" class="internal xref">Target
+Resource</a><span id="iref-target-resource-146" class="iref"></span>, sends a single 200 response containing the encapsulated response.
+Like the request from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-147" class="iref"></span>, this response <span class="bcp14">MUST</span> only contain those fields
 necessary to carry the encapsulated response: a 200 status code, a header field
 indicating the content type, and the encapsulated response as the response
 content.  As with requests, additional fields <span class="bcp14">MAY</span> be used to convey information
 that does not reveal information about the encapsulated response.<a href="#section-5-8" class="pilcrow">¶</a></p>
-<p id="section-5-9">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-147" class="iref"></span> that does not receive a response can itself
+<p id="section-5-9">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-148" class="iref"></span> that does not receive a response can itself
 generate a response with an appropriate error status code (such as 504 (Gateway
 Timeout); see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-15.6.5" class="relref">Section 15.6.5</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>), which is then encapsulated in the
 same way as a successful response.<a href="#section-5-9" class="pilcrow">¶</a></p>
 <p id="section-5-10">In order to achieve the privacy and security goals of the protocol an <a href="#dfn-gateway" class="internal xref">Oblivious
-Gateway Resource</a><span id="iref-oblivious-gateway-resource-148" class="iref"></span> also needs to observe the guidance in
+Gateway Resource</a><span id="iref-oblivious-gateway-resource-149" class="iref"></span> also needs to observe the guidance in
 <a href="#server-responsibilities" class="auto internal xref">Section 6.3</a>.<a href="#section-5-10" class="pilcrow">¶</a></p>
 <div id="informational-responses">
 <section id="section-5.1">
@@ -2141,7 +2142,7 @@ Gateway Resource</a><span id="iref-oblivious-gateway-resource-148" class="iref">
 the binary HTTP response format does support the inclusion of informational
 (1xx) status codes, the AEAD encapsulation cannot be removed until the entire
 message is received.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">In particular, the Expect header field with 100-continue (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-10.1.1" class="relref">Section 10.1.1</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>) cannot be used.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-149" class="iref"></span> <span class="bcp14">MUST NOT</span>
+<p id="section-5.1-2">In particular, the Expect header field with 100-continue (see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-10.1.1" class="relref">Section 10.1.1</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>) cannot be used.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-150" class="iref"></span> <span class="bcp14">MUST NOT</span>
 construct a request that includes a 100-continue expectation; the <a href="#dfn-gateway" class="internal xref">Oblivious
 Gateway Resource</a><span id="iref-oblivious-gateway-resource-15" class="iref"></span> <span class="bcp14">MUST</span> generate an error if a 100-continue expectation is
 received.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
@@ -2155,22 +2156,22 @@ received.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.2-1">A server that receives an invalid message for any reason <span class="bcp14">MUST</span> generate an HTTP
 response with a 4xx status code.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">Errors detected by the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-15" class="iref"></span> and errors detected by the
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-152" class="iref"></span> before removing protection (including being unable to
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-153" class="iref"></span> before removing protection (including being unable to
 remove encapsulation for any reason) result in the status code being sent
 without protection in response to the POST request made to that resource.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">Errors detected by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-153" class="iref"></span> after successfully removing
-encapsulation and errors detected by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-154" class="iref"></span> <span class="bcp14">MUST</span> be sent in an
-<a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-155" class="iref"></span>.  This might be because the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-156" class="iref"></span> is
-malformed or the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-157" class="iref"></span> does not produce a response.  In either case
-the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-158" class="iref"></span> can generate a response with an appropriate error
+<p id="section-5.2-3">Errors detected by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-154" class="iref"></span> after successfully removing
+encapsulation and errors detected by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-155" class="iref"></span> <span class="bcp14">MUST</span> be sent in an
+<a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-156" class="iref"></span>.  This might be because the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-157" class="iref"></span> is
+malformed or the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-158" class="iref"></span> does not produce a response.  In either case
+the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-159" class="iref"></span> can generate a response with an appropriate error
 status code (such as 400 (Bad Request) or 504 (Gateway Timeout); see <span><a href="https://rfc-editor.org/rfc/rfc9110#section-15.5.1" class="relref">Section 15.5.1</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span> and <span><a href="https://rfc-editor.org/rfc/rfc9110#section-15.6.5" class="relref">Section 15.6.5</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>, respectively).  This response
 is encapsulated in the same way as a successful response.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.2-4">Errors in the encapsulation of requests mean that responses cannot be
-encapsulated.  This includes cases where the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-159" class="iref"></span> is incorrect or
-outdated.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-160" class="iref"></span> can generate and send a response with
+encapsulated.  This includes cases where the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-160" class="iref"></span> is incorrect or
+outdated.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-161" class="iref"></span> can generate and send a response with
 a 4xx status code to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-16" class="iref"></span>.  This response <span class="bcp14">MAY</span> be
-forwarded to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-162" class="iref"></span> or treated by the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-163" class="iref"></span> as a failure.
-If a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-164" class="iref"></span> receives a response that is not an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-165" class="iref"></span>, this could
+forwarded to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-163" class="iref"></span> or treated by the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-164" class="iref"></span> as a failure.
+If a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-165" class="iref"></span> receives a response that is not an <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-166" class="iref"></span>, this could
 indicate that the client configuration used to construct the request is
 incorrect or out of date.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
 </section>
@@ -2182,8 +2183,8 @@ incorrect or out of date.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-5.3-1">The problem type <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span> of
 "https://iana.org/assignments/http-problem-types#ohttp-key" is defined.  An
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-166" class="iref"></span> <span class="bcp14">MAY</span> use this problem type in a response to indicate
-that an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-167" class="iref"></span> used an outdated or incorrect <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-168" class="iref"></span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-167" class="iref"></span> <span class="bcp14">MAY</span> use this problem type in a response to indicate
+that an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-168" class="iref"></span> used an outdated or incorrect <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-169" class="iref"></span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2"><a href="#fig-key-problem" class="auto internal xref">Figure 7</a> shows an example response in HTTP/1.1 format.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <span id="name-example-rejection-of-key-co"></span><div id="fig-key-problem">
 <figure id="figure-7">
@@ -2202,13 +2203,13 @@ Content-Length: 106
 <a href="#name-example-rejection-of-key-co" class="selfRef">Example Rejection of Key Configuration</a>
           </figcaption></figure>
 </div>
-<p id="section-5.3-4">As this response cannot be encrypted, it might not reach the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-169" class="iref"></span>.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-170" class="iref"></span>
-cannot rely on the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-17" class="iref"></span> using this problem type.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-172" class="iref"></span>
+<p id="section-5.3-4">As this response cannot be encrypted, it might not reach the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-170" class="iref"></span>.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-171" class="iref"></span>
+cannot rely on the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-17" class="iref"></span> using this problem type.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-173" class="iref"></span>
 might also be configured to disregard responses that are not encapsulated on the
 basis that they might be subject to observation or modification by an <a href="#dfn-relay" class="internal xref">Oblivious
-Relay Resource</a><span id="iref-oblivious-relay-resource-17" class="iref"></span>.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-174" class="iref"></span> might manage the risk of an outdated <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-175" class="iref"></span>
+Relay Resource</a><span id="iref-oblivious-relay-resource-17" class="iref"></span>.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-175" class="iref"></span> might manage the risk of an outdated <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-176" class="iref"></span>
 using a heuristic approach whereby it periodically refreshes its <a href="#key-configuration" class="internal xref">key
-configuration</a><span id="iref-key-configuration-176" class="iref"></span> if it receives a response with an error status code that has not
+configuration</a><span id="iref-key-configuration-177" class="iref"></span> if it receives a response with an error status code that has not
 been encapsulated.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2219,54 +2220,54 @@ been encapsulated.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">In this design, a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-177" class="iref"></span> wishes to make a request of a server that is
-authoritative for a <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-178" class="iref"></span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-179" class="iref"></span> wishes to make this request
+<p id="section-6-1">In this design, a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-178" class="iref"></span> wishes to make a request of a server that is
+authoritative for a <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-179" class="iref"></span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-180" class="iref"></span> wishes to make this request
 without linking that request with either:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6-2">
-<li id="section-6-2.1">The identity at the network and transport layer of the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-180" class="iref"></span> (that is, the
-<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-181" class="iref"></span> IP address and TCP or UDP port number the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-182" class="iref"></span> uses to create a
+<li id="section-6-2.1">The identity at the network and transport layer of the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-181" class="iref"></span> (that is, the
+<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-182" class="iref"></span> IP address and TCP or UDP port number the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-183" class="iref"></span> uses to create a
 connection).<a href="#section-6-2.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-6-2.2">Any other request the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-183" class="iref"></span> might have made in the past or might make in
+        <li id="section-6-2.2">Any other request the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-184" class="iref"></span> might have made in the past or might make in
 the future.<a href="#section-6-2.2" class="pilcrow">¶</a>
 </li>
       </ol>
-<p id="section-6-3">In order to ensure this, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-184" class="iref"></span> selects a relay (that serves the
+<p id="section-6-3">In order to ensure this, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-185" class="iref"></span> selects a relay (that serves the
 <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-18" class="iref"></span>) that it trusts will protect this information
-by forwarding the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-186" class="iref"></span> and Response without passing it
+by forwarding the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-187" class="iref"></span> and Response without passing it
 to the server (that serves the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-18" class="iref"></span>).<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">In this section, a deployment where there are three entities is considered:<a href="#section-6-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-5.1">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-188" class="iref"></span> makes requests and receives responses<a href="#section-6-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6-5.1">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-189" class="iref"></span> makes requests and receives responses<a href="#section-6-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-6-5.2">A relay operates the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-189" class="iref"></span><a href="#section-6-5.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-6-5.2">A relay operates the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-19" class="iref"></span><a href="#section-6-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-6-5.3">A server operates both the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-19" class="iref"></span> and the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-191" class="iref"></span><a href="#section-6-5.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-6-5.3">A server operates both the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-19" class="iref"></span> and the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-192" class="iref"></span><a href="#section-6-5.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-6-6">Connections between the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-192" class="iref"></span>, <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-19" class="iref"></span>, and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
-Resource</a><span id="iref-oblivious-gateway-resource-194" class="iref"></span> <span class="bcp14">MUST</span> use HTTPS in order to provide unlinkability in the presence of a
-network observer.  The scheme of the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-195" class="iref"></span> determines what is
+<p id="section-6-6">Connections between the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-193" class="iref"></span>, <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-194" class="iref"></span>, and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
+Resource</a><span id="iref-oblivious-gateway-resource-195" class="iref"></span> <span class="bcp14">MUST</span> use HTTPS in order to provide unlinkability in the presence of a
+network observer.  The scheme of the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-196" class="iref"></span> determines what is
 used between the Oblivious Gateway and Target Resources, though using HTTPS is
 <span class="bcp14">RECOMMENDED</span>; see <a href="#server-responsibilities" class="auto internal xref">Section 6.3</a>.<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">To achieve the stated privacy goals, the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-196" class="iref"></span> cannot be
-operated by the same entity as the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-197" class="iref"></span>. However,
-colocation of the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-198" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-199" class="iref"></span> simplifies the
-interactions between those resources without affecting <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-200" class="iref"></span> privacy.<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-7">To achieve the stated privacy goals, the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-197" class="iref"></span> cannot be
+operated by the same entity as the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-198" class="iref"></span>. However,
+colocation of the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-199" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-200" class="iref"></span> simplifies the
+interactions between those resources without affecting <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-201" class="iref"></span> privacy.<a href="#section-6-7" class="pilcrow">¶</a></p>
 <p id="section-6-8">As a consequence of this configuration, Oblivious HTTP prevents linkability
 described above. Informally, this means:<a href="#section-6-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6-9">
-<li id="section-6-9.1">Requests and responses are known only to <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-201" class="iref"></span> and Target Resources, plus
+<li id="section-6-9.1">Requests and responses are known only to <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-202" class="iref"></span> and Target Resources, plus
 <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-" class="iref"></span> that possess the corresponding response
 encapsulation key and HPKE keying material.  In particular, the <a href="#dfn-relay" class="internal xref">Oblivious
-Relay Resource</a><span id="iref-oblivious-relay-resource-20" class="iref"></span> knows the origin and destination of an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-204" class="iref"></span> and
+Relay Resource</a><span id="iref-oblivious-relay-resource-20" class="iref"></span> knows the origin and destination of an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-205" class="iref"></span> and
 Response, yet does not know the decrypted contents. Likewise, <a href="#dfn-gateway" class="internal xref">Oblivious
-Gateway Resources</a><span id="iref-oblivious-gateway-resources-2" class="iref"></span> learn only the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-206" class="iref"></span> and the decrypted
-request.  No entity other than the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-207" class="iref"></span> can see the plaintext request and
-response and can attribute them to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-208" class="iref"></span>.<a href="#section-6-9.1" class="pilcrow">¶</a>
+Gateway Resources</a><span id="iref-oblivious-gateway-resources-2" class="iref"></span> learn only the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-207" class="iref"></span> and the decrypted
+request.  No entity other than the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-208" class="iref"></span> can see the plaintext request and
+response and can attribute them to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-209" class="iref"></span>.<a href="#section-6-9.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-6-9.2">Targets cannot link requests from the same <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-209" class="iref"></span> in the absence of unique
-per-<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-210" class="iref"></span> keys.<a href="#section-6-9.2" class="pilcrow">¶</a>
+        <li id="section-6-9.2">Targets cannot link requests from the same <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-210" class="iref"></span> in the absence of unique
+per-<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-211" class="iref"></span> keys.<a href="#section-6-9.2" class="pilcrow">¶</a>
 </li>
       </ol>
 <p id="section-6-10">Traffic analysis that might affect these properties are outside the scope of
@@ -2277,40 +2278,40 @@ this document; see <a href="#ta" class="auto internal xref">Section 6.2.3</a>.<a
         <h3 id="name-client-responsibilities">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-client-responsibilities" class="section-name selfRef">Client Responsibilities</a>
         </h3>
-<p id="section-6.1-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-211" class="iref"></span> <span class="bcp14">MUST</span> ensure that the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-212" class="iref"></span> they select for generating
+<p id="section-6.1-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-212" class="iref"></span> <span class="bcp14">MUST</span> ensure that the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-213" class="iref"></span> they select for generating
 Encapsulated Requests is integrity protected and authenticated so that it can
 be attributed to the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-2" class="iref"></span>; see <a href="#key-configuration" class="auto internal xref">Section 3</a>.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">Since <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-214" class="iref"></span> connect directly to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-21" class="iref"></span> instead of the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-216" class="iref"></span>, application
-configurations wherein <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-217" class="iref"></span> make policy decisions about target connections,
+<p id="section-6.1-2">Since <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-215" class="iref"></span> connect directly to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-21" class="iref"></span> instead of the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-217" class="iref"></span>, application
+configurations wherein <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-218" class="iref"></span> make policy decisions about target connections,
 e.g., to apply certificate pinning, are incompatible with Oblivious HTTP.  In
 such cases, alternative technologies such as HTTP CONNECT
 (<span><a href="https://rfc-editor.org/rfc/rfc9110#section-9.3.6" class="relref">Section 9.3.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>) can be used. Applications could implement related
-policies on <a href="#key-configuration" class="internal xref">key configurations</a><span id="iref-key-configurations-218" class="iref"></span> and relay connections, though these might not
+policies on <a href="#key-configuration" class="internal xref">key configurations</a><span id="iref-key-configurations-219" class="iref"></span> and relay connections, though these might not
 provide the same properties as policies enforced directly on target
 connections. When this difference is relevant, applications can instead connect
 directly to the target at the cost of either privacy or performance.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-219" class="iref"></span> cannot carry connection-level state between requests as they only
+<p id="section-6.1-3"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-220" class="iref"></span> cannot carry connection-level state between requests as they only
 establish direct connections to the relay responsible for the Oblivious Relay
 resource.  However, the content of requests might be used by a server to
 correlate requests.  Cookies <span>[<a href="#COOKIES" class="cite xref">COOKIES</a>]</span> are the most obvious feature
 that might be used to correlate requests, but any identity information and
-authentication credentials might have the same effect.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-220" class="iref"></span> also need to
+authentication credentials might have the same effect.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-221" class="iref"></span> also need to
 treat information learned from responses with similar care when constructing
 subsequent requests, which includes the identity of resources.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1-4"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-221" class="iref"></span> <span class="bcp14">MUST</span> generate a new HPKE context for every request, using a good source
+<p id="section-6.1-4"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-222" class="iref"></span> <span class="bcp14">MUST</span> generate a new HPKE context for every request, using a good source
 of entropy (<span>[<a href="#RANDOM" class="cite xref">RANDOM</a>]</span>) for generating keys. Key reuse not only risks
 requests being linked, reuse could expose request and response contents to the
 relay.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.1-5">The request the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-222" class="iref"></span> sends to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-22" class="iref"></span> only requires
+<p id="section-6.1-5">The request the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-223" class="iref"></span> sends to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-22" class="iref"></span> only requires
 minimal information; see <a href="#http-usage" class="auto internal xref">Section 5</a>. The request that carries the
-<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-224" class="iref"></span> and is sent to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-225" class="iref"></span> <span class="bcp14">MUST NOT</span>
-include identifying information unless the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-226" class="iref"></span> ensures that this information
-is removed by the relay. A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-227" class="iref"></span> <span class="bcp14">MAY</span> include information only for the
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-228" class="iref"></span> in header fields identified by the Connection header
+<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-225" class="iref"></span> and is sent to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-226" class="iref"></span> <span class="bcp14">MUST NOT</span>
+include identifying information unless the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-227" class="iref"></span> ensures that this information
+is removed by the relay. A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-228" class="iref"></span> <span class="bcp14">MAY</span> include information only for the
+<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-229" class="iref"></span> in header fields identified by the Connection header
 field if it trusts the relay to remove these as required by Section 7.6.1 of
-<span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-229" class="iref"></span> needs to trust that the relay does not replicate the
+<span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-230" class="iref"></span> needs to trust that the relay does not replicate the
 source addressing information in the request it forwards.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
-<p id="section-6.1-6"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-230" class="iref"></span> rely on the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-23" class="iref"></span> to forward Encapsulated Requests
+<p id="section-6.1-6"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-231" class="iref"></span> rely on the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-23" class="iref"></span> to forward Encapsulated Requests
 and responses. However, the relay can only refuse to forward messages, it
 cannot inspect or modify the contents of Encapsulated Requests or responses.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
 </section>
@@ -2320,47 +2321,47 @@ cannot inspect or modify the contents of Encapsulated Requests or responses.<a h
         <h3 id="name-relay-responsibilities">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-relay-responsibilities" class="section-name selfRef">Relay Responsibilities</a>
         </h3>
-<p id="section-6.2-1">The relay that serves the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-232" class="iref"></span> has a very simple function
+<p id="section-6.2-1">The relay that serves the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-233" class="iref"></span> has a very simple function
 to perform. For each request it receives, it makes a request of the <a href="#dfn-gateway" class="internal xref">Oblivious
 Gateway Resource</a><span id="iref-oblivious-gateway-resource-23" class="iref"></span> that includes the same content. When it receives a response,
-it sends a response to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-234" class="iref"></span> that includes the content of the response
-from the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-235" class="iref"></span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+it sends a response to the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-235" class="iref"></span> that includes the content of the response
+from the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-236" class="iref"></span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">When forwarding a request, the relay <span class="bcp14">MUST</span> follow the forwarding rules in
 <span><a href="https://rfc-editor.org/rfc/rfc9110#section-7.6" class="relref">Section 7.6</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>.  A generic HTTP intermediary implementation is suitable
-for the purposes of serving an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-236" class="iref"></span>, but additional care is
-needed to ensure that <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-237" class="iref"></span> privacy is maintained.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+for the purposes of serving an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-237" class="iref"></span>, but additional care is
+needed to ensure that <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-238" class="iref"></span> privacy is maintained.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2-3">Firstly, a generic implementation will forward unknown fields.  For Oblivious
-HTTP, an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-238" class="iref"></span> <span class="bcp14">SHOULD NOT</span> forward unknown fields.  Though
-<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-239" class="iref"></span> are not expected to include fields that might contain identifying
+HTTP, an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-239" class="iref"></span> <span class="bcp14">SHOULD NOT</span> forward unknown fields.  Though
+<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-240" class="iref"></span> are not expected to include fields that might contain identifying
 information, removing unknown fields removes this privacy risk.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">Secondly, generic implementations are often configured to augment requests with
-information about the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-240" class="iref"></span>, such as the Via field or the Forwarded field
+information about the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-241" class="iref"></span>, such as the Via field or the Forwarded field
 <span>[<a href="#FORWARDED" class="cite xref">FORWARDED</a>]</span>.  A relay <span class="bcp14">MUST NOT</span> add information when forwarding
-requests that might be used to identify <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-241" class="iref"></span>, with the exception of
-information that a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-242" class="iref"></span> is aware of.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+requests that might be used to identify <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-242" class="iref"></span>, with the exception of
+information that a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-243" class="iref"></span> is aware of.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">Finally, a relay can also generate responses, though it is assumed to not be able
 to examine the content of a request (other than to observe the choice of key
 identifier, KDF, and AEAD), so it is also assumed that it cannot generate an
-<a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-243" class="iref"></span>.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-244" class="iref"></span>.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <div id="differential-treatment">
 <section id="section-6.2.1">
           <h4 id="name-differential-treatment">
 <a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-differential-treatment" class="section-name selfRef">Differential Treatment</a>
           </h4>
-<p id="section-6.2.1-1">A relay <span class="bcp14">MAY</span> add information to requests if the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-244" class="iref"></span> is aware of the nature of
-the information that could be added.  The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-245" class="iref"></span> does not need to be aware of
+<p id="section-6.2.1-1">A relay <span class="bcp14">MAY</span> add information to requests if the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-245" class="iref"></span> is aware of the nature of
+the information that could be added.  The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-246" class="iref"></span> does not need to be aware of
 the exact value added for each request, but needs to know the range of possible
 values the relay might use.  Importantly, information added by the relay - beyond
-what is already revealed through encapsulated requests from <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-246" class="iref"></span> - can reduce
-the size of the anonymity set of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-247" class="iref"></span> at a gateway.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.2.1-2">Moreover, relays <span class="bcp14">MAY</span> apply differential treatment to <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-248" class="iref"></span> that engage in abusive
-behavior, e.g., by sending too many requests in comparison to other <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-249" class="iref"></span>,
+what is already revealed through encapsulated requests from <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-247" class="iref"></span> - can reduce
+the size of the anonymity set of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-248" class="iref"></span> at a gateway.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-2">Moreover, relays <span class="bcp14">MAY</span> apply differential treatment to <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-249" class="iref"></span> that engage in abusive
+behavior, e.g., by sending too many requests in comparison to other <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-250" class="iref"></span>,
 or as a response to rate limits signalled from the gateway. Any such
 differential treatment can reveal information to the gateway that would not
 be revealed otherwise and therefore reduce the size of the anonymity set of
-<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-250" class="iref"></span> using a gateway. For example, if a relay chooses to rate limit or
-block an abusive <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-251" class="iref"></span>, this means that any <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-252" class="iref"></span> requests which are not
-treated this way are known to be non-abusive by the gateway. <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-253" class="iref"></span> should
+<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-251" class="iref"></span> using a gateway. For example, if a relay chooses to rate limit or
+block an abusive <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-252" class="iref"></span>, this means that any <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-253" class="iref"></span> requests which are not
+treated this way are known to be non-abusive by the gateway. <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-254" class="iref"></span> should
 consider the likelihood of such differential treatment and the privacy
 risks when using a relay.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-3">Some patterns of abuse cannot be detected without access to the request that
@@ -2369,7 +2370,7 @@ position to identify abuse. A gateway <span class="bcp14">MAY</span> send signal
 provide feedback about specific requests. For example, a gateway could respond
 differently to requests it cannot decapsulate, as mentioned in <a href="#errors" class="auto internal xref">Section 5.2</a>. A
 relay that acts on this feedback could - either inadvertently or by
-design - lead to <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-254" class="iref"></span> deanonymization.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
+design - lead to <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-255" class="iref"></span> deanonymization.<a href="#section-6.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dos">
@@ -2384,7 +2385,7 @@ be necessary to prevent having the large volume of requests being classified as
 an attack by the server.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-2">If a server accepts a larger volume of requests from a relay, it needs to
 trust that the relay does not allow abusive levels of request volumes from
-<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-257" class="iref"></span>. That is, if a server allows requests from the relay to be exempt from
+<a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-258" class="iref"></span>. That is, if a server allows requests from the relay to be exempt from
 rate limits, the server might want to ensure that the relay applies a rate
 limiting policy that is acceptable to the server.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.2-3">Servers that enter into an agreement with a relay that enables a higher request
@@ -2400,25 +2401,25 @@ rate might choose to authenticate the relay to enable the higher rate.<a href="#
 request and prevents a network observer from being able to trivially correlate
 messages on either side of a relay.  However, using HTTPS does not prevent
 traffic analysis by such network observers.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.2.3-2">The time at which <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-258" class="iref"></span> or response messages are sent can
+<p id="section-6.2.3-2">The time at which <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-259" class="iref"></span> or response messages are sent can
 reveal information to a network observer. Though messages exchanged between the
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-25" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-26" class="iref"></span> might be sent in a
+<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-26" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-26" class="iref"></span> might be sent in a
 single connection, traffic analysis could be used to match messages that are
 forwarded by the relay.<a href="#section-6.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.3-3">A relay could, as part of its function, delay requests before forwarding them.
 Delays might increase the anonymity set into which each request is
-attributed. Any delay also increases the time that a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-261" class="iref"></span> waits for a
+attributed. Any delay also increases the time that a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-262" class="iref"></span> waits for a
 response, so delays <span class="bcp14">SHOULD</span> only be added with the consent - or at least
-awareness - of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-262" class="iref"></span>.<a href="#section-6.2.3-3" class="pilcrow">¶</a></p>
+awareness - of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-263" class="iref"></span>.<a href="#section-6.2.3-3" class="pilcrow">¶</a></p>
 <p id="section-6.2.3-4">A relay that forwards large volumes of exchanges can provide better privacy by
 providing larger sets of messages that need to be matched.<a href="#section-6.2.3-4" class="pilcrow">¶</a></p>
-<p id="section-6.2.3-5">Traffic analysis is not restricted to network observers. A malicious <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-26" class="iref"></span> could
+<p id="section-6.2.3-5">Traffic analysis is not restricted to network observers. A malicious <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-264" class="iref"></span> could
 use traffic analysis to learn information about otherwise encrypted requests
-and responses relayed between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-264" class="iref"></span> and gateways. An <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-265" class="iref"></span> terminates
-TLS connections from <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-266" class="iref"></span>, so they see message boundaries. This privileged
+and responses relayed between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-265" class="iref"></span> and gateways. An <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-266" class="iref"></span> terminates
+TLS connections from <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-267" class="iref"></span>, so they see message boundaries. This privileged
 position allows for richer feature extraction from encrypted data, which might
 improve traffic analysis.<a href="#section-6.2.3-5" class="pilcrow">¶</a></p>
-<p id="section-6.2.3-6"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-267" class="iref"></span> can use padding to reduce the effectiveness of traffic analysis.
+<p id="section-6.2.3-6"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-268" class="iref"></span> can use padding to reduce the effectiveness of traffic analysis.
 Padding is a capability provided by binary HTTP messages; see <span><a href="https://rfc-editor.org/rfc/rfc9292#section-3.8" class="relref">Section 3.8</a> of [<a href="#BINARY" class="cite xref">BINARY</a>]</span>.  If the encapsulation method described in this document is used to
 protect a different message type (see <a href="#repurposing" class="auto internal xref">Section 4.6</a>), that message format
 might need to include padding support.<a href="#section-6.2.3-6" class="pilcrow">¶</a></p>
@@ -2431,18 +2432,18 @@ might need to include padding support.<a href="#section-6.2.3-6" class="pilcrow"
         <h3 id="name-server-responsibilities">
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-server-responsibilities" class="section-name selfRef">Server Responsibilities</a>
         </h3>
-<p id="section-6.3-1">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-268" class="iref"></span> can be operated by a different entity than the
-<a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-269" class="iref"></span>.  However, this means that the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-270" class="iref"></span> needs to trust the
+<p id="section-6.3-1">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-269" class="iref"></span> can be operated by a different entity than the
+<a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-270" class="iref"></span>.  However, this means that the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-271" class="iref"></span> needs to trust the
 <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-27" class="iref"></span> not to modify requests or responses.  This analysis
 concerns itself with a deployment scenario where a single server provides both
-the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-272" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-273" class="iref"></span>.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-273" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-274" class="iref"></span>.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.3-2">A server that operates both Oblivious Gateway and Target Resources is
 responsible for removing request encryption, generating a response to the
-<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-274" class="iref"></span>, and encrypting the response.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-275" class="iref"></span>, and encrypting the response.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <p id="section-6.3-3">Servers should account for traffic analysis based on response size or generation
 time.  Techniques such as padding or timing delays can help protect against such
 attacks; see <a href="#ta" class="auto internal xref">Section 6.2.3</a>.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
-<p id="section-6.3-4">If separate entities provide the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-275" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-276" class="iref"></span>,
+<p id="section-6.3-4">If separate entities provide the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-276" class="iref"></span> and <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-277" class="iref"></span>,
 these entities might need an arrangement similar to that between server and
 relay for managing denial of service; see <a href="#dos" class="auto internal xref">Section 6.2.2</a>.<a href="#section-6.3-4" class="pilcrow">¶</a></p>
 <p id="section-6.3-5">Nonsecure requests - such as those with the "http" scheme as opposed to the
@@ -2458,14 +2459,14 @@ origin do not guarantee that requests are not forwarded without protection.<a hr
         <h3 id="name-key-management">
 <a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-key-management" class="section-name selfRef">Key Management</a>
         </h3>
-<p id="section-6.4-1">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-277" class="iref"></span> needs to have a plan for replacing keys. This
+<p id="section-6.4-1">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-278" class="iref"></span> needs to have a plan for replacing keys. This
 might include regular replacement of keys, which can be assigned new key
-identifiers. If an <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-278" class="iref"></span> receives a request that contains a
+identifiers. If an <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-279" class="iref"></span> receives a request that contains a
 key identifier that it does not understand or that corresponds to a key that has
 been replaced, the server can respond with an HTTP 422 (Unprocessable Content)
 status code.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.4-2">A server can also use a 422 status code if the server has a key that corresponds
-to the key identifier, but the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-279" class="iref"></span> cannot be successfully
+to the key identifier, but the <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-280" class="iref"></span> cannot be successfully
 decrypted using the key.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
 <p id="section-6.4-3">A server <span class="bcp14">MUST</span> ensure that the HPKE keys it uses are not valid for any other
 protocol that uses HPKE with the "message/bhttp request" label.  Designers of
@@ -2482,11 +2483,11 @@ provides key diversity only within the HPKE context created using the
 <a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-replay-attacks" class="section-name selfRef">Replay Attacks</a>
         </h3>
 <p id="section-6.5-1">A server is responsible for either rejecting replayed requests or ensuring that
-the effect of replays does not adversely affect <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-280" class="iref"></span> or resources.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+the effect of replays does not adversely affect <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-281" class="iref"></span> or resources.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.5-2">Encrypted requests can be copied and replayed by the Oblivious Relay
 resource. The threat model for Oblivious HTTP allows the possibility that an
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-28" class="iref"></span> might replay requests. Furthermore, if a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-282" class="iref"></span> sends
-an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-283" class="iref"></span> in TLS early data (see <span><a href="https://rfc-editor.org/rfc/rfc8446#section-8" class="relref">Section 8</a> of [<a href="#TLS" class="cite xref">TLS</a>]</span> and
+<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-28" class="iref"></span> might replay requests. Furthermore, if a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-283" class="iref"></span> sends
+an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-284" class="iref"></span> in TLS early data (see <span><a href="https://rfc-editor.org/rfc/rfc8446#section-8" class="relref">Section 8</a> of [<a href="#TLS" class="cite xref">TLS</a>]</span> and
 <span>[<a href="#RFC8470" class="cite xref">RFC8470</a>]</span>), a network-based adversary might be able to cause the request to
 be replayed. In both cases, the effect of a replay attack and the mitigations
 that might be employed are similar to TLS early data.<a href="#section-6.5-2" class="pilcrow">¶</a></p>
@@ -2494,7 +2495,7 @@ that might be employed are similar to TLS early data.<a href="#section-6.5-2" cl
 reject replayed requests or to ensure that replayed requests have no adverse
 affects on their operation.  This section describes some approaches that are
 universally applicable and suggestions for more targeted techniques.<a href="#section-6.5-3" class="pilcrow">¶</a></p>
-<p id="section-6.5-4">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-284" class="iref"></span> or <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-285" class="iref"></span> <span class="bcp14">MUST NOT</span> automatically attempt to retry a
+<p id="section-6.5-4">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-285" class="iref"></span> or <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-286" class="iref"></span> <span class="bcp14">MUST NOT</span> automatically attempt to retry a
 failed request unless it receives a positive signal indicating that the request
 was not processed or forwarded. The HTTP/2 REFUSED_STREAM error code (<span><a href="https://rfc-editor.org/rfc/rfc9113#section-8.1.4" class="relref">Section 8.1.4</a> of [<a href="#HTTP2" class="cite xref">HTTP/2</a>]</span>), the HTTP/3 H3_REQUEST_REJECTED error code (<span><a href="https://rfc-editor.org/rfc/rfc9114#section-8.1" class="relref">Section 8.1</a> of [<a href="#HTTP3" class="cite xref">HTTP/3</a>]</span>), or a GOAWAY frame with a low enough identifier (in either protocol
 version) are all sufficient signals that no processing occurred. HTTP/1.1
@@ -2505,7 +2506,7 @@ applicable to Oblivious HTTP requests. The encapsulated keying material (or
 <code>enc</code>) can be used in place of a nonce to uniquely identify a request.  This
 value is a high-entropy value that is freshly generated for every request, so
 two valid requests will have different values with overwhelming probability.<a href="#section-6.5-5" class="pilcrow">¶</a></p>
-<p id="section-6.5-6">The mechanism used in TLS for managing differences in <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-286" class="iref"></span> and server clocks
+<p id="section-6.5-6">The mechanism used in TLS for managing differences in <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-287" class="iref"></span> and server clocks
 cannot be used as it depends on being able to observe previous interactions.
 Oblivious HTTP explicitly prevents such linkability.<a href="#section-6.5-6" class="pilcrow">¶</a></p>
 <p id="section-6.5-7">The considerations in <span>[<a href="#RFC8470" class="cite xref">RFC8470</a>]</span> as they relate to managing the risk of
@@ -2524,23 +2525,23 @@ replayed.<a href="#section-6.5-9" class="pilcrow">¶</a></p>
           <h4 id="name-use-of-date-for-anti-replay">
 <a href="#section-6.5.1" class="section-number selfRef">6.5.1. </a><a href="#name-use-of-date-for-anti-replay" class="section-name selfRef">Use of Date for Anti-Replay</a>
           </h4>
-<p id="section-6.5.1-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-287" class="iref"></span> <span class="bcp14">SHOULD</span> include a <code>Date</code> header field in Encapsulated Requests, unless
+<p id="section-6.5.1-1"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-288" class="iref"></span> <span class="bcp14">SHOULD</span> include a <code>Date</code> header field in Encapsulated Requests, unless
 the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-28" class="iref"></span> does not use <code>Date</code> for anti-replay purposes.<a href="#section-6.5.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.5.1-2">Though HTTP requests often do not include a <code>Date</code> header field, the value of
 this field might be used by a server to limit the amount of requests it needs to
 track if it needs to prevent replay attacks.<a href="#section-6.5.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.5.1-3">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-289" class="iref"></span> can maintain state for requests for a small window
-of time over which it wishes to accept requests.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-29" class="iref"></span>
+<p id="section-6.5.1-3">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-29" class="iref"></span> can maintain state for requests for a small window
+of time over which it wishes to accept requests.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-291" class="iref"></span>
 can store all requests it processes within this window.  Storing just the <code>enc</code>
 field of a request, which should be unique to each request, is sufficient.  The
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-291" class="iref"></span> then rejects requests if the request is the same as
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-292" class="iref"></span> then rejects requests if the request is the same as
 one that was previously answered within that time window, or if the <code>Date</code>
 header field from the decrypted request is outside of the current time window.<a href="#section-6.5.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.5.1-4"><a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-29" class="iref"></span> might need to allow for the time it takes requests
-to arrive from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-293" class="iref"></span>, with a time window that is large enough to allow for
+to arrive from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-294" class="iref"></span>, with a time window that is large enough to allow for
 differences in clocks.  Insufficient tolerance of time differences could result
 in valid requests being unnecessarily rejected.<a href="#section-6.5.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.5.1-5"><a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-294" class="iref"></span> <span class="bcp14">MUST NOT</span> treat the time window as secret
+<p id="section-6.5.1-5"><a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-295" class="iref"></span> <span class="bcp14">MUST NOT</span> treat the time window as secret
 information. An attacker can actively probe with different values for the <code>Date</code>
 field to determine the time window over which the server will accept responses.<a href="#section-6.5.1-5" class="pilcrow">¶</a></p>
 </section>
@@ -2550,7 +2551,7 @@ field to determine the time window over which the server will accept responses.<
           <h4 id="name-correcting-clock-difference">
 <a href="#section-6.5.2" class="section-number selfRef">6.5.2. </a><a href="#name-correcting-clock-difference" class="section-name selfRef">Correcting Clock Differences</a>
           </h4>
-<p id="section-6.5.2-1">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-295" class="iref"></span> can reject requests that contain a <code>Date</code> value
+<p id="section-6.5.2-1">An <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-296" class="iref"></span> can reject requests that contain a <code>Date</code> value
 that is outside of its active window with a 400 series status code.  The problem
 type <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span> of
 "https://iana.org/assignments/http-problem-types#date" is defined to allow the
@@ -2573,15 +2574,15 @@ Content-Length: 128
 <a href="#name-example-rejection-of-reques" class="selfRef">Example Rejection of Request Date Field</a>
             </figcaption></figure>
 </div>
-<p id="section-6.5.2-4">Disagreements about time are unlikely if both <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-296" class="iref"></span> and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
-Resource</a><span id="iref-oblivious-gateway-resource-297" class="iref"></span> have a good source of time; see <span>[<a href="#NTP" class="cite xref">NTP</a>]</span>. However, clock
+<p id="section-6.5.2-4">Disagreements about time are unlikely if both <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-297" class="iref"></span> and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
+Resource</a><span id="iref-oblivious-gateway-resource-298" class="iref"></span> have a good source of time; see <span>[<a href="#NTP" class="cite xref">NTP</a>]</span>. However, clock
 differences are known to be commonplace; see Section 7.1 of
 <span>[<a href="#CLOCKSKEW" class="cite xref">CLOCKSKEW</a>]</span>.<a href="#section-6.5.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.5.2-5">Including a <code>Date</code> header field in the response allows the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-298" class="iref"></span> to correct
+<p id="section-6.5.2-5">Including a <code>Date</code> header field in the response allows the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-299" class="iref"></span> to correct
 clock errors by retrying the same request using the value of the <code>Date</code> field
-provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-299" class="iref"></span>.  The value of the <code>Date</code> field can
+provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-30" class="iref"></span>.  The value of the <code>Date</code> field can
 be copied if the request is fresh, with an adjustment based on the <code>Age</code> field
-otherwise.  When retrying a request, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-300" class="iref"></span> <span class="bcp14">MUST</span> create a fresh encryption
+otherwise.  When retrying a request, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-301" class="iref"></span> <span class="bcp14">MUST</span> create a fresh encryption
 of the modified request, using a new HPKE context.<a href="#section-6.5.2-5" class="pilcrow">¶</a></p>
 <span id="name-retrying-with-an-update-dat"></span><div id="fig-retry-date">
 <figure id="figure-9">
@@ -2648,17 +2649,17 @@ of the modified request, using a new HPKE context.<a href="#section-6.5.2-5" cla
             </figcaption></figure>
 </div>
 <p id="section-6.5.2-7">Intermediaries can sometimes rewrite the <code>Date</code> field when forwarding responses.
-This might cause problems if the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-30" class="iref"></span> and intermediary
-clocks differ by enough to cause the retry to be rejected.  Therefore, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-302" class="iref"></span>
+This might cause problems if the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-302" class="iref"></span> and intermediary
+clocks differ by enough to cause the retry to be rejected.  Therefore, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-303" class="iref"></span>
             <span class="bcp14">MUST NOT</span> retry a request with an adjusted date more than once.<a href="#section-6.5.2-7" class="pilcrow">¶</a></p>
 <p id="section-6.5.2-8"><a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-3" class="iref"></span> that condition their responses on the <code>Date</code> header
 field <span class="bcp14">SHOULD</span> either ensure that intermediaries do not cache responses (by
 including a <code>Cache-Control</code> directive of <code>no-store</code>) or designate the response
 as conditional on the value of the <code>Date</code> request header field (by including the
 token "date" in a <code>Vary</code> header field).<a href="#section-6.5.2-8" class="pilcrow">¶</a></p>
-<p id="section-6.5.2-9"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-304" class="iref"></span> <span class="bcp14">MUST NOT</span> use the date provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-305" class="iref"></span> for any
+<p id="section-6.5.2-9"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-305" class="iref"></span> <span class="bcp14">MUST NOT</span> use the date provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-306" class="iref"></span> for any
 other purpose, including future requests to any resource.  Any request that uses
-information provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-306" class="iref"></span> might be correlated using
+information provided by the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-307" class="iref"></span> might be correlated using
 that information.<a href="#section-6.5.2-9" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2670,8 +2671,8 @@ that information.<a href="#section-6.5.2-9" class="pilcrow">¶</a></p>
 <a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-forward-secrecy" class="section-name selfRef">Forward Secrecy</a>
         </h3>
 <p id="section-6.6-1">This document does not provide forward secrecy for either requests or
-responses during the lifetime of the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-307" class="iref"></span>. A measure of
-forward secrecy can be provided by generating a new <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-308" class="iref"></span>
+responses during the lifetime of the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-308" class="iref"></span>. A measure of
+forward secrecy can be provided by generating a new <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-309" class="iref"></span>
 then deleting the old keys after a suitable period.<a href="#section-6.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2681,18 +2682,18 @@ then deleting the old keys after a suitable period.<a href="#section-6.6-1" clas
 <a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-post-compromise-security" class="section-name selfRef">Post-Compromise Security</a>
         </h3>
 <p id="section-6.7-1">This design does not provide post-compromise security for responses.<a href="#section-6.7-1" class="pilcrow">¶</a></p>
-<p id="section-6.7-2">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-309" class="iref"></span> only needs to retain keying material that might be used to compromise
+<p id="section-6.7-2">A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-310" class="iref"></span> only needs to retain keying material that might be used to compromise
 the confidentiality and integrity of a response until that response is consumed,
-so there is negligible risk associated with a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-310" class="iref"></span> compromise.<a href="#section-6.7-2" class="pilcrow">¶</a></p>
+so there is negligible risk associated with a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-311" class="iref"></span> compromise.<a href="#section-6.7-2" class="pilcrow">¶</a></p>
 <p id="section-6.7-3">A server retains a secret key that might be used to remove protection from
 messages over much longer periods. A server compromise that provided access to
-the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-311" class="iref"></span> secret key could allow an attacker to recover the
+the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-312" class="iref"></span> secret key could allow an attacker to recover the
 plaintext of all requests sent toward affected keys and all of the responses
 that were generated.<a href="#section-6.7-3" class="pilcrow">¶</a></p>
 <p id="section-6.7-4">Even if server keys are compromised, an adversary cannot access messages
-exchanged by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-312" class="iref"></span> with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-31" class="iref"></span> as messages are
+exchanged by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-313" class="iref"></span> with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-31" class="iref"></span> as messages are
 protected by TLS.  Use of a compromised key also requires that the <a href="#dfn-relay" class="internal xref">Oblivious
-Relay Resource</a><span id="iref-oblivious-relay-resource-314" class="iref"></span> cooperate with the attacker or that the attacker is able to
+Relay Resource</a><span id="iref-oblivious-relay-resource-315" class="iref"></span> cooperate with the attacker or that the attacker is able to
 compromise these TLS connections.<a href="#section-6.7-4" class="pilcrow">¶</a></p>
 <p id="section-6.7-5">The total number of messages affected by server key compromise can be limited by
 regular rotation of server keys.<a href="#section-6.7-5" class="pilcrow">¶</a></p>
@@ -2703,10 +2704,10 @@ regular rotation of server keys.<a href="#section-6.7-5" class="pilcrow">¶</a><
         <h3 id="name-client-clock-exposure">
 <a href="#section-6.8" class="section-number selfRef">6.8. </a><a href="#name-client-clock-exposure" class="section-name selfRef">Client Clock Exposure</a>
         </h3>
-<p id="section-6.8-1">Including a <code>Date</code> field in requests reveals some information about the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-315" class="iref"></span>
-clock.  This might be used to fingerprint <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-316" class="iref"></span> <span>[<a href="#UWT" class="cite xref">UWT</a>]</span> or to identify <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-317" class="iref"></span>
+<p id="section-6.8-1">Including a <code>Date</code> field in requests reveals some information about the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-316" class="iref"></span>
+clock.  This might be used to fingerprint <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-317" class="iref"></span> <span>[<a href="#UWT" class="cite xref">UWT</a>]</span> or to identify <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-318" class="iref"></span>
 that are vulnerable to attacks that depend on incorrect clocks.<a href="#section-6.8-1" class="pilcrow">¶</a></p>
-<p id="section-6.8-2"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-318" class="iref"></span> can randomize the value that they provide for <code>Date</code> to obscure the true
+<p id="section-6.8-2"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-319" class="iref"></span> can randomize the value that they provide for <code>Date</code> to obscure the true
 value of their clock and reduce the chance of linking of requests over time.
 However, this increases the risk that their request is rejected as outside the
 acceptable window.<a href="#section-6.8-2" class="pilcrow">¶</a></p>
@@ -2719,37 +2720,37 @@ acceptable window.<a href="#section-6.8-2" class="pilcrow">¶</a></p>
       <h2 id="name-privacy-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-7-1">One goal of this design is that independent <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-319" class="iref"></span> requests are only linkable by
-their content.  However, the choice of <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-320" class="iref"></span> configuration might be used to
-correlate requests.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-321" class="iref"></span> configuration includes the <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resource</a><span id="iref-oblivious-relay-resource-32" class="iref"></span> URI, the Oblivious Gateway <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-323" class="iref"></span>, and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
-Resource</a><span id="iref-oblivious-gateway-resource-32" class="iref"></span> URI. A configuration is active if <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-325" class="iref"></span> can successfully use it for interacting with a target.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">One goal of this design is that independent <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-320" class="iref"></span> requests are only linkable by
+their content.  However, the choice of <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-321" class="iref"></span> configuration might be used to
+correlate requests.  A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-322" class="iref"></span> configuration includes the <a href="#dfn-relay" class="internal xref">Oblivious Relay
+Resource</a><span id="iref-oblivious-relay-resource-32" class="iref"></span> URI, the Oblivious Gateway <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-324" class="iref"></span>, and <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
+Resource</a><span id="iref-oblivious-gateway-resource-32" class="iref"></span> URI. A configuration is active if <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-326" class="iref"></span> can successfully use it for interacting with a target.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2"><a href="#dfn-relay" class="internal xref">Oblivious Relay and Gateway Resources</a><span id="iref-oblivious-relay-and-gateway-" class="iref"></span> can identify when requests use the same
-configuration by matching the key ID from the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-327" class="iref"></span> or the <a href="#dfn-gateway" class="internal xref">Oblivious
-Gateway Resource</a><span id="iref-oblivious-gateway-resource-328" class="iref"></span> URI.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-329" class="iref"></span> might use the source
+configuration by matching the key ID from the <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-328" class="iref"></span> or the <a href="#dfn-gateway" class="internal xref">Oblivious
+Gateway Resource</a><span id="iref-oblivious-gateway-resource-329" class="iref"></span> URI.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-330" class="iref"></span> might use the source
 address of requests to correlate requests that use an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-33" class="iref"></span>
-run by the same operator.  If the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-331" class="iref"></span> is willing to use
+run by the same operator.  If the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-332" class="iref"></span> is willing to use
 trial decryption, requests can be further separated into smaller groupings based
 on the keys that are used.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">Each active <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-332" class="iref"></span> configuration partitions the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-333" class="iref"></span> anonymity set. In practice,
+<p id="section-7-3">Each active <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-333" class="iref"></span> configuration partitions the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-334" class="iref"></span> anonymity set. In practice,
 it is infeasible to reduce the number of active configurations to one. Enabling diversity in choice of
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-334" class="iref"></span> naturally increases the number of active
+<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-335" class="iref"></span> naturally increases the number of active
 configurations.  A small number of configurations might need to be active to
 allow for key rotation and server maintenance.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4"><a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-335" class="iref"></span> privacy depends on having each configuration used by many other <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-336" class="iref"></span>.
-It is critical to prevent the use of unique <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-337" class="iref"></span> configurations, which might
-be used to track of individual <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-338" class="iref"></span>, but it is also important to avoid
-creating small groupings of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-339" class="iref"></span> that might weaken privacy protections.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">A specific method for a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-340" class="iref"></span> to acquire configurations is not included in this
+<p id="section-7-4"><a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-336" class="iref"></span> privacy depends on having each configuration used by many other <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-337" class="iref"></span>.
+It is critical to prevent the use of unique <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-338" class="iref"></span> configurations, which might
+be used to track of individual <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-339" class="iref"></span>, but it is also important to avoid
+creating small groupings of <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-340" class="iref"></span> that might weaken privacy protections.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">A specific method for a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-341" class="iref"></span> to acquire configurations is not included in this
 specification.  Applications using this design <span class="bcp14">MUST</span> provide accommodations to
-mitigate tracking using <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-341" class="iref"></span> configurations.  <span>[<a href="#CONSISTENCY" class="cite xref">CONSISTENCY</a>]</span> provides options
-for ensuring that <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-342" class="iref"></span> configurations are consistent between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-343" class="iref"></span>.<a href="#section-7-5" class="pilcrow">¶</a></p>
+mitigate tracking using <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-342" class="iref"></span> configurations.  <span>[<a href="#CONSISTENCY" class="cite xref">CONSISTENCY</a>]</span> provides options
+for ensuring that <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-343" class="iref"></span> configurations are consistent between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-344" class="iref"></span>.<a href="#section-7-5" class="pilcrow">¶</a></p>
 <p id="section-7-6">The content of requests or responses, if used in forming new requests, can be
 used to correlate requests.  This includes obvious methods of linking requests,
 like cookies <span>[<a href="#COOKIES" class="cite xref">COOKIES</a>]</span>, but it also includes any information in either
 message that might affect how subsequent requests are formulated. For example,
 <span>[<a href="#FIELDING" class="cite xref">FIELDING</a>]</span> describes how interactions that are individually stateless can be
-used to build a stateful system when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-344" class="iref"></span> acts on the content of a response.<a href="#section-7-6" class="pilcrow">¶</a></p>
+used to build a stateful system when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-345" class="iref"></span> acts on the content of a response.<a href="#section-7-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="deployment">
@@ -2765,7 +2766,7 @@ used to build a stateful system when a <a href="#dfn-client" class="internal xre
         </h3>
 <p id="section-8.1-1">Using Oblivious HTTP adds both cryptographic overhead and latency to requests relative to
 a simple HTTP request-response exchange.  Deploying relay services that are on
-path between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-345" class="iref"></span> and servers avoids adding significant additional delay due
+path between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-346" class="iref"></span> and servers avoids adding significant additional delay due
 to network topology.  A study of a similar system <span>[<a href="#ODoH" class="cite xref">ODoH</a>]</span> found that deploying
 proxies close to servers was most effective in minimizing additional latency.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </section>
@@ -2776,16 +2777,16 @@ proxies close to servers was most effective in minimizing additional latency.<a 
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-resource-mappings" class="section-name selfRef">Resource Mappings</a>
         </h3>
 <p id="section-8.2-1">This protocol assumes a fixed, one-to-one mapping between the <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resource</a><span id="iref-oblivious-relay-resource-346" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-34" class="iref"></span>. This means that any encrypted
-request sent to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-348" class="iref"></span> will always be forwarded to the
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-349" class="iref"></span>. This constraint was imposed to simplify relay
-configuration and mitigate against the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-350" class="iref"></span> being used as
+Resource</a><span id="iref-oblivious-relay-resource-347" class="iref"></span> and the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-34" class="iref"></span>. This means that any encrypted
+request sent to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-349" class="iref"></span> will always be forwarded to the
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-35" class="iref"></span>. This constraint was imposed to simplify relay
+configuration and mitigate against the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-351" class="iref"></span> being used as
 a generic relay for unknown <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-35" class="iref"></span>. The relay will only
-forward for <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-352" class="iref"></span> that it has explicitly configured and
+forward for <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-353" class="iref"></span> that it has explicitly configured and
 allowed.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 <p id="section-8.2-2">It is possible for a server to be configured with multiple <a href="#dfn-relay" class="internal xref">Oblivious Relay
-Resources</a><span id="iref-oblivious-relay-resources-3" class="iref"></span>, each for a different <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-35" class="iref"></span> as needed.  If the
-goal is to support a large number of <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-355" class="iref"></span>, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-356" class="iref"></span> might
+Resources</a><span id="iref-oblivious-relay-resources-3" class="iref"></span>, each for a different <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-355" class="iref"></span> as needed.  If the
+goal is to support a large number of <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-356" class="iref"></span>, <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-357" class="iref"></span> might
 be provided with a URI template <span>[<a href="#TEMPLATE" class="cite xref">TEMPLATE</a>]</span>, from which multiple
 <a href="#dfn-relay" class="internal xref">Oblivious Relay Resources</a><span id="iref-oblivious-relay-resources-35" class="iref"></span> could be constructed.<a href="#section-8.2-2" class="pilcrow">¶</a></p>
 </section>
@@ -2796,13 +2797,13 @@ be provided with a URI template <span>[<a href="#TEMPLATE" class="cite xref">TEM
 <a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-network-management" class="section-name selfRef">Network Management</a>
         </h3>
 <p id="section-8.3-1">Oblivious HTTP might be incompatible with network interception regimes, such as
-those that rely on configuring <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-358" class="iref"></span> with trust anchors and intercepting TLS
+those that rely on configuring <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-359" class="iref"></span> with trust anchors and intercepting TLS
 connections.  While TLS might be intercepted successfully, interception
 middleboxes devices might not receive updates that would allow Oblivious HTTP to
 be correctly identified using the media types defined in <a href="#iana-req" class="auto internal xref">Section 9.2</a> and
 <a href="#iana-res" class="auto internal xref">Section 9.3</a>.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <p id="section-8.3-2">Oblivious HTTP has a simple key management design that is not trivially altered
-to enable interception by intermediaries.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-359" class="iref"></span> that are configured to enable
+to enable interception by intermediaries.  <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-360" class="iref"></span> that are configured to enable
 interception might choose to disable Oblivious HTTP in order to ensure that
 content is accessible to middleboxes.<a href="#section-8.3-2" class="pilcrow">¶</a></p>
 </section>
@@ -2826,7 +2827,7 @@ and "message/ohttp-res" (<a href="#iana-res" class="auto internal xref">Section 
         <h3 id="name-application-ohttp-keys-medi">
 <a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-application-ohttp-keys-medi" class="section-name selfRef">application/ohttp-keys Media Type</a>
         </h3>
-<p id="section-9.1-1">The "application/ohttp-keys" media type identifies a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-360" class="iref"></span> used by
+<p id="section-9.1-1">The "application/ohttp-keys" media type identifies a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-361" class="iref"></span> used by
 Oblivious HTTP.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlCompact dlParallel" id="section-9.1-2">
           <dt id="section-9.1-2.1">Type name:</dt>
@@ -3193,7 +3194,7 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
           <dd class="break"></dd>
 <dt id="section-9.5-2.3">Title:</dt>
           <dd style="margin-left: 1.5em" id="section-9.5-2.4">
-            <p id="section-9.5-2.4.1">Oblivious HTTP <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-361" class="iref"></span> not acceptable<a href="#section-9.5-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-9.5-2.4.1">Oblivious HTTP <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-362" class="iref"></span> not acceptable<a href="#section-9.5-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-9.5-2.5">Recommended HTTP Status Code:</dt>
@@ -3356,15 +3357,15 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-complete-example-of-a-reque" class="section-name selfRef">Complete Example of a Request and Response</a>
       </h2>
 <p id="appendix-A-1">A single request and response exchange is shown here. Binary values (<a href="#key-configuration" class="internal xref">key
-configuration</a><span id="iref-key-configuration-362" class="iref"></span>, secret keys, the content of messages, and intermediate values)
+configuration</a><span id="iref-key-configuration-363" class="iref"></span>, secret keys, the content of messages, and intermediate values)
 are shown in hexadecimal. The request and response here are minimal; the purpose
 of this example is to show the cryptographic operations.  In this example, the
-<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-363" class="iref"></span> is configured with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-36" class="iref"></span> URI of
+<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-364" class="iref"></span> is configured with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-36" class="iref"></span> URI of
 <code>https://proxy.example.org/request.example.net/proxy</code>, and the proxy is
 configured to map requests to this URI to the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-36" class="iref"></span> URI
-<code>https://example.com/oblivious/request</code>. The <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-366" class="iref"></span> URI, i.e., the
-resource the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-367" class="iref"></span> ultimately wishes to query, is <code>https://example.com</code>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">To begin the process, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-368" class="iref"></span> generates a key pair.
+<code>https://example.com/oblivious/request</code>. The <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-367" class="iref"></span> URI, i.e., the
+resource the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-368" class="iref"></span> ultimately wishes to query, is <code>https://example.com</code>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">To begin the process, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-369" class="iref"></span> generates a key pair.
 In this example the server chooses DHKEM(X25519, HKDF-SHA256) and generates
 an X25519 key pair <span>[<a href="#X25519" class="cite xref">X25519</a>]</span>. The X25519 secret key is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-3">
@@ -3372,7 +3373,7 @@ an X25519 key pair <span>[<a href="#X25519" class="cite xref">X25519</a>]</span>
 3c168975674b2fa8e465970b79c8dcf09f1c741626480bd4c6162fc5b6a98e1a
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-4">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-369" class="iref"></span> constructs a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-370" class="iref"></span> that includes the
+<p id="appendix-A-4">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-37" class="iref"></span> constructs a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-371" class="iref"></span> that includes the
 corresponding public key as follows:<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-5">
 <pre>
@@ -3380,7 +3381,7 @@ corresponding public key as follows:<a href="#appendix-A-4" class="pilcrow">¶</
 79815500080001000100010003
 </pre><a href="#appendix-A-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-6">This <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-371" class="iref"></span> is somehow obtained by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-372" class="iref"></span>. Then when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-373" class="iref"></span>
+<p id="appendix-A-6">This <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-372" class="iref"></span> is somehow obtained by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-373" class="iref"></span>. Then when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-374" class="iref"></span>
 wishes to send an HTTP GET request to the target <code>https://example.com</code>, it
 constructs the following binary HTTP message:<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-7">
@@ -3388,9 +3389,9 @@ constructs the following binary HTTP message:<a href="#appendix-A-6" class="pilc
 00034745540568747470730b6578616d706c652e636f6d012f
 </pre><a href="#appendix-A-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-8">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-374" class="iref"></span> then reads the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-37" class="iref"></span> <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-376" class="iref"></span> and
-selects a mutually supported KDF and AEAD. In this example, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-377" class="iref"></span> selects
-HKDF-SHA256 and AES-128-GCM. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-378" class="iref"></span> then generates an HPKE sending context
+<p id="appendix-A-8">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-375" class="iref"></span> then reads the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-376" class="iref"></span> <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-377" class="iref"></span> and
+selects a mutually supported KDF and AEAD. In this example, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-378" class="iref"></span> selects
+HKDF-SHA256 and AES-128-GCM. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-379" class="iref"></span> then generates an HPKE sending context
 that uses the server public key. This context is constructed from the following
 ephemeral secret key:<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-9">
@@ -3411,7 +3412,7 @@ bc51d5e930bda26589890ac7032f70ad12e4ecb37abb1b65b1256c9c48999c73
 </pre><a href="#appendix-A-13" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-14">Applying the Seal operation from the HPKE context produces an encrypted
-message, allowing the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-379" class="iref"></span> to construct the following <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-380" class="iref"></span>:<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+message, allowing the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-380" class="iref"></span> to construct the following <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-381" class="iref"></span>:<a href="#appendix-A-14" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-15">
 <pre>
 010020000100014b28f881333e7c164ffc499ad9796f877f4e1051ee6d31bad1
@@ -3419,7 +3420,7 @@ message, allowing the <a href="#dfn-client" class="internal xref">Client</a><spa
 5e7d86b83dd440b2c0185204b4d63525
 </pre><a href="#appendix-A-15" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-16">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-381" class="iref"></span> then sends this to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-38" class="iref"></span> in a POST request,
+<p id="appendix-A-16">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-382" class="iref"></span> then sends this to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-38" class="iref"></span> in a POST request,
 which might look like the following HTTP/1.1 request:<a href="#appendix-A-16" class="pilcrow">¶</a></p>
 <div class="lang-http-message sourcecode" id="appendix-A-17">
 <pre>
@@ -3431,7 +3432,7 @@ Content-Length: 78
 &lt;content is the Encapsulated Request above&gt;
 </pre><a href="#appendix-A-17" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-18">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-383" class="iref"></span> receives this request and forwards it to the
+<p id="appendix-A-18">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-384" class="iref"></span> receives this request and forwards it to the
 <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-38" class="iref"></span>, which might look like:<a href="#appendix-A-18" class="pilcrow">¶</a></p>
 <div class="lang-http-message sourcecode" id="appendix-A-19">
 <pre>
@@ -3446,8 +3447,8 @@ Content-Length: 78
 <p id="appendix-A-20">The Oblivous Gateway Resource receives this request, selects the key it
 generated previously using the key identifier from the message, and decrypts the
 message. As this request is directed to the same server, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
-Resource</a><span id="iref-oblivious-gateway-resource-385" class="iref"></span> does not need to initiate an HTTP request to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-386" class="iref"></span>. The
-request can be served directly by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-387" class="iref"></span>, which generates a minimal
+Resource</a><span id="iref-oblivious-gateway-resource-386" class="iref"></span> does not need to initiate an HTTP request to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-387" class="iref"></span>. The
+request can be served directly by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-388" class="iref"></span>, which generates a minimal
 response (consisting of just a 200 status code) as follows:<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-21">
 <pre>
@@ -3460,7 +3461,7 @@ response (consisting of just a 200 status code) as follows:<a href="#appendix-A-
 62d87a6ba569ee81014c2641f52bea36
 </pre><a href="#appendix-A-23" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-24">The key derivation for the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-388" class="iref"></span> uses both the encapsulated KEM
+<p id="appendix-A-24">The key derivation for the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-389" class="iref"></span> uses both the encapsulated KEM
 key from the request and a randomly selected nonce. This produces a salt of:<a href="#appendix-A-24" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-25">
 <pre>
@@ -3490,7 +3491,7 @@ f6bf1aeb88d6df87007fa263
 </pre><a href="#appendix-A-31" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-32">The AEAD <code>Seal()</code> function is then used to encrypt the response, which is added
-to the randomized nonce value to produce the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-389" class="iref"></span>:<a href="#appendix-A-32" class="pilcrow">¶</a></p>
+to the randomized nonce value to produce the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-390" class="iref"></span>:<a href="#appendix-A-32" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-33">
 <pre>
 c789e7151fcba46158ca84b04464910d86f9013e404feea014e7be4a441f234f
@@ -3510,8 +3511,8 @@ Content-Length: 38
 </pre><a href="#appendix-A-35" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-36">The same response might then be generated by the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-39" class="iref"></span> which
-might change as little as the Date header. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-392" class="iref"></span> is then able to use the
-HPKE context it created and the nonce from the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-393" class="iref"></span> to
+might change as little as the Date header. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-393" class="iref"></span> is then able to use the
+HPKE context it created and the nonce from the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-394" class="iref"></span> to
 construct the AEAD key and nonce and decrypt the response.<a href="#appendix-A-36" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3852,6 +3853,7 @@ construct the AEAD key and nonce and decrypt the response.<a href="#appendix-A-3
 <a href="#section-2.2-3.9" class="auto internal xref">Section 2.2</a>; 
 <a href="#section-3-1" class="auto internal xref">Section 3, Paragraph 1</a>; 
 <a href="#section-3.1-5.2.1" class="auto internal xref">Section 3.1, Paragraph 5.2.1</a>; 
+<a href="#section-3.1-5.10.1" class="auto internal xref">Section 3.1, Paragraph 5.10.1</a>; 
 <a href="#section-4.3-8" class="auto internal xref">Section 4.3, Paragraph 8</a>; 
 <a href="#section-4.3-9.1.1" class="auto internal xref">Section 4.3, Paragraph 9.1.1</a>; 
 <a href="#section-4.3-9.1.2" class="auto internal xref">Section 4.3, Paragraph 9.1.2</a>; 
