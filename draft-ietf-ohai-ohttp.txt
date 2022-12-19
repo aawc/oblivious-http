@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 19 June 2023                                         Cloudflare
-                                                        16 December 2022
+Expires: 22 June 2023                                         Cloudflare
+                                                        19 December 2022
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2023.
+   This Internet-Draft will expire on 22 June 2023.
 
 Copyright Notice
 
@@ -147,7 +147,7 @@ Table of Contents
    connection to avoid the connection itself being used to correlate
    behavior.  This imposes considerable performance and efficiency
    overheads, due to the additional round trip to the server (at a
-   minumum), additional data exchanged, and additional CPU cost of
+   minimum), additional data exchanged, and additional CPU cost of
    cryptographic computations.
 
    To overcome these limitations, this document defines how binary HTTP
@@ -177,9 +177,9 @@ Table of Contents
       some information about what Target Resources the Oblivious Gateway
       Resource supports.
 
-   *  The details of an HPKE public key that the Oblivious Gateway
-      Resource accepts, including an identifier for that key and the
-      HPKE algorithms that are used with that key.
+   *  The details of an HPKE public key for the Oblivious Gateway
+      Resource, including an identifier for that key and the HPKE
+      algorithms that are used with that key.
 
    *  The identity of an Oblivious Relay Resource that will accept relay
       requests carrying an Encapsulated Request as its content and
@@ -337,8 +337,8 @@ Table of Contents
    Oblivious Gateway Resource:  A resource that can receive an
       Encapsulated Request, extract the contents of that request,
       forward it to a Target Resource, receive a response, encapsulate
-      that response, then return that response.  In context, this can be
-      referred to as simply a "gateway".
+      that response, then return the resulting Encapsulated Response.
+      In context, this can be referred to as simply a "gateway".
 
    Target Resource:  The resource that is the target of an Encapsulated
       Request.  This resource logically handles only regular HTTP
@@ -351,8 +351,7 @@ Table of Contents
    Encoding an integer to a sequence of bytes in network byte order is
    described using the function encode(n, v), where n is the number of
    bytes and v is the integer value.  ASCII [ASCII] encoding of a string
-   s is indicated using the function encode_str(s).  The function len()
-   returns the length of a sequence of bytes.
+   s is indicated using the function encode_str(s).
 
    Formats are described using notation from Section 1.3 of [QUIC].  An
    extension to that notation expresses the number of bits in a field
@@ -402,7 +401,7 @@ Table of Contents
      HPKE KEM ID (16),
      HPKE Public Key (Npk * 8),
      HPKE Symmetric Algorithms Length (16),
-     HPKE Symmetric Algorithms (32..262140),
+     HPKE Symmetric Algorithms (32..262136),
    }
 
                     Figure 2: A Single Key Configuration
@@ -620,13 +619,13 @@ Table of Contents
    2.  Generate a random value of length max(Nn, Nk) bytes, called
        response_nonce.
 
-   3.  Extract a pseudorandom key prk using the Extract function
+   3.  Extract a pseudorandom key, prk, using the Extract function
        provided by the KDF algorithm associated with context.  The ikm
        input to this function is secret; the salt input is the
        concatenation of enc (from enc_request) and response_nonce.
 
    4.  Use the Expand function provided by the same KDF to extract an
-       AEAD key key, of length Nk - the length of the keys used by the
+       AEAD key, key, of length Nk - the length of the keys used by the
        AEAD associated with context.  Generating aead_key uses a label
        of "key".
 
@@ -639,7 +638,7 @@ Table of Contents
        which yields ct.
 
    7.  Concatenate response_nonce and ct, yielding an Encapsulated
-       Response enc_response.  Note that response_nonce is of fixed-
+       Response, enc_response.  Note that response_nonce is of fixed-
        length, so there is no ambiguity in parsing either response_nonce
        or ct.
 
@@ -662,7 +661,7 @@ Table of Contents
    The Client uses these values to decrypt ct using the Open function
    provided by the AEAD.  Decrypting might produce an error, as follows:
 
-   reponse, error = Open(aead_key, aead_nonce, "", ct)
+   response, error = Open(aead_key, aead_nonce, "", ct)
 
 4.5.  Request and Response Media Types
 
@@ -983,7 +982,8 @@ Table of Contents
    requests with information about the Client, such as the Via field or
    the Forwarded field [FORWARDED].  A relay MUST NOT add information
    when forwarding requests that might be used to identify Clients, with
-   the exception of information that a Client is aware of.
+   the exception of information that a Client is aware of; see
+   Section 6.2.1.
 
    Finally, a relay can also generate responses, though it is assumed to
    not be able to examine the content of a request (other than to
@@ -1150,7 +1150,7 @@ Table of Contents
 
    It is the responsibility of the application that uses Oblivious HTTP
    to either reject replayed requests or to ensure that replayed
-   requests have no adverse affects on their operation.  This section
+   requests have no adverse effects on their operation.  This section
    describes some approaches that are universally applicable and
    suggestions for more targeted techniques.
 
@@ -1367,8 +1367,8 @@ Table of Contents
 
    Client privacy depends on having each configuration used by many
    other Clients.  It is critical to prevent the use of unique Client
-   configurations, which might be used to track of individual Clients,
-   but it is also important to avoid creating small groupings of Clients
+   configurations, which might be used to track individual Clients, but
+   it is also important to avoid creating small groupings of Clients
    that might weaken privacy protections.
 
    A specific method for a Client to acquire configurations is not
@@ -1776,7 +1776,7 @@ Appendix A.  Complete Example of a Request and Response
 
    <content is the Encapsulated Request above>
 
-   The Oblivous Gateway Resource receives this request, selects the key
+   The Oblivious Gateway Resource receives this request, selects the key
    it generated previously using the key identifier from the message,
    and decrypts the message.  As this request is directed to the same
    server, the Oblivious Gateway Resource does not need to initiate an
@@ -1936,14 +1936,15 @@ Index
             Section 6.2.3, Paragraph 2; Section 6.3, Paragraph 2;
             Section 6.4, Paragraph 2; Section 6.5, Paragraph 2;
             Appendix A, Paragraph 14
-         Encapsulated Response  Section 2.2; Section 4, Paragraph 2,
-            Item 2; Section 4.2, Paragraph 3; Section 4.2, Paragraph 3;
-            Section 4.2, Paragraph 4; Section 4.2, Paragraph 4;
-            Section 4.2, Paragraph 6; Section 4.4, Paragraph 1;
-            Section 4.4, Paragraph 2, Item 7; Section 4.4, Paragraph 5;
-            Section 5.2, Paragraph 3; Section 5.2, Paragraph 4;
-            Section 6.2, Paragraph 5; Appendix A, Paragraph 24;
-            Appendix A, Paragraph 32; Appendix A, Paragraph 36
+         Encapsulated Response  Section 2.2; Section 2.2, Paragraph
+            3.10.1; Section 4, Paragraph 2, Item 2; Section 4.2,
+            Paragraph 3; Section 4.2, Paragraph 3; Section 4.2,
+            Paragraph 4; Section 4.2, Paragraph 4; Section 4.2,
+            Paragraph 6; Section 4.4, Paragraph 1; Section 4.4,
+            Paragraph 2, Item 7; Section 4.4, Paragraph 5; Section 5.2,
+            Paragraph 3; Section 5.2, Paragraph 4; Section 6.2,
+            Paragraph 5; Appendix A, Paragraph 24; Appendix A, Paragraph
+            32; Appendix A, Paragraph 36
 
       K
 
@@ -2002,7 +2003,7 @@ Index
             Appendix A, Paragraph 1; Appendix A, Paragraph 2;
             Appendix A, Paragraph 4; Appendix A, Paragraph 8;
             Appendix A, Paragraph 18; Appendix A, Paragraph 20;
-            Appendix A, Paragraph 34
+            Appendix A, Paragraph 20; Appendix A, Paragraph 34
          Oblivious Gateway Resources  Section 4.4, Paragraph 1;
             Section 6, Paragraph 9, Item 1; Section 6, Paragraph 9, Item
             1; Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
