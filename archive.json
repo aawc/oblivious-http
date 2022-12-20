@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-18T00:30:24.788088+00:00",
+  "timestamp": "2022-12-20T00:31:51.746149+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -15622,26 +15622,42 @@
       "id": "PR_kwDOE6fLGM5FnGyK",
       "title": "Editorial nits from Peter Yee",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/235",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Lots of little things here, but very good, all of them.",
       "createdAt": "2022-12-16T06:06:03Z",
-      "updatedAt": "2022-12-16T06:06:03Z",
+      "updatedAt": "2022-12-19T14:44:03Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "64ce1c4f66546f19891fe0501a70489a685361a3",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "yee",
       "headRefOid": "abbad2d2bb457b183885274040576a2b0dde54bd",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-19T14:44:02Z",
+      "mergedAt": "2022-12-19T14:44:02Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "8779230d2545048d252752f8255ec5e01471340f"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5I5do-",
+          "commit": {
+            "abbreviatedOid": "abbad2d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Many good things!",
+          "createdAt": "2022-12-19T14:43:30Z",
+          "updatedAt": "2022-12-19T14:43:30Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 236,
@@ -15655,19 +15671,80 @@
       "labels": [],
       "body": "We previously only had figures, which are sort of illustrative only, they don't really work as normative specification. The content of these really needs to have words that describe what was intended.\r\n\r\nThe definition for the request was already sort-of there, so what I've added is a tiny bit repetitive, but I think that it's OK in this case to have the descriptions at different levels of specificity.\r\n\r\nThe big error here was that the length field in the key configuration was impossible to decipher.  We never said whether it was length in bytes (what has been implemented) or length in number of items.  The bounds on the field length were not helpful here as they were not correct in any way.  I've corrected this value, but would appreciate a sanity check.\r\n\r\nNo one identified this as a problem in the reviews.  I guess that means that the QUIC format is clear and understandable.  Maybe I should have made it less so.  The TLS format is consistently misunderstood, which I used to think was a disadvantage...",
       "createdAt": "2022-12-16T06:49:37Z",
-      "updatedAt": "2022-12-16T07:14:59Z",
+      "updatedAt": "2022-12-20T00:10:38Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
-      "baseRefOid": "64ce1c4f66546f19891fe0501a70489a685361a3",
+      "baseRefOid": "8779230d2545048d252752f8255ec5e01471340f",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "describe-config-content",
-      "headRefOid": "31c4a06fedb78205ea34e3a93822789c3a65c175",
+      "headRefOid": "c7a28e2011495a718d08a981896d760a46ccd20b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5I5e1l",
+          "commit": {
+            "abbreviatedOid": "31c4a06"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "This is definitely helpful. Thanks for making the change.",
+          "createdAt": "2022-12-19T14:46:27Z",
+          "updatedAt": "2022-12-19T14:47:58Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n: The public key used by the gateway. The length of this value depends on the `Npk` parameter,\r\n  which is determined by the choice of HPKE KEM {{Section 4 of HPKE}}.\r\n```",
+              "createdAt": "2022-12-19T14:46:28Z",
+              "updatedAt": "2022-12-19T14:47:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5I7-Xa",
+          "commit": {
+            "abbreviatedOid": "31c4a06"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-20T00:02:26Z",
+          "updatedAt": "2022-12-20T00:02:27Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "How about:\r\n\r\n```suggestion\r\n: The public key used by the gateway. The length of the public key is `Npk`, which is\r\n  determined by the choice of HPKE KEM as defined in {{Section 4 of HPKE}}.\r\n```",
+              "createdAt": "2022-12-20T00:02:26Z",
+              "updatedAt": "2022-12-20T00:02:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5I7_bS",
+          "commit": {
+            "abbreviatedOid": "066eda3"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-20T00:10:34Z",
+          "updatedAt": "2022-12-20T00:10:34Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "Perfect!",
+              "createdAt": "2022-12-20T00:10:34Z",
+              "updatedAt": "2022-12-20T00:10:34Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
