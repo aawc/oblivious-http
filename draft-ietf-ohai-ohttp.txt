@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 22 June 2023                                         Cloudflare
-                                                        19 December 2022
+Expires: 23 June 2023                                         Cloudflare
+                                                        20 December 2022
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 June 2023.
+   This Internet-Draft will expire on 23 June 2023.
 
 Copyright Notice
 
@@ -401,15 +401,42 @@ Table of Contents
      HPKE KEM ID (16),
      HPKE Public Key (Npk * 8),
      HPKE Symmetric Algorithms Length (16),
-     HPKE Symmetric Algorithms (32..262136),
+     HPKE Symmetric Algorithms (32..524256),
    }
 
                     Figure 2: A Single Key Configuration
 
-   The definitions for the identifiers used in HPKE and the semantics of
-   the algorithms they identify can be found in [HPKE].  The Npk
-   parameter is determined by the choice of HPKE KEM, which can also be
-   found in [HPKE].
+   That is, a key configuration consists of the following fields:
+
+   Key Identifier:  An 8 bit value that identifies the key used by the
+      Oblivious Gateway Resource.
+
+   HPKE KEM ID:  A 16 bit value that identifies the Key Encapsulation
+      Method (KEM) used for the identified key as defined in Section 7.1
+      of [HPKE] or the HPKE KDF IANA registry
+      (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kem-ids).
+
+   HPKE Public Key:  The public key used by the gateway.  The length of
+      the public key is Npk, which is determined by the choice of HPKE
+      KEM as defined in Section 4 of [HPKE].
+
+   HPKE Symmetric Algorithms Length:  A 16 bit integer in network byte
+      order that encodes the length, in bytes, of the HPKE Symmetric
+      Algorithms field that follows.
+
+   HPKE Symmetric Algorithms:  One or more pairs of identifiers for the
+      different combinations of HPKE KDF and AEAD that the Oblivious
+      Gateway Resource supports:
+
+      HPKE KDF ID:  A 16 bit HPKE KDF identifier as defined in
+         Section 7.2 of [HPKE] or the HPKE KDF IANA registry
+         (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kdf-
+         ids).
+
+      HPKE AEAD ID:  A 16 bit HPKE AEAD identifier as defined in
+         Section 7.3 of [HPKE] or the HPKE AEAD IANA registry
+         (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-
+         ids).
 
 3.2.  Key Configuration Media Type
 
@@ -453,27 +480,29 @@ Table of Contents
    ohttp-req" form by generating an Encapsulated Request.  An
    Encapsulated Request comprises a key identifier; HPKE parameters for
    the chosen KEM, KDF, and AEAD; the encapsulated KEM shared secret (or
-   enc); and the HPKE-protected binary HTTP request message.
+   enc); and an HPKE-protected binary HTTP request message.
 
    An Encapsulated Request is shown in Figure 4.  Section 4.3 describes
    the process for constructing and processing an Encapsulated Request.
 
    Encapsulated Request {
      Key Identifier (8),
-     KEM Identifier (16),
-     KDF Identifier (16),
-     AEAD Identifier (16),
+     HPKE KEM ID (16),
+     HPKE KDF ID (16),
+     HPKE AEAD ID (16),
      Encapsulated KEM Shared Secret (8 * Nenc),
      HPKE-Protected Request (..),
    }
 
                        Figure 4: Encapsulated Request
 
-   The Nenc parameter corresponding to the KEM used in HPKE can be found
-   in Section 7.1 of [HPKE] or the HPKE KEM IANA registry
-   (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kem-ids).
-   Nenc refers to the size of the encapsulated KEM shared secret, in
-   bytes.
+   That is, an Encapsulated Request comprises a Key Identifier, HPKE KEM
+   ID, HPKE KDF ID, HPKE AEAD ID, Encapsulated KEM Shared Secret, and
+   HPKE-Protected Request.  The Key Identifier, HPKE KEM ID, HPKE KDF
+   ID, and HPKE AEAD ID fields are defined in Section 3.1.  The
+   Encapsulated KEM Shared Secret is the output of the Encap() function
+   for the KEM, which is Nenc bytes in length, as defined in Section 4
+   of [HPKE].
 
 4.2.  Response Format
 
@@ -501,12 +530,14 @@ Table of Contents
 
                       Figure 6: Encapsulated Response
 
-   The Nn and Nk values correspond to parameters of the AEAD used in
-   HPKE, which is defined in Section 7.3 of [HPKE] or the HPKE AEAD IANA
-   registry (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-
-   ids).  Nn and Nk refer to the size of the AEAD nonce and key
-   respectively, in bytes.  The Encapsulated Response nonce length is
-   set to the larger of these two lengths, i.e., max(Nn, Nk).
+   That is, an Encapsulated Response contains a Nonce and an AEAD-
+   Protected Response.  The Nonce field is either Nn or Nk bytes long,
+   whichever is larger.  The Nn and Nk values correspond to parameters
+   of the AEAD used in HPKE, which is defined in Section 7.3 of [HPKE]
+   or the HPKE AEAD IANA registry
+   (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-ids).  Nn
+   and Nk refer to the size of the AEAD nonce and key respectively, in
+   bytes.
 
 4.3.  Encapsulation of Requests
 
@@ -1926,16 +1957,16 @@ Index
             Paragraph 3.10.1; Section 2.2, Paragraph 3.12.1; Section 4,
             Paragraph 2, Item 1; Section 4.1, Paragraph 3; Section 4.1,
             Paragraph 3; Section 4.1, Paragraph 4; Section 4.1,
-            Paragraph 4; Section 4.3, Paragraph 3; Section 4.3,
-            Paragraph 8; Section 4.3, Paragraph 8; Section 5, Paragraph
-            1; Section 5, Paragraph 1; Section 5, Paragraph 1;
+            Paragraph 4; Section 4.1, Paragraph 6; Section 4.3,
+            Paragraph 3; Section 4.3, Paragraph 8; Section 4.3,
+            Paragraph 8; Section 5, Paragraph 1; Section 5, Paragraph 1;
             Section 5, Paragraph 1; Section 5, Paragraph 1; Section 5,
-            Paragraph 1; Section 5.2, Paragraph 3; Section 5.3,
-            Paragraph 1; Section 6, Paragraph 3; Section 6, Paragraph 6;
-            Section 6, Paragraph 9, Item 1; Section 6.1, Paragraph 5;
-            Section 6.2.3, Paragraph 2; Section 6.3, Paragraph 2;
-            Section 6.4, Paragraph 2; Section 6.5, Paragraph 2;
-            Appendix A, Paragraph 14
+            Paragraph 1; Section 5, Paragraph 1; Section 5.2, Paragraph
+            3; Section 5.3, Paragraph 1; Section 6, Paragraph 3;
+            Section 6, Paragraph 6; Section 6, Paragraph 9, Item 1;
+            Section 6.1, Paragraph 5; Section 6.2.3, Paragraph 2;
+            Section 6.3, Paragraph 2; Section 6.4, Paragraph 2;
+            Section 6.5, Paragraph 2; Appendix A, Paragraph 14
          Encapsulated Response  Section 2.2; Section 2.2, Paragraph
             3.10.1; Section 4, Paragraph 2, Item 2; Section 4.2,
             Paragraph 3; Section 4.2, Paragraph 3; Section 4.2,
@@ -1951,15 +1982,16 @@ Index
          key configuration  Section 3, Paragraph 1; Section 3, Paragraph
             1; Section 3, Paragraph 2; Section 3, Paragraph 3;
             Section 3.1, Paragraph 1; Section 3.1, Paragraph 2;
-            Section 3.2, Paragraph 1; Section 3.2, Paragraph 2;
-            Section 4.3, Paragraph 1; Section 5.2, Paragraph 4;
-            Section 5.3, Paragraph 1; Section 5.3, Paragraph 4;
-            Section 5.3, Paragraph 4; Section 6.1, Paragraph 1;
-            Section 6.6, Paragraph 1; Section 6.6, Paragraph 1;
-            Section 7, Paragraph 1; Section 7, Paragraph 2; Section 9.1,
-            Paragraph 1; Section 9.5, Paragraph 2.4.1; Appendix A,
-            Paragraph 1; Appendix A, Paragraph 4; Appendix A, Paragraph
-            6; Appendix A, Paragraph 8
+            Section 3.1, Paragraph 4; Section 3.2, Paragraph 1;
+            Section 3.2, Paragraph 2; Section 4.3, Paragraph 1;
+            Section 5.2, Paragraph 4; Section 5.3, Paragraph 1;
+            Section 5.3, Paragraph 4; Section 5.3, Paragraph 4;
+            Section 6.1, Paragraph 1; Section 6.6, Paragraph 1;
+            Section 6.6, Paragraph 1; Section 7, Paragraph 1; Section 7,
+            Paragraph 2; Section 9.1, Paragraph 1; Section 9.5,
+            Paragraph 2.4.1; Appendix A, Paragraph 1; Appendix A,
+            Paragraph 4; Appendix A, Paragraph 6; Appendix A, Paragraph
+            8
          key configurations  Section 3, Paragraph 2; Section 3,
             Paragraph 2; Section 3, Paragraph 3; Section 3.2, Paragraph
             1; Section 6.1, Paragraph 2
@@ -1973,7 +2005,8 @@ Index
             Section 2, Paragraph 2, Item 3; Section 2, Paragraph 6, Item
             5; Section 2, Paragraph 6, Item 6; Section 2, Paragraph 6,
             Item 8; Section 2.2, Paragraph 3.8.1; Section 2.2;
-            Section 3, Paragraph 1; Section 4.3, Paragraph 8;
+            Section 3, Paragraph 1; Section 3.1, Paragraph 5.2.1;
+            Section 3.1, Paragraph 5.10.1; Section 4.3, Paragraph 8;
             Section 4.3, Paragraph 9.1.1; Section 4.3, Paragraph 9.1.2;
             Section 4.3, Paragraph 9.1.3; Section 4.3, Paragraph 9, Item
             4; Section 4.6, Paragraph 1; Section 5, Paragraph 2;
