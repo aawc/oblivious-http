@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-20T00:31:51.746149+00:00",
+  "timestamp": "2022-12-22T00:32:00.672642+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -15664,24 +15664,26 @@
       "id": "PR_kwDOE6fLGM5FnOz3",
       "title": "Better describe the content of various things",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/236",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "We previously only had figures, which are sort of illustrative only, they don't really work as normative specification. The content of these really needs to have words that describe what was intended.\r\n\r\nThe definition for the request was already sort-of there, so what I've added is a tiny bit repetitive, but I think that it's OK in this case to have the descriptions at different levels of specificity.\r\n\r\nThe big error here was that the length field in the key configuration was impossible to decipher.  We never said whether it was length in bytes (what has been implemented) or length in number of items.  The bounds on the field length were not helpful here as they were not correct in any way.  I've corrected this value, but would appreciate a sanity check.\r\n\r\nNo one identified this as a problem in the reviews.  I guess that means that the QUIC format is clear and understandable.  Maybe I should have made it less so.  The TLS format is consistently misunderstood, which I used to think was a disadvantage...",
       "createdAt": "2022-12-16T06:49:37Z",
-      "updatedAt": "2022-12-20T00:10:38Z",
+      "updatedAt": "2022-12-20T00:57:34Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "8779230d2545048d252752f8255ec5e01471340f",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "describe-config-content",
       "headRefOid": "c7a28e2011495a718d08a981896d760a46ccd20b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-20T00:57:34Z",
+      "mergedAt": "2022-12-20T00:57:33Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "5e3d754f14544fd9d956fd0fd0af877a779fce7e"
+      },
       "comments": [],
       "reviews": [
         {
