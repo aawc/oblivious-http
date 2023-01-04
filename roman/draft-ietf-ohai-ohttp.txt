@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 7 July 2023                                          Cloudflare
-                                                          3 January 2023
+Expires: 8 July 2023                                          Cloudflare
+                                                          4 January 2023
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 July 2023.
+   This Internet-Draft will expire on 8 July 2023.
 
 Copyright Notice
 
@@ -1025,10 +1025,11 @@ Table of Contents
 
    A relay MAY add information to requests if the Client is aware of the
    nature of the information that could be added.  Any addition MUST NOT
-   include information that directly identifies the Client, including
-   any pseudonymous identifier.  Information added by the relay - beyond
-   what is already revealed through encapsulated requests from Clients -
-   can reduce the size of the anonymity set of Clients at a gateway.
+   include information that uniquely and permanently identifies the
+   Client, including any pseudonymous identifier.  Information added by
+   the relay - beyond what is already revealed through encapsulated
+   requests from Clients - can reduce the size of the anonymity set of
+   Clients at a gateway.
 
    A Client does not need to be aware of the exact value added for each
    request, but needs to know the range of possible values the relay
