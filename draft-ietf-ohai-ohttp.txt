@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 23 June 2023                                         Cloudflare
-                                                        20 December 2022
+Expires: 8 July 2023                                          Cloudflare
+                                                          4 January 2023
 
 
                              Oblivious HTTP
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 June 2023.
+   This Internet-Draft will expire on 8 July 2023.
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -903,12 +903,12 @@ Table of Contents
    *  A server operates both the Oblivious Gateway Resource and the
       Target Resource
 
-   Connections between the Client, Oblivious Relay Resource, and
-   Oblivious Gateway Resource MUST use HTTPS in order to provide
-   unlinkability in the presence of a network observer.  The scheme of
-   the Encapsulated Request determines what is used between the
-   Oblivious Gateway and Target Resources, though using HTTPS is
-   RECOMMENDED; see Section 6.3.
+   Requests from the Client to Oblivious Relay Resource and from
+   Oblivious Relay Resource to Oblivious Gateway Resource MUST use HTTPS
+   in order to provide unlinkability in the presence of a network
+   observer.  The scheme of the Encapsulated Request determines what is
+   used between the Oblivious Gateway and Target Resources, though using
+   HTTPS is RECOMMENDED; see Section 6.3.
 
    To achieve the stated privacy goals, the Oblivious Relay Resource
    cannot be operated by the same entity as the Oblivious Gateway
@@ -1024,12 +1024,17 @@ Table of Contents
 6.2.1.  Differential Treatment
 
    A relay MAY add information to requests if the Client is aware of the
-   nature of the information that could be added.  The Client does not
-   need to be aware of the exact value added for each request, but needs
-   to know the range of possible values the relay might use.
-   Importantly, information added by the relay - beyond what is already
-   revealed through encapsulated requests from Clients - can reduce the
-   size of the anonymity set of Clients at a gateway.
+   nature of the information that could be added.  Any addition MUST NOT
+   include information that uniquely and permanently identifies the
+   Client, including any pseudonymous identifier.  Information added by
+   the relay - beyond what is already revealed through encapsulated
+   requests from Clients - can reduce the size of the anonymity set of
+   Clients at a gateway.
+
+   A Client does not need to be aware of the exact value added for each
+   request, but needs to know the range of possible values the relay
+   might use.  How a Client might learn about added information is not
+   defined in this document.
 
    Moreover, relays MAY apply differential treatment to Clients that
    engage in abusive behavior, e.g., by sending too many requests in
@@ -1910,7 +1915,8 @@ Index
             Section 6.2, Paragraph 4; Section 6.2, Paragraph 4;
             Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 1;
             Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
-            Section 6.2.1, Paragraph 3; Section 6.2.3, Paragraph 3;
+            Section 6.2.1, Paragraph 3; Section 6.2.1, Paragraph 3;
+            Section 6.2.1, Paragraph 4; Section 6.2.3, Paragraph 3;
             Section 6.3, Paragraph 1; Section 6.5, Paragraph 2;
             Section 6.5, Paragraph 4; Section 6.5, Paragraph 6;
             Section 6.5.1, Paragraph 4; Section 6.5.2, Paragraph 4;
@@ -1937,8 +1943,8 @@ Index
             Section 6.1, Paragraph 4; Section 6.1, Paragraph 6;
             Section 6.2, Paragraph 3; Section 6.2, Paragraph 4;
             Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 1;
-            Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
-            Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
+            Section 6.2.1, Paragraph 3; Section 6.2.1, Paragraph 3;
+            Section 6.2.1, Paragraph 3; Section 6.2.1, Paragraph 3;
             Section 6.2.2, Paragraph 2; Section 6.2.3, Paragraph 3;
             Section 6.2.3, Paragraph 5; Section 6.2.3, Paragraph 5;
             Section 6.2.3, Paragraph 6; Section 6.5, Paragraph 1;
@@ -2058,20 +2064,20 @@ Index
             Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
             Section 5.3, Paragraph 4; Section 6, Paragraph 3; Section 6,
             Paragraph 5, Item 2; Section 6, Paragraph 6; Section 6,
-            Paragraph 7; Section 6, Paragraph 9, Item 1; Section 6,
-            Paragraph 9, Item 1; Section 6.1, Paragraph 2; Section 6.1,
+            Paragraph 6; Section 6, Paragraph 7; Section 6, Paragraph 9,
+            Item 1; Section 6, Paragraph 9, Item 1; Section 6.1,
+            Paragraph 2; Section 6.1, Paragraph 5; Section 6.1,
             Paragraph 5; Section 6.1, Paragraph 5; Section 6.1,
-            Paragraph 5; Section 6.1, Paragraph 6; Section 6.2,
-            Paragraph 1; Section 6.2, Paragraph 2; Section 6.2,
-            Paragraph 3; Section 6.2.3, Paragraph 2; Section 6.2.3,
-            Paragraph 5; Section 6.2.3, Paragraph 5; Section 6.5,
-            Paragraph 2; Section 6.5, Paragraph 4; Section 6.7,
-            Paragraph 4; Section 6.7, Paragraph 4; Section 7, Paragraph
-            1; Section 7, Paragraph 2; Section 7, Paragraph 3;
+            Paragraph 6; Section 6.2, Paragraph 1; Section 6.2,
+            Paragraph 2; Section 6.2, Paragraph 3; Section 6.2.3,
+            Paragraph 2; Section 6.2.3, Paragraph 5; Section 6.2.3,
+            Paragraph 5; Section 6.5, Paragraph 2; Section 6.5,
+            Paragraph 4; Section 6.7, Paragraph 4; Section 6.7,
+            Paragraph 4; Section 7, Paragraph 1; Section 7, Paragraph 2;
+            Section 7, Paragraph 3; Section 8.2, Paragraph 1;
             Section 8.2, Paragraph 1; Section 8.2, Paragraph 1;
-            Section 8.2, Paragraph 1; Appendix A, Paragraph 1;
-            Appendix A, Paragraph 16; Appendix A, Paragraph 18;
-            Appendix A, Paragraph 36
+            Appendix A, Paragraph 1; Appendix A, Paragraph 16;
+            Appendix A, Paragraph 18; Appendix A, Paragraph 36
          Oblivious Relay Resources  Section 6.2.2, Paragraph 1;
             Section 8.2, Paragraph 2; Section 8.2, Paragraph 2
 
