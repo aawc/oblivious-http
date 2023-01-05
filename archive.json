@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-22T00:32:00.672642+00:00",
+  "timestamp": "2023-01-05T00:33:14.204840+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -15745,6 +15745,187 @@
               "updatedAt": "2022-12-20T00:10:34Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "id": "PR_kwDOE6fLGM5GhCn2",
+      "title": "Murray's AD review",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/237",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Why is it that media type registration is a journey of discovery each and every time?  It's like the coastline paradox: the closer you get, the more detail resolves.  Also, each requirement makes sense in isolation, but if you need an entire RFC to explain it, maybe something has gone wrong.",
+      "createdAt": "2023-01-03T04:39:52Z",
+      "updatedAt": "2023-01-03T16:42:55Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "5e3d754f14544fd9d956fd0fd0af877a779fce7e",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "murray",
+      "headRefOid": "388d637d46eedf5173fa96b4fbec6bc1280b306d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5Jmd86",
+          "commit": {
+            "abbreviatedOid": "388d637"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "\ud83e\udd37\u200d\u2642\ufe0fno strong feelings on this one.",
+          "createdAt": "2023-01-03T16:42:55Z",
+          "updatedAt": "2023-01-03T16:42:55Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 238,
+      "id": "PR_kwDOE6fLGM5GkjUh",
+      "title": "Roman's review feedback",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/238",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See commits for details.",
+      "createdAt": "2023-01-03T21:59:51Z",
+      "updatedAt": "2023-01-04T23:44:04Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "5e3d754f14544fd9d956fd0fd0af877a779fce7e",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "roman",
+      "headRefOid": "33b3ef1d375cce7e7357cff95c88906b43e8ecd8",
+      "closedAt": "2023-01-04T23:44:03Z",
+      "mergedAt": "2023-01-04T23:44:03Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "aa5214cbae822e161c5447d48366ef79ec24f8eb"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5JtBtH",
+          "commit": {
+            "abbreviatedOid": "b3475ee"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-01-04T22:04:22Z",
+          "updatedAt": "2023-01-04T22:07:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Not asking for a change, but more offering a comment: now that I'm re-reading this text it occurs to me that this is overly restrictive. Unlinkability only requires HTTPS between client and relay, not between relay and gateway. I don't think we want to get into that nuance, but the phrasing here makes it seem like encryption on both links is necessary and so not strictly true.",
+              "createdAt": "2023-01-04T22:04:22Z",
+              "updatedAt": "2023-01-04T22:07:37Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nthat uniquely and permanently identifies the Client, including any pseudonymous identifier.\r\n```\r\n\r\nWe've talked about use of identifiers for \"buckets\" of clients for the purposes of DoS protection. I don't believe in the value they afford, but this text seems like it might prohibit that and prevent use of OHTTP for use cases that would certainly benefit from it. The proposed change tries to clarify that information added shouldn't be unique to a client for a long period of time, as that's basically equivalent to a unique client identifier. But something that changes regularly, or identifies a group of clients, seems reasonable in certain deployments.",
+              "createdAt": "2023-01-04T22:07:34Z",
+              "updatedAt": "2023-01-04T22:07:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5JtON5",
+          "commit": {
+            "abbreviatedOid": "b3475ee"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-01-04T23:05:47Z",
+          "updatedAt": "2023-01-04T23:05:47Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Yes, I had the same thought when constructing the text.  I know we discussed this in the past too.\r\n\r\nWe could remove the second half of the requirement, but I think that I'm with you in leaving well alone.",
+              "createdAt": "2023-01-04T23:05:47Z",
+              "updatedAt": "2023-01-04T23:05:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5JtOgY",
+          "commit": {
+            "abbreviatedOid": "b3475ee"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-01-04T23:07:37Z",
+          "updatedAt": "2023-01-04T23:07:37Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Right.  This is just a more precise wording either way.\r\n\r\nThe specific circumstances that might motivate some form of \"identification\" will require careful consideration on the part of all involved, so we don't need to get too deep into specifics.",
+              "createdAt": "2023-01-04T23:07:37Z",
+              "updatedAt": "2023-01-04T23:07:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5JtRbt",
+          "commit": {
+            "abbreviatedOid": "33b3ef1"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-01-04T23:27:29Z",
+          "updatedAt": "2023-01-04T23:27:29Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Yeah, I'll just resolve this comment.",
+              "createdAt": "2023-01-04T23:27:29Z",
+              "updatedAt": "2023-01-04T23:27:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5JtRhT",
+          "commit": {
+            "abbreviatedOid": "33b3ef1"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-04T23:28:03Z",
+          "updatedAt": "2023-01-04T23:28:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5JtRvO",
+          "commit": {
+            "abbreviatedOid": "33b3ef1"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-04T23:29:36Z",
+          "updatedAt": "2023-01-04T23:29:36Z",
+          "comments": []
         }
       ]
     }
