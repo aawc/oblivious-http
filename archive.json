@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-05T00:33:14.204840+00:00",
+  "timestamp": "2023-01-08T00:34:15.529785+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -15753,24 +15753,26 @@
       "id": "PR_kwDOE6fLGM5GhCn2",
       "title": "Murray's AD review",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/237",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Why is it that media type registration is a journey of discovery each and every time?  It's like the coastline paradox: the closer you get, the more detail resolves.  Also, each requirement makes sense in isolation, but if you need an entire RFC to explain it, maybe something has gone wrong.",
       "createdAt": "2023-01-03T04:39:52Z",
-      "updatedAt": "2023-01-03T16:42:55Z",
+      "updatedAt": "2023-01-05T03:21:10Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "5e3d754f14544fd9d956fd0fd0af877a779fce7e",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "murray",
       "headRefOid": "388d637d46eedf5173fa96b4fbec6bc1280b306d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-01-05T03:21:10Z",
+      "mergedAt": "2023-01-05T03:21:10Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "826e62c3e80b2bf9fd1503bae74ce554546ccee2"
+      },
       "comments": [],
       "reviews": [
         {
