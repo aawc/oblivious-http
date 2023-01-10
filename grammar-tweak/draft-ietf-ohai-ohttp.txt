@@ -1238,8 +1238,8 @@ Table of Contents
    Oblivious Gateway Resource can store all requests it processes within
    this window.  Storing just the enc field of a request, which should
    be unique to each request, is sufficient.  The Oblivious Gateway
-   Resource then rejects a requests if the request is same as one that
-   was previously answered within that time window or if the Date header
+   Resource can reject any request that is the same as one that was
+   previously answered within that time window or if the Date header
    field from the decrypted request is outside of the current time
    window.
 

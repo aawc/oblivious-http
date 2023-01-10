@@ -2532,9 +2532,9 @@ track if it needs to prevent replay attacks.<a href="#section-6.5.1-2" class="pi
 of time over which it wishes to accept requests.  The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-292" class="iref"></span>
 can store all requests it processes within this window.  Storing just the <code>enc</code>
 field of a request, which should be unique to each request, is sufficient.  The
-<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-293" class="iref"></span> then rejects a requests if the request is same as one
-that was previously answered within that time window or if the <code>Date</code> header
-field from the decrypted request is outside of the current time window.<a href="#section-6.5.1-3" class="pilcrow">¶</a></p>
+<a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-293" class="iref"></span> can reject any request that is the same as one that
+was previously answered within that time window or if the <code>Date</code> header field
+from the decrypted request is outside of the current time window.<a href="#section-6.5.1-3" class="pilcrow">¶</a></p>
 <p id="section-6.5.1-4"><a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resources</a><span id="iref-oblivious-gateway-resources-29" class="iref"></span> might need to allow for the time it takes requests
 to arrive from the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-295" class="iref"></span>, with a time window that is large enough to allow for
 differences in clocks.  Insufficient tolerance of time differences could result
