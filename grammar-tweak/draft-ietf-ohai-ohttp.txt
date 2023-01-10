@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 12 June 2023                                         Cloudflare
-                                                         9 December 2022
+Expires: 14 July 2023                                         Cloudflare
+                                                         10 January 2023
 
 
                              Oblivious HTTP
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2023.
+   This Internet-Draft will expire on 14 July 2023.
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -147,19 +147,24 @@ Table of Contents
    connection to avoid the connection itself being used to correlate
    behavior.  This imposes considerable performance and efficiency
    overheads, due to the additional round trip to the server (at a
-   minumum), additional data exchanged, and additional CPU cost of
+   minimum), additional data exchanged, and additional CPU cost of
    cryptographic computations.
 
-   This document defines two kinds of HTTP resources -- Oblivious Relay
-   Resources and Oblivious Gateway Resources -- that process
-   encapsulated binary HTTP messages [BINARY] using Hybrid Public Key
-   Encryption (HPKE; [HPKE]).  They can be composed to protect the
-   content of encapsulated requests and responses, thereby separating
-   the identity of a requester from the request.
+   To overcome these limitations, this document defines how binary HTTP
+   messages [BINARY] can be encapsulated using Hybrid Public Key
+   Encryption (HPKE; [HPKE]) to protect their contents.  Clients
+   exchange these messages with an Oblivious Gateway Resource, which is
+   responsible for forwarding decapsulated requests to the original
+   Target Resource and encapsulating the corresponding responses and
+   sending them back to the client.  Critically, encapsulated messages
+   are sent through a separate Oblivious Relay Resource to avoid
+   exposing the client's IP address or allowing the connection to be
+   used as a correlator between its requests.
 
-   Although this scheme requires support for two new kinds of oblivious
-   resources, it represents a performance improvement over options that
-   perform just one request in each connection.  With limited trust
+   Because it allows connection reuse between the client and Oblivious
+   Relay Resource, as well as between that relay and the Oblivious
+   Gateway Resource, this scheme represents a performance improvement
+   over using just one request in each connection.  With limited trust
    placed in the Oblivious Relay Resource (see Section 6), Clients are
    assured that requests are not uniquely attributed to them or linked
    to other requests.
@@ -172,12 +177,12 @@ Table of Contents
       some information about what Target Resources the Oblivious Gateway
       Resource supports.
 
-   *  The details of an HPKE public key that the Oblivious Gateway
-      Resource accepts, including an identifier for that key and the
-      HPKE algorithms that are used with that key.
+   *  The details of an HPKE public key for the Oblivious Gateway
+      Resource, including an identifier for that key and the HPKE
+      algorithms that are used with that key.
 
    *  The identity of an Oblivious Relay Resource that will accept relay
-      requests carrying an encapsulated request as its content and
+      requests carrying an Encapsulated Request as its content and
       forward the content in these requests to a single Oblivious
       Gateway Resource.  See Section 8.2 for more information about the
       mapping between Oblivious Relay and Gateway Resources.
@@ -309,6 +314,9 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
+   This document uses terminology from [HTTP] and defines several terms
+   as follows:
+
    Client:  A Client originates Oblivious HTTP requests.  A Client is
       also an HTTP client in two ways: for the Target Resource and for
       the Oblivious Relay Resource.  However, when referring to the HTTP
@@ -321,28 +329,29 @@ Table of Contents
    Encapsulated Response:  An HTTP response that is encapsulated in an
       HPKE-encrypted message; see Section 4.4.
 
-   Oblivious Relay Resource:  An intermediary that forwards encapsulated
-      requests and responses between Clients and a single Oblivious
-      Gateway Resource.
+   Oblivious Relay Resource:  An intermediary that forwards Encapsulated
+      Requests and Responses between Clients and a single Oblivious
+      Gateway Resource.  In context, this can be referred to as simply a
+      "relay".
 
    Oblivious Gateway Resource:  A resource that can receive an
-      encapsulated request, extract the contents of that request,
+      Encapsulated Request, extract the contents of that request,
       forward it to a Target Resource, receive a response, encapsulate
-      that response, then return that response.
+      that response, then return the resulting Encapsulated Response.
+      In context, this can be referred to as simply a "gateway".
 
-   Target Resource:  The resource that is the target of an encapsulated
-      request.  This resource logically handles only regular HTTP
+   Target Resource:  The resource that is the target of an Encapsulated
+      Request.  This resource logically handles only regular HTTP
       requests and responses and so might be ignorant of the use of
       Oblivious HTTP to reach it.
 
-   This draft includes pseudocode that uses the functions and
+   This document includes pseudocode that uses the functions and
    conventions defined in [HPKE].
 
    Encoding an integer to a sequence of bytes in network byte order is
    described using the function encode(n, v), where n is the number of
    bytes and v is the integer value.  ASCII [ASCII] encoding of a string
-   s is indicated using the function encode_str(s).  The function len()
-   returns the length of a sequence of bytes.
+   s is indicated using the function encode_str(s).
 
    Formats are described using notation from Section 1.3 of [QUIC].  An
    extension to that notation expresses the number of bits in a field
@@ -351,8 +360,8 @@ Table of Contents
 3.  Key Configuration
 
    A Client needs to acquire information about the key configuration of
-   the Oblivious Gateway Resource in order to send encapsulated
-   requests.  In order to ensure that Clients do not encapsulate
+   the Oblivious Gateway Resource in order to send Encapsulated
+   Requests.  In order to ensure that Clients do not encapsulate
    messages that other entities can intercept, the key configuration
    MUST be authenticated and have integrity protection.
 
@@ -392,15 +401,42 @@ Table of Contents
      HPKE KEM ID (16),
      HPKE Public Key (Npk * 8),
      HPKE Symmetric Algorithms Length (16),
-     HPKE Symmetric Algorithms (32..262140),
+     HPKE Symmetric Algorithms (32..524256),
    }
 
                     Figure 2: A Single Key Configuration
 
-   The definitions for the identifiers used in HPKE and the semantics of
-   the algorithms they identify can be found in [HPKE].  The Npk
-   parameter is determined by the choice of HPKE KEM, which can also be
-   found in [HPKE].
+   That is, a key configuration consists of the following fields:
+
+   Key Identifier:  An 8 bit value that identifies the key used by the
+      Oblivious Gateway Resource.
+
+   HPKE KEM ID:  A 16 bit value that identifies the Key Encapsulation
+      Method (KEM) used for the identified key as defined in Section 7.1
+      of [HPKE] or the HPKE KDF IANA registry
+      (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kem-ids).
+
+   HPKE Public Key:  The public key used by the gateway.  The length of
+      the public key is Npk, which is determined by the choice of HPKE
+      KEM as defined in Section 4 of [HPKE].
+
+   HPKE Symmetric Algorithms Length:  A 16 bit integer in network byte
+      order that encodes the length, in bytes, of the HPKE Symmetric
+      Algorithms field that follows.
+
+   HPKE Symmetric Algorithms:  One or more pairs of identifiers for the
+      different combinations of HPKE KDF and AEAD that the Oblivious
+      Gateway Resource supports:
+
+      HPKE KDF ID:  A 16 bit HPKE KDF identifier as defined in
+         Section 7.2 of [HPKE] or the HPKE KDF IANA registry
+         (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kdf-
+         ids).
+
+      HPKE AEAD ID:  A 16 bit HPKE AEAD identifier as defined in
+         Section 7.3 of [HPKE] or the HPKE AEAD IANA registry
+         (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-
+         ids).
 
 3.2.  Key Configuration Media Type
 
@@ -420,7 +456,8 @@ Table of Contents
    distinguish request and response messages:
 
    *  An Encapsulated Request format defined in Section 4.1 is
-      identified by the "message/ohttp-req" media type (Section 9.2).
+      identified by the "message/ohttp-req" media type (message/
+      ohttp-req Media Type).
 
    *  An Encapsulated Response format defined in Section 4.2 is
       identified by the "message/ohttp-res" media type (Section 9.3).
@@ -441,30 +478,31 @@ Table of Contents
 
    This plaintext Request is encapsulated into a message in "message/
    ohttp-req" form by generating an Encapsulated Request.  An
-   Encapsulated Request is comprised of a key identifier; HPKE
-   parameters for the chosen KEM, KDF, and AEAD; the encapsulated KEM
-   shared secret (or enc); and the HPKE-protected binary HTTP request
-   message.
+   Encapsulated Request comprises a key identifier; HPKE parameters for
+   the chosen KEM, KDF, and AEAD; the encapsulated KEM shared secret (or
+   enc); and an HPKE-protected binary HTTP request message.
 
    An Encapsulated Request is shown in Figure 4.  Section 4.3 describes
    the process for constructing and processing an Encapsulated Request.
 
    Encapsulated Request {
      Key Identifier (8),
-     KEM Identifier (16),
-     KDF Identifier (16),
-     AEAD Identifier (16),
+     HPKE KEM ID (16),
+     HPKE KDF ID (16),
+     HPKE AEAD ID (16),
      Encapsulated KEM Shared Secret (8 * Nenc),
      HPKE-Protected Request (..),
    }
 
                        Figure 4: Encapsulated Request
 
-   The Nenc parameter corresponding to the KEM used in HPKE can be found
-   in Section 7.1 of [HPKE] or the HPKE KEM IANA registry
-   (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-kem-ids).
-   Nenc refers to the size of the encapsulated KEM shared secret, in
-   bytes.
+   That is, an Encapsulated Request comprises a Key Identifier, HPKE KEM
+   ID, HPKE KDF ID, HPKE AEAD ID, Encapsulated KEM Shared Secret, and
+   HPKE-Protected Request.  The Key Identifier, HPKE KEM ID, HPKE KDF
+   ID, and HPKE AEAD ID fields are defined in Section 3.1.  The
+   Encapsulated KEM Shared Secret is the output of the Encap() function
+   for the KEM, which is Nenc bytes in length, as defined in Section 4
+   of [HPKE].
 
 4.2.  Response Format
 
@@ -479,8 +517,8 @@ Table of Contents
 
    This plaintext Response is encapsulated into a message in "message/
    ohttp-res" form by generating an Encapsulated Response.  An
-   Encapsulated Response is comprised of a nonce and the AEAD-protected
-   binary HTTP response message.
+   Encapsulated Response comprises a nonce and the AEAD-protected binary
+   HTTP response message.
 
    An Encapsulated Response is shown in Figure 6.  Section 4.4 describes
    the process for constructing and processing an Encapsulated Response.
@@ -492,12 +530,14 @@ Table of Contents
 
                       Figure 6: Encapsulated Response
 
-   The Nn and Nk values correspond to parameters of the AEAD used in
-   HPKE, which is defined in Section 7.3 of [HPKE] or the HPKE AEAD IANA
-   registry (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-
-   ids).  Nn and Nk refer to the size of the AEAD nonce and key
-   respectively, in bytes.  The Encapsulated Response nonce length is
-   set to the larger of these two lengths, i.e., max(Nn, Nk).
+   That is, an Encapsulated Response contains a Nonce and an AEAD-
+   Protected Response.  The Nonce field is either Nn or Nk bytes long,
+   whichever is larger.  The Nn and Nk values correspond to parameters
+   of the AEAD used in HPKE, which is defined in Section 7.3 of [HPKE]
+   or the HPKE AEAD IANA registry
+   (https://www.iana.org/assignments/hpke/hpke.xhtml#hpke-aead-ids).  Nn
+   and Nk refer to the size of the AEAD nonce and key respectively, in
+   bytes.
 
 4.3.  Encapsulation of Requests
 
@@ -552,20 +592,21 @@ Table of Contents
    ct = sctxt.Seal("", request)
    enc_request = concat(hdr, enc, ct)
 
-   Servers decrypt an Encapsulated Request by reversing this process.
-   Given an Encapsulated Request enc_request, a server:
+   An Oblivious Gateway Resource decrypts an Encapsulated Request by
+   reversing this process.  To decapsulate an Encapsulated Request,
+   enc_request:
 
    1.  Parses enc_request into key_id, kem_id, kdf_id, aead_id, enc, and
        ct (indicated using the function parse() in pseudocode).  The
-       server is then able to find the HPKE private key, skR,
-       corresponding to key_id.
+       Oblivious Gateway Resource is then able to find the HPKE private
+       key, skR, corresponding to key_id.
 
        a.  If key_id does not identify a key matching the type of
-       kem_id, the server returns an error.
+       kem_id, the Oblivious Gateway Resource returns an error.
 
        b.  If kdf_id and aead_id identify a combination of KDF and AEAD
-       that the server is unwilling to use with skR, the server returns
-       an error.
+       that the Oblivious Gateway Resource is unwilling to use with skR,
+       the Oblivious Gateway Resource returns an error.
 
    2.  Build info by concatenating the ASCII-encoded string "message/
        bhttp request", a zero byte, key_id as an 8-bit integer, plus
@@ -577,8 +618,8 @@ Table of Contents
 
    4.  Decrypt ct by invoking the Open() method on rctxt (Section 5.2 of
        [HPKE]), with an empty associated data aad, yielding request or
-       an error on failure.  If decryption fails, the server returns an
-       error.
+       an error on failure.  If decryption fails, the Oblivious Gateway
+       Resource returns an error.
 
    In pseudocode, this procedure is as follows:
 
@@ -595,8 +636,8 @@ Table of Contents
 4.4.  Encapsulation of Responses
 
    Given an HPKE context, context; a request message, request; and a
-   response, response, servers generate an Encapsulated Response,
-   enc_response, as follows:
+   response, response, Oblivious Gateway Resources generate an
+   Encapsulated Response, enc_response, as follows:
 
    1.  Export a secret, secret, from context, using the string "message/
        bhttp response" as the exporter_context parameter to
@@ -609,13 +650,13 @@ Table of Contents
    2.  Generate a random value of length max(Nn, Nk) bytes, called
        response_nonce.
 
-   3.  Extract a pseudorandom key prk using the Extract function
+   3.  Extract a pseudorandom key, prk, using the Extract function
        provided by the KDF algorithm associated with context.  The ikm
        input to this function is secret; the salt input is the
        concatenation of enc (from enc_request) and response_nonce.
 
    4.  Use the Expand function provided by the same KDF to extract an
-       AEAD key key, of length Nk - the length of the keys used by the
+       AEAD key, key, of length Nk - the length of the keys used by the
        AEAD associated with context.  Generating aead_key uses a label
        of "key".
 
@@ -628,7 +669,7 @@ Table of Contents
        which yields ct.
 
    7.  Concatenate response_nonce and ct, yielding an Encapsulated
-       Response enc_response.  Note that response_nonce is of fixed-
+       Response, enc_response.  Note that response_nonce is of fixed-
        length, so there is no ambiguity in parsing either response_nonce
        or ct.
 
@@ -651,7 +692,7 @@ Table of Contents
    The Client uses these values to decrypt ct using the Open function
    provided by the AEAD.  Decrypting might produce an error, as follows:
 
-   reponse, error = Open(aead_key, aead_nonce, "", ct)
+   response, error = Open(aead_key, aead_nonce, "", ct)
 
 4.5.  Request and Response Media Types
 
@@ -787,11 +828,11 @@ Table of Contents
    Errors detected by the Oblivious Gateway Resource after successfully
    removing encapsulation and errors detected by the Target Resource
    MUST be sent in an Encapsulated Response.  This might be because the
-   request is malformed or the Target Resource does not produce a
-   response.  In either case the Oblivious Gateway Resource can generate
-   a response with an appropriate error status code (such as 400 (Bad
-   Request) or 504 (Gateway Timeout); see Section 15.5.1 of [HTTP] and
-   Section 15.6.5 of [HTTP], respectively).  This response is
+   Encapsulated Request is malformed or the Target Resource does not
+   produce a response.  In either case the Oblivious Gateway Resource
+   can generate a response with an appropriate error status code (such
+   as 400 (Bad Request) or 504 (Gateway Timeout); see Section 15.5.1 of
+   [HTTP] and Section 15.6.5 of [HTTP], respectively).  This response is
    encapsulated in the same way as a successful response.
 
    Errors in the encapsulation of requests mean that responses cannot be
@@ -862,10 +903,10 @@ Table of Contents
    *  A server operates both the Oblivious Gateway Resource and the
       Target Resource
 
-   Connections between the Client, Oblvious Relay Resource, and
+   Connections between the Client, Oblivious Relay Resource, and
    Oblivious Gateway Resource MUST use HTTPS in order to provide
    unlinkability in the presence of a network observer.  The scheme of
-   the encapsulated request determines what is used between the
+   the Encapsulated Request determines what is used between the
    Oblivious Gateway and Target Resources, though using HTTPS is
    RECOMMENDED; see Section 6.3.
 
@@ -881,10 +922,10 @@ Table of Contents
    1.  Requests and responses are known only to Clients and Target
        Resources, plus Oblivious Gateway Resources that possess the
        corresponding response encapsulation key and HPKE keying
-       material.  In particular, the Oblivious Relay knows the origin
-       and destination of an Encapsulated Request and Response, yet does
-       not know the decrypted contents.  Likewise, Oblivious Gateway
-       Resources learns only the Oblivious Relay Resource and the
+       material.  In particular, the Oblivious Relay Resource knows the
+       origin and destination of an Encapsulated Request and Response,
+       yet does not know the decrypted contents.  Likewise, Oblivious
+       Gateway Resources learn only the Oblivious Relay Resource and the
        decrypted request.  No entity other than the Client can see the
        plaintext request and response and can attribute them to the
        Client.
@@ -972,7 +1013,8 @@ Table of Contents
    requests with information about the Client, such as the Via field or
    the Forwarded field [FORWARDED].  A relay MUST NOT add information
    when forwarding requests that might be used to identify Clients, with
-   the exception of information that a Client is aware of.
+   the exception of information that a Client is aware of; see
+   Section 6.2.1.
 
    Finally, a relay can also generate responses, though it is assumed to
    not be able to examine the content of a request (other than to
@@ -1093,9 +1135,11 @@ Table of Contents
 
    Nonsecure requests - such as those with the "http" scheme as opposed
    to the "https" scheme - SHOULD NOT be used if the Oblivious Gateway
-   and Target Resources are operated by different entities as that would
-   expose both requests and response to modification or inspection by a
-   network attacker.
+   and Target Resources are not on the same origin.  If messages are
+   forwarded between these resources without the protections afforded by
+   HTTPS, they could be inspected or modified by a network attacker.
+   Note that two resources that share an origin do not guarantee that
+   requests are not forwarded without protection.
 
 6.4.  Key Management
 
@@ -1137,7 +1181,7 @@ Table of Contents
 
    It is the responsibility of the application that uses Oblivious HTTP
    to either reject replayed requests or to ensure that replayed
-   requests have no adverse affects on their operation.  This section
+   requests have no adverse effects on their operation.  This section
    describes some approaches that are universally applicable and
    suggestions for more targeted techniques.
 
@@ -1194,10 +1238,10 @@ Table of Contents
    Oblivious Gateway Resource can store all requests it processes within
    this window.  Storing just the enc field of a request, which should
    be unique to each request, is sufficient.  The Oblivious Gateway
-   Resource then rejects requests if the request is the same as one that
-   was previously answered within that time window, or if the Date
-   header field from the decrypted request is outside of the current
-   time window.
+   Resource then rejects a requests if the request is same as one that
+   was previously answered within that time window or if the Date header
+   field from the decrypted request is outside of the current time
+   window.
 
    Oblivious Gateway Resources might need to allow for the time it takes
    requests to arrive from the Client, with a time window that is large
@@ -1334,7 +1378,7 @@ Table of Contents
    configuration includes the Oblivious Relay Resource URI, the
    Oblivious Gateway key configuration, and Oblivious Gateway Resource
    URI.  A configuration is active if Clients can successfully use it
-   for interacting with with a target.
+   for interacting with a target.
 
    Oblivious Relay and Gateway Resources can identify when requests use
    the same configuration by matching the key ID from the key
@@ -1354,8 +1398,8 @@ Table of Contents
 
    Client privacy depends on having each configuration used by many
    other Clients.  It is critical to prevent the use of unique Client
-   configurations, which might be used to track of individual Clients,
-   but it is also important to avoid creating small groupings of Clients
+   configurations, which might be used to track individual Clients, but
+   it is also important to avoid creating small groupings of Clients
    that might weaken privacy protections.
 
    A specific method for a Client to acquire configurations is not
@@ -1444,7 +1488,7 @@ Table of Contents
    Subtype name:  ohttp-keys
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
@@ -1460,7 +1504,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.2.  message/ohttp-req Media Type
 
@@ -1471,12 +1515,13 @@ Table of Contents
    Subtype name:  ohttp-req
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
    Applications that use this media type:  Oblivious HTTP and
-      applications that use Oblivious HTTP
+      applications that use Oblivious HTTP use this media type to
+      identify encapsulated binary HTTP requests.
    Fragment identifier considerations:  N/A
    Additional information:  Magic number(s):  N/A
                             Deprecated alias names for this type:  N/A
@@ -1487,7 +1532,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.3.  message/ohttp-res Media Type
 
@@ -1498,12 +1543,13 @@ Table of Contents
    Subtype name:  ohttp-res
    Required parameters:  N/A
    Optional parameters:  None
-   Encoding considerations:  only "8bit" or "binary" is permitted
+   Encoding considerations:  "binary"
    Security considerations:  see Section 6
    Interoperability considerations:  N/A
    Published specification:  this specification
    Applications that use this media type:  Oblivious HTTP and
-      applications that use Oblivious HTTP
+      applications that use Oblivious HTTP use this media type to
+      identify encapsulated binary HTTP responses.
    Fragment identifier considerations:  N/A
    Additional information:  Magic number(s):  N/A
                             Deprecated alias names for this type:  N/A
@@ -1514,7 +1560,7 @@ Table of Contents
    Intended usage:  COMMON
    Restrictions on usage:  N/A
    Author:  see Authors' Addresses section
-   Change controller:  IESG
+   Change controller:  IETF
 
 9.4.  Registration of "date" Problem Type
 
@@ -1693,10 +1739,10 @@ Appendix A.  Complete Example of a Request and Response
    cryptographic operations.  In this example, the Client is configured
    with the Oblivious Relay Resource URI of
    https://proxy.example.org/request.example.net/proxy, and the proxy is
-   configured to map requests to this URI to the Oblivious Gateway URI
-   https://example.com/oblivious/request.  The Target Resource URI,
-   i.e., the resource the Client ultimately wishes to query, is
-   https://example.com.
+   configured to map requests to this URI to the Oblivious Gateway
+   Resource URI https://example.com/oblivious/request.  The Target
+   Resource URI, i.e., the resource the Client ultimately wishes to
+   query, is https://example.com.
 
    To begin the process, the Oblivious Gateway Resource generates a key
    pair.  In this example the server chooses DHKEM(X25519, HKDF-SHA256)
@@ -1761,7 +1807,7 @@ Appendix A.  Complete Example of a Request and Response
 
    <content is the Encapsulated Request above>
 
-   The Oblivous Gateway Resource receives this request, selects the key
+   The Oblivious Gateway Resource receives this request, selects the key
    it generated previously using the key identifier from the message,
    and decrypts the message.  As this request is directed to the same
    server, the Oblivious Gateway Resource does not need to initiate an
@@ -1841,8 +1887,8 @@ Index
             Paragraph 3; Section 2, Paragraph 6, Item 1; Section 2,
             Paragraph 6, Item 2; Section 2, Paragraph 6, Item 3;
             Section 2, Paragraph 6, Item 9; Section 2, Paragraph 6, Item
-            10; Section 2.2; Section 2.2, Paragraph 2.2.1; Section 2.2,
-            Paragraph 2.2.1; Section 3, Paragraph 1; Section 3,
+            10; Section 2.2; Section 2.2, Paragraph 3.2.1; Section 2.2,
+            Paragraph 3.2.1; Section 3, Paragraph 1; Section 3,
             Paragraph 2; Section 3, Paragraph 2; Section 3, Paragraph 3;
             Section 4.3, Paragraph 3; Section 4.4, Paragraph 6;
             Section 4.6, Paragraph 1; Section 5, Paragraph 1; Section 5,
@@ -1880,123 +1926,139 @@ Index
             6; Appendix A, Paragraph 8; Appendix A, Paragraph 8;
             Appendix A, Paragraph 8; Appendix A, Paragraph 14;
             Appendix A, Paragraph 16; Appendix A, Paragraph 36
-         Clients  Section 1, Paragraph 6; Section 2.2, Paragraph 2.8.1;
-            Section 3, Paragraph 1; Section 3, Paragraph 3; Section 3,
-            Paragraph 3; Section 4.3, Paragraph 1; Section 4.4,
-            Paragraph 5; Section 5, Paragraph 1; Section 5, Paragraph 2;
-            Section 5.1, Paragraph 2; Section 6, Paragraph 9, Item 1;
-            Section 6.1, Paragraph 1; Section 6.1, Paragraph 2;
-            Section 6.1, Paragraph 2; Section 6.1, Paragraph 3;
-            Section 6.1, Paragraph 3; Section 6.1, Paragraph 4;
-            Section 6.1, Paragraph 6; Section 6.2, Paragraph 3;
-            Section 6.2, Paragraph 4; Section 6.2.1, Paragraph 1;
-            Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 2;
+         Clients  Section 1, Paragraph 5; Section 1, Paragraph 6;
+            Section 2.2, Paragraph 3.8.1; Section 3, Paragraph 1;
+            Section 3, Paragraph 3; Section 3, Paragraph 3; Section 4.3,
+            Paragraph 1; Section 4.4, Paragraph 5; Section 5, Paragraph
+            1; Section 5, Paragraph 2; Section 5.1, Paragraph 2;
+            Section 6, Paragraph 9, Item 1; Section 6.1, Paragraph 1;
+            Section 6.1, Paragraph 2; Section 6.1, Paragraph 2;
+            Section 6.1, Paragraph 3; Section 6.1, Paragraph 3;
+            Section 6.1, Paragraph 4; Section 6.1, Paragraph 6;
+            Section 6.2, Paragraph 3; Section 6.2, Paragraph 4;
+            Section 6.2.1, Paragraph 1; Section 6.2.1, Paragraph 1;
             Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
-            Section 6.2.1, Paragraph 2; Section 6.2.2, Paragraph 2;
-            Section 6.2.3, Paragraph 3; Section 6.2.3, Paragraph 5;
-            Section 6.2.3, Paragraph 5; Section 6.2.3, Paragraph 6;
-            Section 6.5, Paragraph 1; Section 6.5.1, Paragraph 1;
-            Section 6.5.2, Paragraph 7; Section 6.5.2, Paragraph 9;
-            Section 6.8, Paragraph 1; Section 6.8, Paragraph 1;
-            Section 6.8, Paragraph 2; Section 7, Paragraph 1; Section 7,
-            Paragraph 4; Section 7, Paragraph 4; Section 7, Paragraph 4;
-            Section 7, Paragraph 5; Section 8.1, Paragraph 1;
-            Section 8.2, Paragraph 2; Section 8.3, Paragraph 1;
-            Section 8.3, Paragraph 2
+            Section 6.2.1, Paragraph 2; Section 6.2.1, Paragraph 2;
+            Section 6.2.2, Paragraph 2; Section 6.2.3, Paragraph 3;
+            Section 6.2.3, Paragraph 5; Section 6.2.3, Paragraph 5;
+            Section 6.2.3, Paragraph 6; Section 6.5, Paragraph 1;
+            Section 6.5.1, Paragraph 1; Section 6.5.2, Paragraph 7;
+            Section 6.5.2, Paragraph 9; Section 6.8, Paragraph 1;
+            Section 6.8, Paragraph 1; Section 6.8, Paragraph 2;
+            Section 7, Paragraph 1; Section 7, Paragraph 4; Section 7,
+            Paragraph 4; Section 7, Paragraph 4; Section 7, Paragraph 5;
+            Section 8.1, Paragraph 1; Section 8.2, Paragraph 2;
+            Section 8.3, Paragraph 1; Section 8.3, Paragraph 2
 
       E
 
-         Encapsulated Request  Section 2, Paragraph 6, Item 3;
-            Section 2.2; Section 4, Paragraph 2, Item 1; Section 4.1,
-            Paragraph 3; Section 4.1, Paragraph 3; Section 4.1,
-            Paragraph 4; Section 4.1, Paragraph 4; Section 4.3,
+         Encapsulated Request  Section 2, Paragraph 2, Item 3;
+            Section 2, Paragraph 6, Item 3; Section 2.2; Section 2.2,
+            Paragraph 3.10.1; Section 2.2, Paragraph 3.12.1; Section 4,
+            Paragraph 2, Item 1; Section 4.1, Paragraph 3; Section 4.1,
+            Paragraph 3; Section 4.1, Paragraph 4; Section 4.1,
+            Paragraph 4; Section 4.1, Paragraph 6; Section 4.3,
             Paragraph 3; Section 4.3, Paragraph 8; Section 4.3,
             Paragraph 8; Section 5, Paragraph 1; Section 5, Paragraph 1;
             Section 5, Paragraph 1; Section 5, Paragraph 1; Section 5,
-            Paragraph 1; Section 5, Paragraph 1; Section 5.3, Paragraph
-            1; Section 6, Paragraph 3; Section 6, Paragraph 9, Item 1;
+            Paragraph 1; Section 5, Paragraph 1; Section 5.2, Paragraph
+            3; Section 5.3, Paragraph 1; Section 6, Paragraph 3;
+            Section 6, Paragraph 6; Section 6, Paragraph 9, Item 1;
             Section 6.1, Paragraph 5; Section 6.2.3, Paragraph 2;
             Section 6.3, Paragraph 2; Section 6.4, Paragraph 2;
             Section 6.5, Paragraph 2; Appendix A, Paragraph 14
-         Encapsulated Response  Section 2.2; Section 4, Paragraph 2,
-            Item 2; Section 4.2, Paragraph 3; Section 4.2, Paragraph 3;
-            Section 4.2, Paragraph 4; Section 4.2, Paragraph 4;
-            Section 4.2, Paragraph 6; Section 4.4, Paragraph 1;
-            Section 4.4, Paragraph 2, Item 7; Section 4.4, Paragraph 5;
-            Section 5.2, Paragraph 3; Section 5.2, Paragraph 4;
-            Section 6.2, Paragraph 5; Appendix A, Paragraph 24;
-            Appendix A, Paragraph 32; Appendix A, Paragraph 36
+         Encapsulated Response  Section 2.2; Section 2.2, Paragraph
+            3.10.1; Section 4, Paragraph 2, Item 2; Section 4.2,
+            Paragraph 3; Section 4.2, Paragraph 3; Section 4.2,
+            Paragraph 4; Section 4.2, Paragraph 4; Section 4.2,
+            Paragraph 6; Section 4.4, Paragraph 1; Section 4.4,
+            Paragraph 2, Item 7; Section 4.4, Paragraph 5; Section 5.2,
+            Paragraph 3; Section 5.2, Paragraph 4; Section 6.2,
+            Paragraph 5; Appendix A, Paragraph 24; Appendix A, Paragraph
+            32; Appendix A, Paragraph 36
 
       K
 
          key configuration  Section 3, Paragraph 1; Section 3, Paragraph
             1; Section 3, Paragraph 2; Section 3, Paragraph 3;
             Section 3.1, Paragraph 1; Section 3.1, Paragraph 2;
-            Section 3.2, Paragraph 1; Section 3.2, Paragraph 2;
-            Section 4.3, Paragraph 1; Section 5.2, Paragraph 4;
-            Section 5.3, Paragraph 1; Section 5.3, Paragraph 4;
-            Section 5.3, Paragraph 4; Section 6.1, Paragraph 1;
-            Section 6.6, Paragraph 1; Section 6.6, Paragraph 1;
-            Section 7, Paragraph 1; Section 7, Paragraph 2; Section 9.1,
-            Paragraph 1; Section 9.5, Paragraph 2.4.1; Appendix A,
-            Paragraph 1; Appendix A, Paragraph 4; Appendix A, Paragraph
-            6; Appendix A, Paragraph 8
+            Section 3.1, Paragraph 4; Section 3.2, Paragraph 1;
+            Section 3.2, Paragraph 2; Section 4.3, Paragraph 1;
+            Section 5.2, Paragraph 4; Section 5.3, Paragraph 1;
+            Section 5.3, Paragraph 4; Section 5.3, Paragraph 4;
+            Section 6.1, Paragraph 1; Section 6.6, Paragraph 1;
+            Section 6.6, Paragraph 1; Section 7, Paragraph 1; Section 7,
+            Paragraph 2; Section 9.1, Paragraph 1; Section 9.5,
+            Paragraph 2.4.1; Appendix A, Paragraph 1; Appendix A,
+            Paragraph 4; Appendix A, Paragraph 6; Appendix A, Paragraph
+            8
          key configurations  Section 3, Paragraph 2; Section 3,
             Paragraph 2; Section 3, Paragraph 3; Section 3.2, Paragraph
             1; Section 6.1, Paragraph 2
 
       O
 
-         Oblivious Gateway Resource  Section 2, Paragraph 2, Item 1;
-            Section 2, Paragraph 2, Item 1; Section 2, Paragraph 2, Item
-            2; Section 2, Paragraph 2, Item 3; Section 2, Paragraph 6,
-            Item 5; Section 2, Paragraph 6, Item 6; Section 2, Paragraph
-            6, Item 8; Section 2.2, Paragraph 2.8.1; Section 2.2;
-            Section 3, Paragraph 1; Section 4.6, Paragraph 1; Section 5,
-            Paragraph 2; Section 5, Paragraph 2; Section 5, Paragraph 4;
-            Section 5, Paragraph 4; Section 5, Paragraph 5; Section 5,
-            Paragraph 7; Section 5, Paragraph 8; Section 5, Paragraph 9;
-            Section 5, Paragraph 10; Section 5.1, Paragraph 2;
-            Section 5.2, Paragraph 2; Section 5.2, Paragraph 3;
-            Section 5.2, Paragraph 3; Section 5.2, Paragraph 4;
-            Section 5.3, Paragraph 1; Section 5.3, Paragraph 4;
-            Section 6, Paragraph 3; Section 6, Paragraph 5, Item 3;
-            Section 6, Paragraph 6; Section 6, Paragraph 7; Section 6,
-            Paragraph 7; Section 6.1, Paragraph 1; Section 6.2,
-            Paragraph 1; Section 6.2, Paragraph 1; Section 6.2.2,
-            Paragraph 1; Section 6.2.3, Paragraph 2; Section 6.3,
+         Oblivious Gateway Resource  Section 4.3, Paragraph 9.1.3
+         Oblivious Gateway Resource  Section 1, Paragraph 5; Section 1,
+            Paragraph 6; Section 2, Paragraph 2, Item 1; Section 2,
+            Paragraph 2, Item 1; Section 2, Paragraph 2, Item 2;
+            Section 2, Paragraph 2, Item 3; Section 2, Paragraph 6, Item
+            5; Section 2, Paragraph 6, Item 6; Section 2, Paragraph 6,
+            Item 8; Section 2.2, Paragraph 3.8.1; Section 2.2;
+            Section 3, Paragraph 1; Section 3.1, Paragraph 5.2.1;
+            Section 3.1, Paragraph 5.10.1; Section 4.3, Paragraph 8;
+            Section 4.3, Paragraph 9.1.1; Section 4.3, Paragraph 9.1.2;
+            Section 4.3, Paragraph 9.1.3; Section 4.3, Paragraph 9, Item
+            4; Section 4.6, Paragraph 1; Section 5, Paragraph 2;
+            Section 5, Paragraph 2; Section 5, Paragraph 4; Section 5,
+            Paragraph 4; Section 5, Paragraph 5; Section 5, Paragraph 7;
+            Section 5, Paragraph 8; Section 5, Paragraph 9; Section 5,
+            Paragraph 10; Section 5.1, Paragraph 2; Section 5.2,
+            Paragraph 2; Section 5.2, Paragraph 3; Section 5.2,
+            Paragraph 3; Section 5.2, Paragraph 4; Section 5.3,
+            Paragraph 1; Section 5.3, Paragraph 4; Section 6, Paragraph
+            3; Section 6, Paragraph 5, Item 3; Section 6, Paragraph 6;
+            Section 6, Paragraph 7; Section 6, Paragraph 7; Section 6.1,
+            Paragraph 1; Section 6.2, Paragraph 1; Section 6.2,
+            Paragraph 1; Section 6.2.2, Paragraph 1; Section 6.2.3,
+            Paragraph 2; Section 6.3, Paragraph 1; Section 6.3,
             Paragraph 1; Section 6.3, Paragraph 1; Section 6.3,
-            Paragraph 1; Section 6.3, Paragraph 4; Section 6.4,
-            Paragraph 1; Section 6.4, Paragraph 1; Section 6.5.1,
-            Paragraph 1; Section 6.5.1, Paragraph 3; Section 6.5.1,
-            Paragraph 3; Section 6.5.1, Paragraph 3; Section 6.5.2,
-            Paragraph 1; Section 6.5.2, Paragraph 4; Section 6.5.2,
-            Paragraph 5; Section 6.5.2, Paragraph 7; Section 6.5.2,
-            Paragraph 9; Section 6.5.2, Paragraph 9; Section 6.7,
-            Paragraph 3; Section 7, Paragraph 1; Section 7, Paragraph 2;
-            Section 7, Paragraph 2; Section 7, Paragraph 2; Section 8.2,
-            Paragraph 1; Section 8.2, Paragraph 1; Section 8.2,
-            Paragraph 2; Appendix A, Paragraph 2; Appendix A, Paragraph
-            4; Appendix A, Paragraph 8; Appendix A, Paragraph 18;
+            Paragraph 4; Section 6.4, Paragraph 1; Section 6.4,
+            Paragraph 1; Section 6.5.1, Paragraph 1; Section 6.5.1,
+            Paragraph 3; Section 6.5.1, Paragraph 3; Section 6.5.1,
+            Paragraph 3; Section 6.5.2, Paragraph 1; Section 6.5.2,
+            Paragraph 4; Section 6.5.2, Paragraph 5; Section 6.5.2,
+            Paragraph 7; Section 6.5.2, Paragraph 9; Section 6.5.2,
+            Paragraph 9; Section 6.7, Paragraph 3; Section 7, Paragraph
+            1; Section 7, Paragraph 2; Section 7, Paragraph 2;
+            Section 7, Paragraph 2; Section 8.2, Paragraph 1;
+            Section 8.2, Paragraph 1; Section 8.2, Paragraph 2;
+            Appendix A, Paragraph 1; Appendix A, Paragraph 2;
+            Appendix A, Paragraph 4; Appendix A, Paragraph 8;
+            Appendix A, Paragraph 18; Appendix A, Paragraph 20;
             Appendix A, Paragraph 20; Appendix A, Paragraph 34
-         Oblivious Gateway Resources  Section 1, Paragraph 5; Section 6,
-            Paragraph 9, Item 1; Section 6, Paragraph 9, Item 1;
-            Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
+         Oblivious Gateway Resources  Section 4.4, Paragraph 1;
+            Section 6, Paragraph 9, Item 1; Section 6, Paragraph 9, Item
+            1; Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
             Section 6.5.2, Paragraph 8; Section 8.2, Paragraph 1;
             Section 8.2, Paragraph 1; Section 8.2, Paragraph 2
-         Oblivious Relay Resource  Section 1, Paragraph 6; Section 2,
-            Paragraph 2, Item 3; Section 2, Paragraph 6, Item 3;
-            Section 2, Paragraph 6, Item 4; Section 2, Paragraph 6, Item
-            8; Section 2, Paragraph 6, Item 9; Section 2.2, Paragraph
-            2.2.1; Section 2.2; Section 5, Paragraph 1; Section 5,
-            Paragraph 1; Section 5, Paragraph 1; Section 5, Paragraph 1;
-            Section 5, Paragraph 1; Section 5, Paragraph 2; Section 5,
-            Paragraph 2; Section 5, Paragraph 4; Section 5, Paragraph 4;
-            Section 5, Paragraph 4; Section 5, Paragraph 5; Section 5,
-            Paragraph 5; Section 5, Paragraph 6; Section 5.2, Paragraph
-            2; Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
+         Oblivious Relay and Gateway Resources  Section 2, Paragraph 2,
+            Item 3; Section 7, Paragraph 2
+         Oblivious Relay Resource  Section 1, Paragraph 5; Section 1,
+            Paragraph 6; Section 1, Paragraph 6; Section 2, Paragraph 2,
+            Item 3; Section 2, Paragraph 6, Item 3; Section 2, Paragraph
+            6, Item 4; Section 2, Paragraph 6, Item 8; Section 2,
+            Paragraph 6, Item 9; Section 2.2, Paragraph 3.2.1;
+            Section 2.2; Section 5, Paragraph 1; Section 5, Paragraph 1;
+            Section 5, Paragraph 1; Section 5, Paragraph 1; Section 5,
+            Paragraph 1; Section 5, Paragraph 2; Section 5, Paragraph 2;
+            Section 5, Paragraph 4; Section 5, Paragraph 4; Section 5,
+            Paragraph 4; Section 5, Paragraph 5; Section 5, Paragraph 5;
+            Section 5, Paragraph 6; Section 5.2, Paragraph 2;
+            Section 5.2, Paragraph 4; Section 5.2, Paragraph 4;
             Section 5.3, Paragraph 4; Section 6, Paragraph 3; Section 6,
-            Paragraph 5, Item 2; Section 6, Paragraph 7; Section 6,
+            Paragraph 5, Item 2; Section 6, Paragraph 6; Section 6,
+            Paragraph 7; Section 6, Paragraph 9, Item 1; Section 6,
             Paragraph 9, Item 1; Section 6.1, Paragraph 2; Section 6.1,
             Paragraph 5; Section 6.1, Paragraph 5; Section 6.1,
             Paragraph 5; Section 6.1, Paragraph 6; Section 6.2,
@@ -2010,23 +2072,23 @@ Index
             Section 8.2, Paragraph 1; Appendix A, Paragraph 1;
             Appendix A, Paragraph 16; Appendix A, Paragraph 18;
             Appendix A, Paragraph 36
-         Oblivious Relay Resources  Section 1, Paragraph 5;
-            Section 6.2.2, Paragraph 1; Section 8.2, Paragraph 2;
-            Section 8.2, Paragraph 2
+         Oblivious Relay Resources  Section 6.2.2, Paragraph 1;
+            Section 8.2, Paragraph 2; Section 8.2, Paragraph 2
 
       T
 
-         Target Resource  Section 2, Paragraph 3; Section 2, Paragraph
-            5; Section 2, Paragraph 6, Item 1; Section 2, Paragraph 6,
-            Item 7; Section 2.2, Paragraph 2.2.1; Section 2.2, Paragraph
-            2.10.1; Section 2.2; Section 5, Paragraph 2; Section 5,
-            Paragraph 2; Section 5, Paragraph 2; Section 5, Paragraph 7;
-            Section 5, Paragraph 8; Section 5.2, Paragraph 3;
-            Section 5.2, Paragraph 3; Section 6, Paragraph 1; Section 6,
-            Paragraph 5, Item 3; Section 6, Paragraph 7; Section 6.1,
-            Paragraph 2; Section 6.3, Paragraph 1; Section 6.3,
-            Paragraph 1; Section 6.3, Paragraph 4; Appendix A, Paragraph
-            1; Appendix A, Paragraph 20; Appendix A, Paragraph 20
+         Target Resource  Section 1, Paragraph 5; Section 2, Paragraph
+            3; Section 2, Paragraph 5; Section 2, Paragraph 6, Item 1;
+            Section 2, Paragraph 6, Item 7; Section 2.2, Paragraph
+            3.2.1; Section 2.2, Paragraph 3.10.1; Section 2.2;
+            Section 5, Paragraph 2; Section 5, Paragraph 2; Section 5,
+            Paragraph 2; Section 5, Paragraph 7; Section 5, Paragraph 8;
+            Section 5.2, Paragraph 3; Section 5.2, Paragraph 3;
+            Section 6, Paragraph 1; Section 6, Paragraph 5, Item 3;
+            Section 6, Paragraph 7; Section 6.1, Paragraph 2;
+            Section 6.3, Paragraph 1; Section 6.3, Paragraph 1;
+            Section 6.3, Paragraph 4; Appendix A, Paragraph 1;
+            Appendix A, Paragraph 20; Appendix A, Paragraph 20
 
 Authors' Addresses
 
