@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 9 July 2023                                          Cloudflare
-                                                          5 January 2023
+Expires: 16 July 2023                                         Cloudflare
+                                                         12 January 2023
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 July 2023.
+   This Internet-Draft will expire on 16 July 2023.
 
 Copyright Notice
 
@@ -1248,10 +1248,10 @@ Table of Contents
    Oblivious Gateway Resource can store all requests it processes within
    this window.  Storing just the enc field of a request, which should
    be unique to each request, is sufficient.  The Oblivious Gateway
-   Resource then rejects requests if the request is the same as one that
-   was previously answered within that time window, or if the Date
-   header field from the decrypted request is outside of the current
-   time window.
+   Resource can reject any request that is the same as one that was
+   previously answered within that time window or if the Date header
+   field from the decrypted request is outside of the current time
+   window.
 
    Oblivious Gateway Resources might need to allow for the time it takes
    requests to arrive from the Client, with a time window that is large
