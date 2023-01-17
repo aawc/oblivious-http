@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-15T00:35:27.925386+00:00",
+  "timestamp": "2023-01-17T00:33:37.401911+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -15985,6 +15985,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 240,
+      "id": "PR_kwDOE6fLGM5Hf_99",
+      "title": "Appease Lars Eggert's automated nit finder",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/240",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-16T22:52:01Z",
+      "updatedAt": "2023-01-16T22:52:01Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "lars",
+      "headRefOid": "f4bc5e9ab182106b24668fcebff4de0745ac1cf5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
