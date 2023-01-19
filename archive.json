@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-17T00:33:37.401911+00:00",
+  "timestamp": "2023-01-19T00:34:08.651671+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -47,6 +47,26 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "discuss",
+      "description": "",
+      "color": "3215B2"
+    },
+    {
+      "name": "comment",
+      "description": "",
+      "color": "47FC47"
+    },
+    {
+      "name": "nit",
+      "description": "",
+      "color": "D5F646"
+    },
+    {
+      "name": "review",
+      "description": null,
+      "color": "b6d7a8"
     }
   ],
   "issues": [
@@ -2741,6 +2761,212 @@
       "createdAt": "2022-11-24T23:24:11Z",
       "updatedAt": "2022-11-29T01:17:06Z",
       "closedAt": "2022-11-29T01:17:06Z",
+      "comments": []
+    },
+    {
+      "number": 242,
+      "id": "I_kwDOE6fLGM5bnqgJ",
+      "title": "Clarification of DNS lookup",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/242",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nI think it would be good to add a section on how DNS works with ohttp. Eg to clarify whether the lookup is performed by the Client (and hopefully uses DoH or oDoH on its own) or whether it is looked up by the Oblivious Gateway Resource. Eg is the encrypted request using an IP address or a URI.\n\n",
+      "createdAt": "2023-01-17T22:37:04Z",
+      "updatedAt": "2023-01-17T23:20:32Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Copying my response to the email thread:\r\n\r\nI don't think that a section like this would be a good idea.  There are a great many things that we could explain in more detail, but we need to stick to relevant topics, lest we overburden readers with irrelevant and distracting details.\r\n\r\nI should probably explain a bit about why this is not relevant.  Typical HTTP usage takes inputs, usually: a method (GET/POST/...), a URL (https://example.com/whatever), maybe some fields that shape that request (Cache-Control say), and maybe a body.  The HTTP library you engage with does a bunch of stuff with networking and TLS and whatnot and you get a response.  At some point, down in the guts of that library, it might invoke `gethostbyname()`, but that's a number of layers of abstraction away.\r\n\r\nThis is the level of interaction that applies here as well.  The addition of the relay means that the user has two URLs and two sets of fields to consider, but it is still engaged at that same high level.  Importantly, all interactions in the protocol occur at this level, for all actors.\r\n\r\nNow, if this were a CONNECT tunnel (see MASQUE), then DNS details are very relevant, because the processing of the request involves establishing transport-level sessions.  The choice of who performs DNS queries - and how they do that - has a direct effect on the outcome.  But that doesn't apply here.",
+          "createdAt": "2023-01-17T23:20:32Z",
+          "updatedAt": "2023-01-17T23:20:32Z"
+        }
+      ]
+    },
+    {
+      "number": 243,
+      "id": "I_kwDOE6fLGM5bnqgk",
+      "title": "Media type registrations",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/243",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nPlease address the media type registration issues raised in the secdir review raised by Alexey Melnikov :\n\nhttps://datatracker.ietf.org/doc/review-ietf-ohai-ohttp-05-secdir-lc-melnikov-2022-12-08/\n\nAdditionally, the registrations instruct IANA to use the authors email. Should this instead point to the OHAI WG, the IESG or IETF instead?\n\n",
+      "createdAt": "2023-01-17T22:37:06Z",
+      "updatedAt": "2023-01-17T22:37:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 244,
+      "id": "I_kwDOE6fLGM5bnqhQ",
+      "title": "link fest",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/244",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nIt seems some automated tooling was used to creating links within the document, eg for \"key configuration\": 7 times in [Section 3](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-3), pointing to a few lines below in [section 3.1](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-3.1), and even one time within [section 3.1](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-3.1) itself pointing recursively back to itself, and 3 more times in [section 3.2](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-3.2), and then I stopped counting.\n\nThe same for things like \"client\", Oblivious Gateway Resource\", etc etc culminating in [Section 5](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-5) that's more blue than black, making the blue links, uhm, oblivious :P\n\n",
+      "createdAt": "2023-01-17T22:37:08Z",
+      "updatedAt": "2023-01-17T23:21:28Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are a few tooling changes that might be worth pursuing here, but I don't intend to make any changes in response to this issue.",
+          "createdAt": "2023-01-17T23:21:27Z",
+          "updatedAt": "2023-01-17T23:21:27Z"
+        }
+      ]
+    },
+    {
+      "number": 245,
+      "id": "I_kwDOE6fLGM5bnqh3",
+      "title": "Foreknowledge",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/245",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nA number of items (see below comments) seem to require foreknowledge of things. Is this currently envisioned as part of a provisioning step that is not (yet?) standardized? Is it expected to be discoverable ? eg via DNS? Or is an actual provisioning protocol being worked on?\n\n",
+      "createdAt": "2023-01-17T22:37:10Z",
+      "updatedAt": "2023-01-17T22:37:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 246,
+      "id": "I_kwDOE6fLGM5bnqiU",
+      "title": "Dingledine2004",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/246",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nUsing \"[Dingledine2004]\" as description identifier for TOR is a bit weird :P\n\n",
+      "createdAt": "2023-01-17T22:37:12Z",
+      "updatedAt": "2023-01-17T22:37:13Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 247,
+      "id": "I_kwDOE6fLGM5bnqix",
+      "title": "links without [brackets]",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/247",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nLinks like  Oblivious Gateway Resource and clients don't have [brackets] making it appear (to me) that these are links leaving this document, when in fact these are links within the documents. Use [brackets] to denote that, or use eg: Clients [Section X]  ?\n\n",
+      "createdAt": "2023-01-17T22:37:14Z",
+      "updatedAt": "2023-01-17T22:37:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 248,
+      "id": "I_kwDOE6fLGM5bnqjJ",
+      "title": "Figure 3",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/248",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\n\"See Figure 3\" points to the immediately following figure 3. I think the text can be removed to prevent the user from going to look elsewhere :P\n\n",
+      "createdAt": "2023-01-17T22:37:16Z",
+      "updatedAt": "2023-01-17T22:37:17Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 249,
+      "id": "I_kwDOE6fLGM5bnqjt",
+      "title": "Section 6.1",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/249",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\n~~~ \nThe request that carries the Encapsulated Request and is sent to the Oblivious\nRelay Resource MUST NOT include identifying information unless the Client\nensures that this information is removed by the relay. ``` How could a client\n\"ensure\" that? Couldn't this at best be \"unless the Client can trust that [...]\"\n\n### [Section 6.2](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-6.2)\n~~~\nso delays SHOULD only be added with the consent - or at least awareness - of Clients ``` How would that work? How would the client consent? Or show awareness? Or become aware ?\n\n~~~ \nClients can use padding\n~~~\nCan't the Target Resource also not use padding in the response? But I guess they wouldn't know about being connected to obliviously or regularly, unless the Client tells the server within its encrypted payload request? Eg if a regular https server sees a certain field, it would/could know to do some padding?  (one would assume ohttp relays are fairly well known on static IPs anyway, so the Client wouldn't be revealing much if it could ask the http server itself for random padding\n\n",
+      "createdAt": "2023-01-17T22:37:18Z",
+      "updatedAt": "2023-01-17T22:37:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 250,
+      "id": "I_kwDOE6fLGM5bnqkH",
+      "title": "Section 6.3",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/250",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\n~~~ \nNonsecure requests - such as those with the \"http\" scheme as opposed to the\n\"https\" scheme - SHOULD NOT be used if the Oblivious Gateway and Target\nResources are not on the same origin. ``` Why is this not MUST NOT? And why the\nloosening on same origin? Wouldn't it be best to always cause it to fail ASAP,\nso that the client doesn't cause plaintext data to go between oblivious relay\nand target host?\n\n### [Section 6.4](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-6.4)\n~~~\nClients SHOULD include a Date header field in Encapsulated Requests, unless the Oblivious Gateway Resource does not use Date for anti-replay purposes. ``` How does a client know this? Preconfiguration ?\n\n~~~ \nOblivious Gateway Resources might need to allow for the time it takes requests\nto arrive from the Client, with a time window that is large enough to allow for\ndifferences in clocks. ``` Are we talking ms? sec? minutes? Any advise to\nimplementers ?\n\n### [Section 6.5](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-6.5)\n~~~\nTherefore, Clients MUST NOT retry a request with an adjusted date more than once. ``` How does a client know the date was adjusted by an intermediary?\n\n",
+      "createdAt": "2023-01-17T22:37:20Z",
+      "updatedAt": "2023-01-17T22:37:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 251,
+      "id": "I_kwDOE6fLGM5bnqkg",
+      "title": "similar reference names",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/251",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\n\nODOH and ODoH seems very similar and likely to cause confusion. Rename one?\n\n",
+      "createdAt": "2023-01-17T22:37:22Z",
+      "updatedAt": "2023-01-17T22:37:23Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -16011,6 +16237,105 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 241,
+      "id": "PR_kwDOE6fLGM5HlHa6",
+      "title": "Template update",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/241",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Automated updates for all the CI and build stuff",
+      "createdAt": "2023-01-17T22:22:44Z",
+      "updatedAt": "2023-01-17T22:22:44Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "template-update",
+      "headRefOid": "a066c21b5bc1bbb63eda9b14defc6a5120978259",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 252,
+      "id": "PR_kwDOE6fLGM5HlQu9",
+      "title": "Include key configuration description in the registration",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/252",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #243.",
+      "createdAt": "2023-01-17T23:16:34Z",
+      "updatedAt": "2023-01-17T23:16:34Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "media-type-fixup",
+      "headRefOid": "6aa468ba8538796f5de0f628346faab4b93fd3d1",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 253,
+      "id": "PR_kwDOE6fLGM5IE5K_",
+      "title": "Some tweaks from Martin Duke's review",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/253",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "YES rather than DISCUSS is good.  Good feedback is gooder.",
+      "createdAt": "2023-01-18T22:56:49Z",
+      "updatedAt": "2023-01-18T23:30:58Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "duke",
+      "headRefOid": "a0044ec6bb3e84c90661345df256e06e157aade6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LKDtD",
+          "commit": {
+            "abbreviatedOid": "a0044ec"
+          },
+          "author": "martinduke",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "LGTM, thanks",
+          "createdAt": "2023-01-18T23:30:46Z",
+          "updatedAt": "2023-01-18T23:30:58Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nprotection if the two resources share an origin.\r\n```\r\nI think the word \"even\" is out of place given that the first sentence implies this consequence",
+              "createdAt": "2023-01-18T23:30:46Z",
+              "updatedAt": "2023-01-18T23:30:58Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
