@@ -2393,7 +2393,7 @@ the same relay (see <a href="#ta" class="auto internal xref">Section 6.2.3</a>),
 might need an arrangement with <a href="#dfn-relay" class="internal xref">Oblivious Relay Resources</a><span id="iref-oblivious-relay-resources-2" class="iref"></span>. This arrangement might
 be necessary to prevent having the large volume of requests being classified as
 an attack by the server.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-2">If a server accepts a larger volume of requests from a relay, it needs to
+<p id="section-6.2.2-2">If a gateway accepts a larger volume of requests from a relay, it needs to
 trust that the relay does not allow abusive levels of request volumes from
 <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-265" class="iref"></span>. That is, if a server allows requests from the relay to be exempt from
 rate limits, the server might want to ensure that the relay applies a rate
@@ -2492,7 +2492,7 @@ provides key diversity only within the HPKE context created using the
         <h3 id="name-replay-attacks">
 <a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-replay-attacks" class="section-name selfRef">Replay Attacks</a>
         </h3>
-<p id="section-6.5-1">A server is responsible for either rejecting replayed requests or ensuring that
+<p id="section-6.5-1">A gateway is responsible for either rejecting replayed requests or ensuring that
 the effect of replays does not adversely affect <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-288" class="iref"></span> or resources.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.5-2">Encrypted requests can be copied and replayed by the Oblivious Relay
 resource. The threat model for Oblivious HTTP allows the possibility that an
