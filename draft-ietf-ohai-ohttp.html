@@ -1380,9 +1380,9 @@ with that key.<a href="#section-2-2.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-2.3">The identity of an <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-14" class="iref"></span> that will accept relay requests
 carrying an <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-15" class="iref"></span> as its content and forward the content in
-these requests to a single <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-16" class="iref"></span>. See <a href="#proxy-state" class="auto internal xref">Section 8.2</a>
-for more information about the mapping between <a href="#dfn-relay" class="internal xref">Oblivious Relay and Gateway
-Resources</a><span id="iref-oblivious-relay-and-gateway" class="iref"></span>.<a href="#section-2-2.3" class="pilcrow">¶</a>
+these requests to a particular <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-16" class="iref"></span>.  Oblivious HTTP
+uses a one-to-one mapping between <a href="#dfn-relay" class="internal xref">Oblivious Relay and Gateway Resources</a><span id="iref-oblivious-relay-and-gateway" class="iref"></span>; see
+<a href="#proxy-state" class="auto internal xref">Section 8.2</a> for more details.<a href="#section-2-2.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-2-3">This information allows the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-18" class="iref"></span> to make a request of a <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-19" class="iref"></span> with
@@ -2460,8 +2460,8 @@ relay for managing denial of service; see <a href="#dos" class="auto internal xr
 "https" scheme - <span class="bcp14">SHOULD NOT</span> be used if the Oblivious Gateway and Target
 Resources are not on the same origin.  If messages are forwarded between these
 resources without the protections afforded by HTTPS, they could be inspected or
-modified by a network attacker.  Note that two resources that share an
-origin do not guarantee that requests are not forwarded without protection.<a href="#section-6.3-5" class="pilcrow">¶</a></p>
+modified by a network attacker.  Note that a request could be forwarded without
+protection if the two resources share an origin.<a href="#section-6.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key-management">
