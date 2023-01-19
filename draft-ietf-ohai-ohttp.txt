@@ -1525,8 +1525,9 @@ Table of Contents
    Security considerations:  see Section 6.9
    Interoperability considerations:  N/A
    Published specification:  this specification
-   Applications that use this media type:  Oblivious HTTP and
-      applications that use Oblivious HTTP
+   Applications that use this media type:  This type identifies a key
+      configuration as used by Oblivious HTTP and applications that use
+      Oblivious HTTP.
    Fragment identifier considerations:  N/A
    Additional information:  Magic number(s):  N/A
                             Deprecated alias names for this type:  N/A
@@ -2030,9 +2031,10 @@ Index
             Section 6.1, Paragraph 1; Section 6.6, Paragraph 1;
             Section 6.6, Paragraph 1; Section 6.9, Paragraph 1;
             Section 7, Paragraph 1; Section 7, Paragraph 2; Section 9.1,
-            Paragraph 1; Section 9.5, Paragraph 2.4.1; Appendix A,
-            Paragraph 1; Appendix A, Paragraph 4; Appendix A, Paragraph
-            6; Appendix A, Paragraph 8
+            Paragraph 1; Section 9.1, Paragraph 2.18.1; Section 9.5,
+            Paragraph 2.4.1; Appendix A, Paragraph 1; Appendix A,
+            Paragraph 4; Appendix A, Paragraph 6; Appendix A, Paragraph
+            8
          key configurations  Section 3, Paragraph 2; Section 3,
             Paragraph 2; Section 3, Paragraph 3; Section 3.2, Paragraph
             1; Section 6.1, Paragraph 2

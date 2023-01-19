@@ -2903,7 +2903,8 @@ Oblivious HTTP.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-9.1-2.17">Applications that use this media type:</dt>
           <dd style="margin-left: 1.5em" id="section-9.1-2.18">
-            <p id="section-9.1-2.18.1">Oblivious HTTP and applications that use Oblivious HTTP<a href="#section-9.1-2.18.1" class="pilcrow">¶</a></p>
+            <p id="section-9.1-2.18.1">This type identifies a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-373" class="iref"></span> as used by Oblivious HTTP and
+applications that use Oblivious HTTP.<a href="#section-9.1-2.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-9.1-2.19">Fragment identifier considerations:</dt>
@@ -3225,7 +3226,7 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
           <dd class="break"></dd>
 <dt id="section-9.5-2.3">Title:</dt>
           <dd style="margin-left: 1.5em" id="section-9.5-2.4">
-            <p id="section-9.5-2.4.1">Oblivious HTTP <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-373" class="iref"></span> not acceptable<a href="#section-9.5-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-9.5-2.4.1">Oblivious HTTP <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-374" class="iref"></span> not acceptable<a href="#section-9.5-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-9.5-2.5">Recommended HTTP Status Code:</dt>
@@ -3392,14 +3393,14 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-complete-example-of-a-reque" class="section-name selfRef">Complete Example of a Request and Response</a>
       </h2>
 <p id="appendix-A-1">A single request and response exchange is shown here. Binary values (<a href="#key-configuration" class="internal xref">key
-configuration</a><span id="iref-key-configuration-374" class="iref"></span>, secret keys, the content of messages, and intermediate values)
+configuration</a><span id="iref-key-configuration-375" class="iref"></span>, secret keys, the content of messages, and intermediate values)
 are shown in hexadecimal. The request and response here are minimal; the purpose
 of this example is to show the cryptographic operations.  In this example, the
-<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-375" class="iref"></span> is configured with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-37" class="iref"></span> URI of
+<a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-376" class="iref"></span> is configured with the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-37" class="iref"></span> URI of
 <code>https://proxy.example.org/request.example.net/proxy</code>, and the proxy is
 configured to map requests to this URI to the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-37" class="iref"></span> URI
-<code>https://example.com/oblivious/request</code>. The <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-378" class="iref"></span> URI, i.e., the
-resource the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-379" class="iref"></span> ultimately wishes to query, is <code>https://example.com</code>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<code>https://example.com/oblivious/request</code>. The <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-379" class="iref"></span> URI, i.e., the
+resource the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-380" class="iref"></span> ultimately wishes to query, is <code>https://example.com</code>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">To begin the process, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-38" class="iref"></span> generates a key pair.
 In this example the server chooses DHKEM(X25519, HKDF-SHA256) and generates
 an X25519 key pair <span>[<a href="#X25519" class="cite xref">X25519</a>]</span>. The X25519 secret key is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
@@ -3408,7 +3409,7 @@ an X25519 key pair <span>[<a href="#X25519" class="cite xref">X25519</a>]</span>
 3c168975674b2fa8e465970b79c8dcf09f1c741626480bd4c6162fc5b6a98e1a
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-4">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-381" class="iref"></span> constructs a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-382" class="iref"></span> that includes the
+<p id="appendix-A-4">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-382" class="iref"></span> constructs a <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-383" class="iref"></span> that includes the
 corresponding public key as follows:<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-5">
 <pre>
@@ -3416,7 +3417,7 @@ corresponding public key as follows:<a href="#appendix-A-4" class="pilcrow">¶</
 79815500080001000100010003
 </pre><a href="#appendix-A-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-6">This <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-383" class="iref"></span> is somehow obtained by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-384" class="iref"></span>. Then when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-385" class="iref"></span>
+<p id="appendix-A-6">This <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-384" class="iref"></span> is somehow obtained by the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-385" class="iref"></span>. Then when a <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-386" class="iref"></span>
 wishes to send an HTTP GET request to the target <code>https://example.com</code>, it
 constructs the following binary HTTP message:<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-7">
@@ -3424,9 +3425,9 @@ constructs the following binary HTTP message:<a href="#appendix-A-6" class="pilc
 00034745540568747470730b6578616d706c652e636f6d012f
 </pre><a href="#appendix-A-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-8">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-386" class="iref"></span> then reads the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-387" class="iref"></span> <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-388" class="iref"></span> and
-selects a mutually supported KDF and AEAD. In this example, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-389" class="iref"></span> selects
-HKDF-SHA256 and AES-128-GCM. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-390" class="iref"></span> then generates an HPKE sending context
+<p id="appendix-A-8">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-387" class="iref"></span> then reads the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-388" class="iref"></span> <a href="#key-configuration" class="internal xref">key configuration</a><span id="iref-key-configuration-389" class="iref"></span> and
+selects a mutually supported KDF and AEAD. In this example, the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-390" class="iref"></span> selects
+HKDF-SHA256 and AES-128-GCM. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-391" class="iref"></span> then generates an HPKE sending context
 that uses the server public key. This context is constructed from the following
 ephemeral secret key:<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-9">
@@ -3447,7 +3448,7 @@ bc51d5e930bda26589890ac7032f70ad12e4ecb37abb1b65b1256c9c48999c73
 </pre><a href="#appendix-A-13" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-14">Applying the Seal operation from the HPKE context produces an encrypted
-message, allowing the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-391" class="iref"></span> to construct the following <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-392" class="iref"></span>:<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+message, allowing the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-392" class="iref"></span> to construct the following <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-393" class="iref"></span>:<a href="#appendix-A-14" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-15">
 <pre>
 010020000100014b28f881333e7c164ffc499ad9796f877f4e1051ee6d31bad1
@@ -3455,7 +3456,7 @@ message, allowing the <a href="#dfn-client" class="internal xref">Client</a><spa
 5e7d86b83dd440b2c0185204b4d63525
 </pre><a href="#appendix-A-15" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-16">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-393" class="iref"></span> then sends this to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-39" class="iref"></span> in a POST request,
+<p id="appendix-A-16">The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-394" class="iref"></span> then sends this to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-39" class="iref"></span> in a POST request,
 which might look like the following HTTP/1.1 request:<a href="#appendix-A-16" class="pilcrow">¶</a></p>
 <div class="lang-http-message sourcecode" id="appendix-A-17">
 <pre>
@@ -3467,7 +3468,7 @@ Content-Length: 78
 &lt;content is the Encapsulated Request above&gt;
 </pre><a href="#appendix-A-17" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-18">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-395" class="iref"></span> receives this request and forwards it to the
+<p id="appendix-A-18">The <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-396" class="iref"></span> receives this request and forwards it to the
 <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-39" class="iref"></span>, which might look like:<a href="#appendix-A-18" class="pilcrow">¶</a></p>
 <div class="lang-http-message sourcecode" id="appendix-A-19">
 <pre>
@@ -3479,11 +3480,11 @@ Content-Length: 78
 &lt;content is the Encapsulated Request above&gt;
 </pre><a href="#appendix-A-19" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-20">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-397" class="iref"></span> receives this request, selects the key it
+<p id="appendix-A-20">The <a href="#dfn-gateway" class="internal xref">Oblivious Gateway Resource</a><span id="iref-oblivious-gateway-resource-398" class="iref"></span> receives this request, selects the key it
 generated previously using the key identifier from the message, and decrypts the
 message. As this request is directed to the same server, the <a href="#dfn-gateway" class="internal xref">Oblivious Gateway
-Resource</a><span id="iref-oblivious-gateway-resource-398" class="iref"></span> does not need to initiate an HTTP request to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-399" class="iref"></span>. The
-request can be served directly by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-400" class="iref"></span>, which generates a minimal
+Resource</a><span id="iref-oblivious-gateway-resource-399" class="iref"></span> does not need to initiate an HTTP request to the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-400" class="iref"></span>. The
+request can be served directly by the <a href="#dfn-target" class="internal xref">Target Resource</a><span id="iref-target-resource-401" class="iref"></span>, which generates a minimal
 response (consisting of just a 200 status code) as follows:<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-21">
 <pre>
@@ -3496,7 +3497,7 @@ response (consisting of just a 200 status code) as follows:<a href="#appendix-A-
 62d87a6ba569ee81014c2641f52bea36
 </pre><a href="#appendix-A-23" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-24">The key derivation for the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-401" class="iref"></span> uses both the encapsulated KEM
+<p id="appendix-A-24">The key derivation for the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-402" class="iref"></span> uses both the encapsulated KEM
 key from the request and a randomly selected nonce. This produces a salt of:<a href="#appendix-A-24" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-25">
 <pre>
@@ -3526,7 +3527,7 @@ f6bf1aeb88d6df87007fa263
 </pre><a href="#appendix-A-31" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-32">The AEAD <code>Seal()</code> function is then used to encrypt the response, which is added
-to the randomized nonce value to produce the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-402" class="iref"></span>:<a href="#appendix-A-32" class="pilcrow">¶</a></p>
+to the randomized nonce value to produce the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-403" class="iref"></span>:<a href="#appendix-A-32" class="pilcrow">¶</a></p>
 <div class="alignLeft art-hex-dump art-text artwork" id="appendix-A-33">
 <pre>
 c789e7151fcba46158ca84b04464910d86f9013e404feea014e7be4a441f234f
@@ -3546,8 +3547,8 @@ Content-Length: 38
 </pre><a href="#appendix-A-35" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-36">The same response might then be generated by the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-40" class="iref"></span> which
-might change as little as the Date header. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-405" class="iref"></span> is then able to use the
-HPKE context it created and the nonce from the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-406" class="iref"></span> to
+might change as little as the Date header. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-406" class="iref"></span> is then able to use the
+HPKE context it created and the nonce from the <a href="#dfn-enc-res" class="internal xref">Encapsulated Response</a><span id="iref-encapsulated-response-407" class="iref"></span> to
 construct the AEAD key and nonce and decrypt the response.<a href="#appendix-A-36" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3843,6 +3844,7 @@ construct the AEAD key and nonce and decrypt the response.<a href="#appendix-A-3
 <a href="#section-7-1" class="auto internal xref">Section 7, Paragraph 1</a>; 
 <a href="#section-7-2" class="auto internal xref">Section 7, Paragraph 2</a>; 
 <a href="#section-9.1-1" class="auto internal xref">Section 9.1, Paragraph 1</a>; 
+<a href="#section-9.1-2.18.1" class="auto internal xref">Section 9.1, Paragraph 2.18.1</a>; 
 <a href="#section-9.5-2.4.1" class="auto internal xref">Section 9.5, Paragraph 2.4.1</a>; 
 <a href="#appendix-A-1" class="auto internal xref">Appendix A, Paragraph 1</a>; 
 <a href="#appendix-A-4" class="auto internal xref">Appendix A, Paragraph 4</a>; 
