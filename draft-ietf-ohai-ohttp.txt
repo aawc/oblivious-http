@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 23 July 2023                                         Cloudflare
-                                                         19 January 2023
+Expires: 24 July 2023                                         Cloudflare
+                                                         20 January 2023
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 July 2023.
+   This Internet-Draft will expire on 24 July 2023.
 
 Copyright Notice
 
@@ -1018,9 +1018,8 @@ Table of Contents
    Secondly, generic implementations are often configured to augment
    requests with information about the Client, such as the Via field or
    the Forwarded field [FORWARDED].  A relay MUST NOT add information
-   when forwarding requests that might be used to identify Clients, with
-   the exception of information that a Client is aware of; see
-   Section 6.2.1.
+   when forwarding requests that might be used to identify Clients,
+   except for information that a Client is aware of; see Section 6.2.1.
 
    Finally, a relay can also generate responses, though it is assumed to
    not be able to examine the content of a request (other than to
@@ -1072,7 +1071,7 @@ Table of Contents
    prevent having the large volume of requests being classified as an
    attack by the server.
 
-   If a gateway accepts a larger volume of requests from a relay, it
+   If a server accepts a larger volume of requests from a relay, it
    needs to trust that the relay does not allow abusive levels of
    request volumes from Clients.  That is, if a server allows requests
    from the relay to be exempt from rate limits, the server might want
@@ -1144,7 +1143,7 @@ Table of Contents
    that between server and relay for managing denial of service; see
    Section 6.2.2.
 
-   Nonsecure requests - such as those with the "http" scheme as opposed
+   Non-secure requests - such as those with the "http" scheme as opposed
    to the "https" scheme - SHOULD NOT be used if the Oblivious Gateway
    and Target Resources are not on the same origin.  If messages are
    forwarded between these resources without the protections afforded by
@@ -1177,7 +1176,7 @@ Table of Contents
 
 6.5.  Replay Attacks
 
-   A gateway is responsible for either rejecting replayed requests or
+   A server is responsible for either rejecting replayed requests or
    ensuring that the effect of replays does not adversely affect Clients
    or resources.
 
@@ -1426,8 +1425,8 @@ Table of Contents
    In practice, it is infeasible to reduce the number of active
    configurations to one.  Enabling diversity in choice of Oblivious
    Relay Resource naturally increases the number of active
-   configurations.  A small number of configurations might need to be
-   active to allow for key rotation and server maintenance.
+   configurations.  More than one configuration might need to be active
+   to allow for key rotation and server maintenance.
 
    Client privacy depends on having each configuration used by many
    other Clients.  It is critical to prevent the use of unique Client
@@ -1796,7 +1795,7 @@ Appendix A.  Complete Example of a Request and Response
    01002031e1f05a740102115220e9af918f738674aec95f54db6e04eb705aae8e
    79815500080001000100010003
 
-   This key configuration is somehow obtained by the Client.  Then when
+   This key configuration is somehow obtained by the Client.  Then, when
    a Client wishes to send an HTTP GET request to the target
    https://example.com, it constructs the following binary HTTP message:
 
