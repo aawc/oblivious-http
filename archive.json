@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-19T00:34:08.651671+00:00",
+  "timestamp": "2023-01-22T00:35:33.621067+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -2795,7 +2795,7 @@
       "id": "I_kwDOE6fLGM5bnqgk",
       "title": "Media type registrations",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/243",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2805,8 +2805,8 @@
       ],
       "body": "_Comment by @paulwouters_\n\nPlease address the media type registration issues raised in the secdir review raised by Alexey Melnikov :\n\nhttps://datatracker.ietf.org/doc/review-ietf-ohai-ohttp-05-secdir-lc-melnikov-2022-12-08/\n\nAdditionally, the registrations instruct IANA to use the authors email. Should this instead point to the OHAI WG, the IESG or IETF instead?\n\n",
       "createdAt": "2023-01-17T22:37:06Z",
-      "updatedAt": "2023-01-17T22:37:07Z",
-      "closedAt": null,
+      "updatedAt": "2023-01-19T15:05:33Z",
+      "closedAt": "2023-01-19T15:05:33Z",
       "comments": []
     },
     {
@@ -16217,102 +16217,172 @@
       "id": "PR_kwDOE6fLGM5Hf_99",
       "title": "Appease Lars Eggert's automated nit finder",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/240",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-01-16T22:52:01Z",
-      "updatedAt": "2023-01-16T22:52:01Z",
+      "updatedAt": "2023-01-20T02:50:23Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
-      "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
+      "baseRefOid": "d1d9e94662ba9662058bd13d7853a9b26bed9373",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "lars",
-      "headRefOid": "f4bc5e9ab182106b24668fcebff4de0745ac1cf5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "b78fdc5ede639d77055c6c599880ae820bade739",
+      "closedAt": "2023-01-20T02:50:22Z",
+      "mergedAt": "2023-01-20T02:50:22Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "aa37d9152240714fbd3b1c35767f20ac7d72b170"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LOGDZ",
+          "commit": {
+            "abbreviatedOid": "f4bc5e9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-19T15:02:59Z",
+          "updatedAt": "2023-01-19T15:02:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5LOI-e",
+          "commit": {
+            "abbreviatedOid": "f4bc5e9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM pending suggestion",
+          "createdAt": "2023-01-19T15:09:09Z",
+          "updatedAt": "2023-01-19T15:09:16Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\nNon-secure requests - such as those with the \"http\" scheme as opposed to the\r\n```\r\n\r\nThis feels better to me, so I'd prefer to stick with non-secure.",
+              "createdAt": "2023-01-19T15:09:09Z",
+              "updatedAt": "2023-01-19T15:09:17Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 241,
       "id": "PR_kwDOE6fLGM5HlHa6",
       "title": "Template update",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/241",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Automated updates for all the CI and build stuff",
       "createdAt": "2023-01-17T22:22:44Z",
-      "updatedAt": "2023-01-17T22:22:44Z",
+      "updatedAt": "2023-01-19T15:05:04Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "template-update",
       "headRefOid": "a066c21b5bc1bbb63eda9b14defc6a5120978259",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-01-19T15:05:02Z",
+      "mergedAt": "2023-01-19T15:05:02Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "767073612b8cc6cd66174e450ee7710ac73f7dba"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LOG-K",
+          "commit": {
+            "abbreviatedOid": "a066c21"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-19T15:04:56Z",
+          "updatedAt": "2023-01-19T15:04:56Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 252,
       "id": "PR_kwDOE6fLGM5HlQu9",
       "title": "Include key configuration description in the registration",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/252",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #243.",
       "createdAt": "2023-01-17T23:16:34Z",
-      "updatedAt": "2023-01-17T23:16:34Z",
+      "updatedAt": "2023-01-19T15:05:32Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "media-type-fixup",
       "headRefOid": "6aa468ba8538796f5de0f628346faab4b93fd3d1",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-01-19T15:05:31Z",
+      "mergedAt": "2023-01-19T15:05:31Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "eae7e85110ea07989f05cf3fb439cbd44a62b684"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LOHNu",
+          "commit": {
+            "abbreviatedOid": "6aa468b"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-19T15:05:25Z",
+          "updatedAt": "2023-01-19T15:05:25Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 253,
       "id": "PR_kwDOE6fLGM5IE5K_",
       "title": "Some tweaks from Martin Duke's review",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/253",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "YES rather than DISCUSS is good.  Good feedback is gooder.",
       "createdAt": "2023-01-18T22:56:49Z",
-      "updatedAt": "2023-01-18T23:30:58Z",
+      "updatedAt": "2023-01-19T15:06:08Z",
       "baseRepository": "ietf-wg-ohai/oblivious-http",
       "baseRefName": "main",
       "baseRefOid": "01e5ab6db0778ed8769963f6104afe8ab988802a",
       "headRepository": "ietf-wg-ohai/oblivious-http",
       "headRefName": "duke",
-      "headRefOid": "a0044ec6bb3e84c90661345df256e06e157aade6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "7223132e5dec0650d165b6c6a1adddcee1cac3a5",
+      "closedAt": "2023-01-19T15:06:07Z",
+      "mergedAt": "2023-01-19T15:06:07Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "d1d9e94662ba9662058bd13d7853a9b26bed9373"
+      },
       "comments": [],
       "reviews": [
         {
@@ -16321,7 +16391,7 @@
             "abbreviatedOid": "a0044ec"
           },
           "author": "martinduke",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "LGTM, thanks",
           "createdAt": "2023-01-18T23:30:46Z",
@@ -16332,6 +16402,74 @@
               "body": "```suggestion\r\nprotection if the two resources share an origin.\r\n```\r\nI think the word \"even\" is out of place given that the first sentence implies this consequence",
               "createdAt": "2023-01-18T23:30:46Z",
               "updatedAt": "2023-01-18T23:30:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5LOHfv",
+          "commit": {
+            "abbreviatedOid": "7223132"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-19T15:05:59Z",
+          "updatedAt": "2023-01-19T15:05:59Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 254,
+      "id": "PR_kwDOE6fLGM5II1hd",
+      "title": "\u00c9ric comments",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/254",
+      "state": "CLOSED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-19T15:36:21Z",
+      "updatedAt": "2023-01-19T22:52:17Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "d1d9e94662ba9662058bd13d7853a9b26bed9373",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "caw/more-specific-server",
+      "headRefOid": "576a0c02e4531c9957015e70294632138f14d99e",
+      "closedAt": "2023-01-19T22:51:48Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@martinthomson I'm not particularly interested in a bike shed so I'm just going to close this.",
+          "createdAt": "2023-01-19T22:52:16Z",
+          "updatedAt": "2023-01-19T22:52:16Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LQ95S",
+          "commit": {
+            "abbreviatedOid": "576a0c0"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-01-19T22:38:28Z",
+          "updatedAt": "2023-01-19T22:40:41Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I think you should change all instances here, rather than just the first.  Probably the next paragraph too.  \r\n\r\n\r\nBut ... we say above \"servers that operate the Oblivious Gateway Resource\", which I think is crucial here.  This uses \"server\" because it is about protecting the server infrastructure, not a specific resource.  So I think we should revert this one.",
+              "createdAt": "2023-01-19T22:38:28Z",
+              "updatedAt": "2023-01-19T22:40:41Z"
             }
           ]
         }
