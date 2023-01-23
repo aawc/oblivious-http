@@ -2311,11 +2311,11 @@ relay.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
 <p id="section-6.1-5">The request the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-228" class="iref"></span> sends to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-229" class="iref"></span> only requires
 minimal information; see <a href="#http-usage" class="auto internal xref">Section 5</a>. The request that carries the
 <a href="#dfn-enc-req" class="internal xref">Encapsulated Request</a><span id="iref-encapsulated-request-230" class="iref"></span> and is sent to the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-23" class="iref"></span> <span class="bcp14">MUST NOT</span>
-include identifying information unless the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-232" class="iref"></span> ensures that this information
-is removed by the relay. A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-233" class="iref"></span> <span class="bcp14">MAY</span> include information only for the
-<a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-234" class="iref"></span> in header fields identified by the Connection header
-field if it trusts the relay to remove these as required by Section 7.6.1 of
-<span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-235" class="iref"></span> needs to trust that the relay does not replicate the
+include identifying information unless the <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-232" class="iref"></span> can trust that this
+information is removed by the relay. A <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-233" class="iref"></span> <span class="bcp14">MAY</span> include information only for
+the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-234" class="iref"></span> in header fields identified by the Connection
+header field if it trusts the relay to remove these as required by Section 7.6.1
+of <span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. The <a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-235" class="iref"></span> needs to trust that the relay does not replicate the
 source addressing information in the request it forwards.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 <p id="section-6.1-6"><a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-236" class="iref"></span> rely on the <a href="#dfn-relay" class="internal xref">Oblivious Relay Resource</a><span id="iref-oblivious-relay-resource-237" class="iref"></span> to forward Encapsulated Requests
 and responses. However, the relay can only refuse to forward messages, it
