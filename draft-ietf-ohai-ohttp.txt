@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 24 July 2023                                         Cloudflare
-                                                         20 January 2023
+Expires: 27 July 2023                                         Cloudflare
+                                                         23 January 2023
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2023.
+   This Internet-Draft will expire on 27 July 2023.
 
 Copyright Notice
 
@@ -140,8 +140,8 @@ Table of Contents
 
    Client-configured HTTP proxies can provide a degree of protection
    against IP address tracking, and systems like virtual private
-   networks and the Tor network [Dingledine2004] provide additional
-   options for clients.
+   networks and the Tor network [DMS2004] provide additional options for
+   clients.
 
    However, even when IP address tracking is mitigated using one of
    these techniques, each request needs to be on a completely new TLS
@@ -272,8 +272,8 @@ Table of Contents
    with possible stateful treatment of requests are sufficiently large
    that the cost of deploying this protocol can be justified.  Oblivious
    HTTP is simpler and less costly than more robust systems, like Prio
-   ([PRIO]) or Tor ([Dingledine2004]), which can provide stronger
-   guarantees at higher operational costs.
+   ([PRIO]) or Tor ([DMS2004]), which can provide stronger guarantees at
+   higher operational costs.
 
    Oblivious HTTP is more costly than a direct connection to a server.
    Some costs, like those involved with connection setup, can be
@@ -1460,8 +1460,8 @@ Table of Contents
    requests relative to a simple HTTP request-response exchange.
    Deploying relay services that are on path between Clients and servers
    avoids adding significant additional delay due to network topology.
-   A study of a similar system [ODoH] found that deploying proxies close
-   to servers was most effective in minimizing additional latency.
+   A study of a similar system [ODOH-PETS] found that deploying proxies
+   close to servers was most effective in minimizing additional latency.
 
 8.2.  Resource Mappings
 
@@ -1692,8 +1692,7 @@ Table of Contents
               DOI 10.17487/RFC6265, April 2011,
               <https://www.rfc-editor.org/rfc/rfc6265>.
 
-   [Dingledine2004]
-              Dingledine, R., Mathewson, N., and P. Syverson, "Tor: The
+   [DMS2004]  Dingledine, R., Mathewson, N., and P. Syverson, "Tor: The
               Second-Generation Onion Router", August 2004,
               <https://svn.torproject.org/svn/projects/design-paper/tor-
               design.html>.
@@ -1724,17 +1723,18 @@ Table of Contents
               Specification", RFC 5905, DOI 10.17487/RFC5905, June 2010,
               <https://www.rfc-editor.org/rfc/rfc5905>.
 
-   [ODoH]     Singanamalla, S., Chunhapanya, S., Vavrusa, M., Verma, T.,
+   [ODOH]     Kinnear, E., McManus, P., Pauly, T., Verma, T., and C.A.
+              Wood, "Oblivious DNS over HTTPS", RFC 9230,
+              DOI 10.17487/RFC9230, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9230>.
+
+   [ODOH-PETS]
+              Singanamalla, S., Chunhapanya, S., Vavrusa, M., Verma, T.,
               Wu, P., Fayed, M., Heimerl, K., Sullivan, N., and C. A.
               Wood, "Oblivious DNS over HTTPS (ODoH): A Practical
               Privacy Enhancement to DNS", 7 January 2021,
               <https://www.petsymposium.org/2021/files/papers/issue4/
               popets-2021-0085.pdf>.
-
-   [ODOH]     Kinnear, E., McManus, P., Pauly, T., Verma, T., and C.A.
-              Wood, "Oblivious DNS over HTTPS", RFC 9230,
-              DOI 10.17487/RFC9230, June 2022,
-              <https://www.rfc-editor.org/rfc/rfc9230>.
 
    [OHTTP-ANALYSIS]
               Hoyland, J., "Tamarin Model of Oblivious HTTP", 23 August

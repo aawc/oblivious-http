@@ -1044,7 +1044,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thomson &amp; Wood</td>
-<td class="center">Expires 24 July 2023</td>
+<td class="center">Expires 27 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1057,12 +1057,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ohai-ohttp-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-01-20" class="published">20 January 2023</time>
+<time datetime="2023-01-23" class="published">23 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-07-24">24 July 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-27">27 July 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1119,7 +1119,7 @@ from the same client, while placing only limited trust in the nodes used to forw
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1338,9 +1338,9 @@ information that the client has only limited control over.<a href="#section-1-1"
 made from it can be correlated over time to assemble a profile of client behavior. In
 particular, connection reuse improves performance, but provides servers with
 the ability to correlate requests that share a connection.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3"><a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-1" class="iref"></span>-configured HTTP proxies can provide a degree of protection against IP address
-tracking, and systems like virtual private networks and the Tor network
-<span>[<a href="#Dingledine2004" class="cite xref">Dingledine2004</a>]</span> provide additional options for clients.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3"><a href="#dfn-client" class="internal xref">Client</a><span id="iref-client-1" class="iref"></span>-configured HTTP proxies can provide a degree of protection against IP
+address tracking, and systems like virtual private networks and the Tor network
+<span>[<a href="#DMS2004" class="cite xref">DMS2004</a>]</span> provide additional options for clients.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">However, even when IP address tracking is mitigated using one of these techniques, each request
 needs to be on a completely new TLS connection to avoid the connection itself being used
 to correlate behavior. This imposes considerable performance and efficiency overheads, due
@@ -1511,11 +1511,10 @@ alternative services (<span>[<a href="#RFC7838" class="cite xref">RFC7838</a>]</
 at the transport layer, which is only useful for an application
 that does not carry state between requests.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">Oblivious HTTP is primarily useful where privacy risks associated with possible
-stateful treatment of requests are sufficiently large that the cost of
-deploying this protocol can be justified.  Oblivious HTTP is simpler and less
-costly than more robust systems, like Prio (<span>[<a href="#PRIO" class="cite xref">PRIO</a>]</span>) or Tor
-(<span>[<a href="#Dingledine2004" class="cite xref">Dingledine2004</a>]</span>), which can provide stronger guarantees at higher
-operational costs.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+stateful treatment of requests are sufficiently large that the cost of deploying
+this protocol can be justified.  Oblivious HTTP is simpler and less costly than
+more robust systems, like Prio (<span>[<a href="#PRIO" class="cite xref">PRIO</a>]</span>) or Tor (<span>[<a href="#DMS2004" class="cite xref">DMS2004</a>]</span>), which can
+provide stronger guarantees at higher operational costs.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.1-3">Oblivious HTTP is more costly than a direct connection to a server.  Some costs,
 like those involved with connection setup, can be amortized, but there are
 several ways in which Oblivious HTTP is more expensive than a direct request:<a href="#section-2.1-3" class="pilcrow">¶</a></p>
@@ -2794,11 +2793,12 @@ used to build a stateful system when a <a href="#dfn-client" class="internal xre
         <h3 id="name-performance-overhead">
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-performance-overhead" class="section-name selfRef">Performance Overhead</a>
         </h3>
-<p id="section-8.1-1">Using Oblivious HTTP adds both cryptographic overhead and latency to requests relative to
-a simple HTTP request-response exchange.  Deploying relay services that are on
-path between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-357" class="iref"></span> and servers avoids adding significant additional delay due
-to network topology.  A study of a similar system <span>[<a href="#ODoH" class="cite xref">ODoH</a>]</span> found that deploying
-proxies close to servers was most effective in minimizing additional latency.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-1">Using Oblivious HTTP adds both cryptographic overhead and latency to requests
+relative to a simple HTTP request-response exchange.  Deploying relay services
+that are on path between <a href="#dfn-client" class="internal xref">Clients</a><span id="iref-clients-357" class="iref"></span> and servers avoids adding significant
+additional delay due to network topology.  A study of a similar system
+<span>[<a href="#ODOH-PETS" class="cite xref">ODOH-PETS</a>]</span> found that deploying proxies close to servers was most effective
+in minimizing additional latency.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="proxy-state">
@@ -3316,7 +3316,7 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
         <dd>
 <span class="refAuthor">Barth, A.</span>, <span class="refTitle">"HTTP State Management Mechanism"</span>, <span class="seriesInfo">RFC 6265</span>, <span class="seriesInfo">DOI 10.17487/RFC6265</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6265">https://www.rfc-editor.org/rfc/rfc6265</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="Dingledine2004">[Dingledine2004]</dt>
+<dt id="DMS2004">[DMS2004]</dt>
         <dd>
 <span class="refAuthor">Dingledine, R.</span>, <span class="refAuthor">Mathewson, N.</span>, and <span class="refAuthor">P. Syverson</span>, <span class="refTitle">"Tor: The Second-Generation Onion Router"</span>, <time datetime="2004-08" class="refDate">August 2004</time>, <span>&lt;<a href="https://svn.torproject.org/svn/projects/design-paper/tor-design.html">https://svn.torproject.org/svn/projects/design-paper/tor-design.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
@@ -3344,13 +3344,13 @@ established by <span>[<a href="#PROBLEM" class="cite xref">PROBLEM</a>]</span>.<
         <dd>
 <span class="refAuthor">Mills, D.</span>, <span class="refAuthor">Martin, J., Ed.</span>, <span class="refAuthor">Burbank, J.</span>, and <span class="refAuthor">W. Kasch</span>, <span class="refTitle">"Network Time Protocol Version 4: Protocol and Algorithms Specification"</span>, <span class="seriesInfo">RFC 5905</span>, <span class="seriesInfo">DOI 10.17487/RFC5905</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5905">https://www.rfc-editor.org/rfc/rfc5905</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="ODoH">[ODoH]</dt>
-        <dd>
-<span class="refAuthor">Singanamalla, S.</span>, <span class="refAuthor">Chunhapanya, S.</span>, <span class="refAuthor">Vavrusa, M.</span>, <span class="refAuthor">Verma, T.</span>, <span class="refAuthor">Wu, P.</span>, <span class="refAuthor">Fayed, M.</span>, <span class="refAuthor">Heimerl, K.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Oblivious DNS over HTTPS (ODoH): A Practical Privacy Enhancement to DNS"</span>, <time datetime="2021-01-07" class="refDate">7 January 2021</time>, <span>&lt;<a href="https://www.petsymposium.org/2021/files/papers/issue4/popets-2021-0085.pdf">https://www.petsymposium.org/2021/files/papers/issue4/popets-2021-0085.pdf</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="ODOH">[ODOH]</dt>
         <dd>
 <span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">McManus, P.</span>, <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Verma, T.</span>, and <span class="refAuthor">C.A. Wood</span>, <span class="refTitle">"Oblivious DNS over HTTPS"</span>, <span class="seriesInfo">RFC 9230</span>, <span class="seriesInfo">DOI 10.17487/RFC9230</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9230">https://www.rfc-editor.org/rfc/rfc9230</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ODOH-PETS">[ODOH-PETS]</dt>
+        <dd>
+<span class="refAuthor">Singanamalla, S.</span>, <span class="refAuthor">Chunhapanya, S.</span>, <span class="refAuthor">Vavrusa, M.</span>, <span class="refAuthor">Verma, T.</span>, <span class="refAuthor">Wu, P.</span>, <span class="refAuthor">Fayed, M.</span>, <span class="refAuthor">Heimerl, K.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Oblivious DNS over HTTPS (ODoH): A Practical Privacy Enhancement to DNS"</span>, <time datetime="2021-01-07" class="refDate">7 January 2021</time>, <span>&lt;<a href="https://www.petsymposium.org/2021/files/papers/issue4/popets-2021-0085.pdf">https://www.petsymposium.org/2021/files/papers/issue4/popets-2021-0085.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OHTTP-ANALYSIS">[OHTTP-ANALYSIS]</dt>
         <dd>
