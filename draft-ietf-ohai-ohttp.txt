@@ -5,8 +5,8 @@
 Oblivious HTTP Application Intermediation                     M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              C. A. Wood
-Expires: 27 July 2023                                         Cloudflare
-                                                         23 January 2023
+Expires: 28 July 2023                                         Cloudflare
+                                                         24 January 2023
 
 
                              Oblivious HTTP
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 July 2023.
+   This Internet-Draft will expire on 28 July 2023.
 
 Copyright Notice
 
@@ -1114,12 +1114,12 @@ Table of Contents
    privileged position allows for richer feature extraction from
    encrypted data, which might improve traffic analysis.
 
-   Clients can use padding to reduce the effectiveness of traffic
-   analysis.  Padding is a capability provided by binary HTTP messages;
-   see Section 3.8 of [BINARY].  If the encapsulation method described
-   in this document is used to protect a different message type (see
-   Section 4.6), that message format might need to include padding
-   support.
+   Clients and Oblivious Gateway Resources can use padding to reduce the
+   effectiveness of traffic analysis.  Padding is a capability provided
+   by binary HTTP messages; see Section 3.8 of [BINARY].  If the
+   encapsulation method described in this document is used to protect a
+   different message type (see Section 4.6), that message format might
+   need to include padding support.
 
 6.3.  Server Responsibilities
 
@@ -2083,9 +2083,10 @@ Index
             Appendix A, Paragraph 20; Appendix A, Paragraph 34
          Oblivious Gateway Resources  Section 4.4, Paragraph 1;
             Section 6, Paragraph 9, Item 1; Section 6, Paragraph 9, Item
-            1; Section 6.5.1, Paragraph 4; Section 6.5.1, Paragraph 5;
-            Section 6.5.2, Paragraph 8; Section 8.2, Paragraph 1;
-            Section 8.2, Paragraph 1; Section 8.2, Paragraph 2
+            1; Section 6.2.3, Paragraph 6; Section 6.5.1, Paragraph 4;
+            Section 6.5.1, Paragraph 5; Section 6.5.2, Paragraph 8;
+            Section 8.2, Paragraph 1; Section 8.2, Paragraph 1;
+            Section 8.2, Paragraph 2
          Oblivious Relay and Gateway Resources  Section 2, Paragraph 2,
             Item 3; Section 7, Paragraph 2
          Oblivious Relay Resource  Section 1, Paragraph 5; Section 1,
