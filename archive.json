@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-22T00:35:33.621067+00:00",
+  "timestamp": "2023-01-24T00:34:14.482266+00:00",
   "repo": "ietf-wg-ohai/oblivious-http",
   "labels": [
     {
@@ -2860,7 +2860,7 @@
       "id": "I_kwDOE6fLGM5bnqiU",
       "title": "Dingledine2004",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/246",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2870,9 +2870,17 @@
       ],
       "body": "_Comment by @paulwouters_\n\nUsing \"[Dingledine2004]\" as description identifier for TOR is a bit weird :P\n\n",
       "createdAt": "2023-01-17T22:37:12Z",
-      "updatedAt": "2023-01-17T22:37:13Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-01-23T01:27:32Z",
+      "closedAt": "2023-01-23T01:27:32Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is entirely appropriate given the nature of the reference.  This is a reference to a paper, not a specification for Tor, so using \"[TOR]\" could be misleading.\r\n\r\nIt's possible that we could cite a specification, but it's really hard to pin that down properly.  https://torproject.gitlab.io/torspec/tor-spec.html seems right, but it doesn't bear a date and appears to be a rendering from https://gitweb.torproject.org/torspec.git/plain/tor-spec.txt which is in turn just a snapshot (currently https://gitweb.torproject.org/torspec.git/tree/tor-spec.txt?id=f16803f6f93680f41f72bae29cf9dbef3962f94d).  Aside from referential stability, the specification is less of a useful reference as it says less about what Tor is and gets buried in detail.\r\n\r\nI'm inclined to leave as-is, or switch to \"[DMS2004]\" to reference all author's names.",
+          "createdAt": "2023-01-22T23:25:41Z",
+          "updatedAt": "2023-01-22T23:25:41Z"
+        }
+      ]
     },
     {
       "number": 247,
@@ -2889,9 +2897,17 @@
       ],
       "body": "_Comment by @paulwouters_\n\nLinks like  Oblivious Gateway Resource and clients don't have [brackets] making it appear (to me) that these are links leaving this document, when in fact these are links within the documents. Use [brackets] to denote that, or use eg: Clients [Section X]  ?\n\n",
       "createdAt": "2023-01-17T22:37:14Z",
-      "updatedAt": "2023-01-17T22:37:15Z",
+      "updatedAt": "2023-01-22T23:26:56Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See #244.  I don't think that would improve readability.\r\n\r\nThe new version of kramdown-rfc will allow for restyling of these links so that they are less prominent.",
+          "createdAt": "2023-01-22T23:26:56Z",
+          "updatedAt": "2023-01-22T23:26:56Z"
+        }
+      ]
     },
     {
       "number": 248,
@@ -2908,16 +2924,24 @@
       ],
       "body": "_Comment by @paulwouters_\n\n\"See Figure 3\" points to the immediately following figure 3. I think the text can be removed to prevent the user from going to look elsewhere :P\n\n",
       "createdAt": "2023-01-17T22:37:16Z",
-      "updatedAt": "2023-01-17T22:37:17Z",
+      "updatedAt": "2023-01-22T23:28:32Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I was taught to always refer to figures from prose.  We could s/./:/, I guess.",
+          "createdAt": "2023-01-22T23:28:31Z",
+          "updatedAt": "2023-01-22T23:28:31Z"
+        }
+      ]
     },
     {
       "number": 249,
       "id": "I_kwDOE6fLGM5bnqjt",
       "title": "Section 6.1",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/249",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2925,11 +2949,19 @@
         "comment",
         "review"
       ],
-      "body": "_Comment by @paulwouters_\n\n~~~ \nThe request that carries the Encapsulated Request and is sent to the Oblivious\nRelay Resource MUST NOT include identifying information unless the Client\nensures that this information is removed by the relay. ``` How could a client\n\"ensure\" that? Couldn't this at best be \"unless the Client can trust that [...]\"\n\n### [Section 6.2](https://www.ietf.org/archive/id/draft-ietf-ohai-ohttp-06.html#section-6.2)\n~~~\nso delays SHOULD only be added with the consent - or at least awareness - of Clients ``` How would that work? How would the client consent? Or show awareness? Or become aware ?\n\n~~~ \nClients can use padding\n~~~\nCan't the Target Resource also not use padding in the response? But I guess they wouldn't know about being connected to obliviously or regularly, unless the Client tells the server within its encrypted payload request? Eg if a regular https server sees a certain field, it would/could know to do some padding?  (one would assume ohttp relays are fairly well known on static IPs anyway, so the Client wouldn't be revealing much if it could ask the http server itself for random padding\n\n",
+      "body": "_Comment by @paulwouters_\r\n\r\n```\r\nThe request that carries the Encapsulated Request and is sent to the Oblivious\r\nRelay Resource MUST NOT include identifying information unless the Client\r\nensures that this information is removed by the relay.\r\n```\r\n\r\nHow could a client\r\n\"ensure\" that? Couldn't this at best be \"unless the Client can trust that [...]\"",
       "createdAt": "2023-01-17T22:37:18Z",
-      "updatedAt": "2023-01-17T22:37:19Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-01-23T04:53:42Z",
+      "closedAt": "2023-01-23T04:53:42Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "(OK, edited this so that it only includes one comment, not two mangled together.)\r\n\r\nThe answer here is down to trust, so this comment is right.  Will fix.",
+          "createdAt": "2023-01-22T23:32:45Z",
+          "updatedAt": "2023-01-22T23:32:45Z"
+        }
+      ]
     },
     {
       "number": 250,
@@ -2955,7 +2987,7 @@
       "id": "I_kwDOE6fLGM5bnqkg",
       "title": "similar reference names",
       "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/251",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2965,9 +2997,50 @@
       ],
       "body": "_Comment by @paulwouters_\n\nODOH and ODoH seems very similar and likely to cause confusion. Rename one?\n\n",
       "createdAt": "2023-01-17T22:37:22Z",
-      "updatedAt": "2023-01-17T22:37:23Z",
-      "closedAt": null,
+      "updatedAt": "2023-01-23T01:27:33Z",
+      "closedAt": "2023-01-23T01:27:32Z",
       "comments": []
+    },
+    {
+      "number": 255,
+      "id": "I_kwDOE6fLGM5chrHS",
+      "title": "Section 6.2",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/issues/255",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment",
+        "review"
+      ],
+      "body": "_Comment by @paulwouters_\r\n\r\n```\r\nso delays SHOULD only be added with the consent - or at least awareness - of Clients\r\n```\r\nHow would that work? How would the client consent? Or show awareness? Or become aware ?\r\n\r\n~~~ \r\nClients can use padding\r\n~~~\r\nCan't the Target Resource also not use padding in the response? But I guess they wouldn't know about being connected to obliviously or regularly, unless the Client tells the server within its encrypted payload request? Eg if a regular https server sees a certain field, it would/could know to do some padding?  (one would assume ohttp relays are fairly well known on static IPs anyway, so the Client wouldn't be revealing much if it could ask the http server itself for random padding",
+      "createdAt": "2023-01-22T23:31:36Z",
+      "updatedAt": "2023-01-24T00:19:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are two questions here, delays and padding.  Both are areas in which the specification is not prescriptive.  This is deliberate, mostly because these are areas where a single strategy would be inadvisable.  Application needs vary.\r\n\r\n> How would [delays] work?\r\n\r\nWell, in any number of ways.\r\n\r\nA telemetry submission service (see also STAR) might provide greater privacy benefit from batching requests that are forwarded from the client to gateway.  In that model, the client might tolerate arbitrary delay (see https://datatracker.ietf.org/doc/draft-wood-ohai-unreliable-ohttp/ for example).  In other cases, the client still cares about a response, but it might be willing to hang around for some time (10s, 30s) for an answer.\r\n\r\n> How would the client consent? Or show awareness?  Or become aware ?\r\n\r\nHow the client consents to delays can also vary. It could be part of terms of service that are negotiated when the use of the relay is arranged.  That sort of arrangement might cover all these points.\r\n\r\nIf you are looking for protocol mechanisms, we've discussed explicit signaling as an extension.  A client could use something like `Prefer: wait=10` (see [RFC 7240](https://www.rfc-editor.org/rfc/rfc7240#section-4.3)) to indicate that within the protocol[^1].  An explicit signal demonstrates awareness for those cases where the delay might be conditional.\r\n\r\n[^1]: Note also that this sort of signaling might imply a need for the relay to remove that field, though perhaps all clients add it and so it doesn't reveal anything if forwarded.\r\n\r\n> Can't the Target Resource also not use padding in the response? \r\n\r\nYes.  Section 6.3 references back to this text, but it's worth mentioning the gateway too.\r\n\r\nThere are many things that might feed into a padding strategy.  Sometimes this is something the gateway will know because they are configured for a particular application and can look at the payload to determine how to best pad.  Clients can probably signal (within encapsulation) what they might prefer, if that would help.  Again, it's too application-specific to say much of use.\r\n\r\n",
+          "createdAt": "2023-01-22T23:50:14Z",
+          "updatedAt": "2023-01-22T23:50:14Z"
+        },
+        {
+          "author": "pwouters",
+          "authorAssociation": "NONE",
+          "body": "Martin,\r\n\r\nThe comment it isn\u2019t my comment.\r\n\r\nMaybe there  is another Pwouters in github\r\n\r\nKind regards \r\n\r\nPaul\r\n\r\nVerstuurd vanaf mijn iPad",
+          "createdAt": "2023-01-23T07:17:58Z",
+          "updatedAt": "2023-01-24T00:19:26Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "My apologies.  I definitely got the wrong person there.",
+          "createdAt": "2023-01-24T00:19:16Z",
+          "updatedAt": "2023-01-24T00:19:33Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -16472,6 +16545,199 @@
               "updatedAt": "2023-01-19T22:40:41Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 256,
+      "id": "PR_kwDOE6fLGM5ISgKq",
+      "title": "Update reference labels",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/256",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Dingledine2004 -> DMS2004\r\nODoH -> ODOH-PETS\r\n\r\nCloses #246.\r\nCloses #251.",
+      "createdAt": "2023-01-23T01:25:15Z",
+      "updatedAt": "2023-01-23T01:27:32Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "aa37d9152240714fbd3b1c35767f20ac7d72b170",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "oh-no-odoh",
+      "headRefOid": "b1b49de6a10128e324f05509844867a955d08068",
+      "closedAt": "2023-01-23T01:27:31Z",
+      "mergedAt": "2023-01-23T01:27:31Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "3d2666f4399c9db51a5ed59d0b4b5d20d1bf474c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LZUX-",
+          "commit": {
+            "abbreviatedOid": "b1b49de"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-23T01:26:05Z",
+          "updatedAt": "2023-01-23T01:26:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 257,
+      "id": "PR_kwDOE6fLGM5ISgQy",
+      "title": "The gateway can pad too",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/257",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #255.",
+      "createdAt": "2023-01-23T01:26:45Z",
+      "updatedAt": "2023-01-24T00:21:18Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "aa37d9152240714fbd3b1c35767f20ac7d72b170",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "pad-gateway",
+      "headRefOid": "5b78a53e61ff9be37e5626dd4d391ab95e134555",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LcHfy",
+          "commit": {
+            "abbreviatedOid": "5b78a53"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-01-23T14:07:27Z",
+          "updatedAt": "2023-01-23T14:07:31Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nClients can use padding to reduce the effectiveness of traffic analysis.\r\nClient padding is a capability provided by binary HTTP messages; see\r\n{{Section 3.8 of BINARY}}.  If the encapsulation method described in this\r\ndocument is used to protect a different message type (see {{repurposing}}),\r\nthat message format might need to include padding support. Oblivious Gateway\r\nResources can also use padding for the same reason, though the mechanism\r\nfor doing so is via header or trailer fields.\r\n```\r\n\r\nThe current text makes it seem like the gateway pads via BHTTP, which isn't possible. So in this suggested text I tried to make it clear that the gateway can also pad, but it requires a separate mechanism.",
+              "createdAt": "2023-01-23T14:07:27Z",
+              "updatedAt": "2023-01-23T14:07:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOE6fLGM5Lfzzz",
+          "commit": {
+            "abbreviatedOid": "5b78a53"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-01-24T00:21:17Z",
+          "updatedAt": "2023-01-24T00:21:18Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "Isn't it possible for the gateway to pad responses?",
+              "createdAt": "2023-01-24T00:21:17Z",
+              "updatedAt": "2023-01-24T00:21:18Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 258,
+      "id": "PR_kwDOE6fLGM5ISgcR",
+      "title": "Include key configuration description in the registration",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/258",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Left-overs from some other changes.",
+      "createdAt": "2023-01-23T01:29:13Z",
+      "updatedAt": "2023-01-23T05:21:01Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "3d2666f4399c9db51a5ed59d0b4b5d20d1bf474c",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "wouters",
+      "headRefOid": "7adb2e63d4925762ecbb37fc2c2628000cefa90c",
+      "closedAt": "2023-01-23T05:21:00Z",
+      "mergedAt": "2023-01-23T05:21:00Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "7d427aee0604e707c43cf9b40b724857aa6fc1e4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LZUn4",
+          "commit": {
+            "abbreviatedOid": "7adb2e6"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-23T01:29:46Z",
+          "updatedAt": "2023-01-23T01:29:46Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 259,
+      "id": "PR_kwDOE6fLGM5ISgj4",
+      "title": "s/ensures/can trust/",
+      "url": "https://github.com/ietf-wg-ohai/oblivious-http/pull/259",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The client relies on a very specific form of trust here, though maybe they have other means to ensure compliance, it's trust that operates here.\r\n\r\nCloses #249.",
+      "createdAt": "2023-01-23T01:30:49Z",
+      "updatedAt": "2023-01-23T04:53:42Z",
+      "baseRepository": "ietf-wg-ohai/oblivious-http",
+      "baseRefName": "main",
+      "baseRefOid": "3d2666f4399c9db51a5ed59d0b4b5d20d1bf474c",
+      "headRepository": "ietf-wg-ohai/oblivious-http",
+      "headRefName": "ensure-trust",
+      "headRefOid": "70fdb91a104aea6676ab2d66d508fc205e821db1",
+      "closedAt": "2023-01-23T04:53:41Z",
+      "mergedAt": "2023-01-23T04:53:41Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "06040690ededec60474b5bdc8d822fc9a86f587f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOE6fLGM5LZUua",
+          "commit": {
+            "abbreviatedOid": "70fdb91"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-01-23T01:31:20Z",
+          "updatedAt": "2023-01-23T01:31:20Z",
+          "comments": []
         }
       ]
     }
