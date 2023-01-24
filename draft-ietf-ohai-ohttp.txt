@@ -1119,7 +1119,10 @@ Table of Contents
    by binary HTTP messages; see Section 3.8 of [BINARY].  If the
    encapsulation method described in this document is used to protect a
    different message type (see Section 4.6), that message format might
-   need to include padding support.
+   need to include padding support.  Oblivious Relay Resources can also
+   use padding for the same reason, but need to operate at the HTTP
+   layer since they cannot manipulate binary HTTP messages; for example,
+   see Section 10.7 of [HTTP/2] or Section 10.7 of [HTTP/3]).
 
 6.3.  Server Responsibilities
 
@@ -2118,7 +2121,8 @@ Index
             Appendix A, Paragraph 1; Appendix A, Paragraph 16;
             Appendix A, Paragraph 18; Appendix A, Paragraph 36
          Oblivious Relay Resources  Section 6.2.2, Paragraph 1;
-            Section 8.2, Paragraph 2; Section 8.2, Paragraph 2
+            Section 6.2.3, Paragraph 6; Section 8.2, Paragraph 2;
+            Section 8.2, Paragraph 2
 
       T
 
